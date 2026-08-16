@@ -16,7 +16,17 @@
       "Bash(python3 -c ' *)",
       "Bash(python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py \"personal portfolio cinematic dark immersive filmmaker\" --design-system --motion 9 --variance 7 -p \"Personal Website\")",
       "Bash(python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py \"elegant editorial display serif high contrast\" --domain typography -n 4)",
-      "Bash(node --check main.js)"
+      "Bash(node --check main.js)",
+      "Bash(gh api *)",
+      "Bash(npx --version)",
+      "Bash(npx --yes skills add supabase/agent-skills)",
+      "Bash(export HOMEBREW_NO_INSTALL_CLEANUP=1)",
+      "Bash(brew update *)",
+      "Bash(brew info *)",
+      "Bash(export HOMEBREW_NO_INSTALL_CLEANUP=1 HOMEBREW_NO_AUTO_UPDATE=1)",
+      "Bash(brew install *)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Bash(echo \" homebrew node: $\\(/opt/homebrew/bin/node --version || echo 'not found'\\)\")"
     ]
   }
 }

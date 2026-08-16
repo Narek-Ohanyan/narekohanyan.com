@@ -156,10 +156,92 @@ window.Academy = (function () {
     return !!(s && s.enrolled);
   }
 
+  /* ── database sync ────────────────────────────────────────────────────
+     Progress is mirrored to Supabase so it survives a cleared cache or a
+     change of device. Three things stay true:
+
+       · localStorage remains the source of truth for the running page, so
+         the academy still works with no network at all;
+       · the password never leaves this browser — the database identifies a
+         learner by an unguessable key, not by credentials;
+       · a failed sync is silent. Losing a network round-trip must not stop
+         someone finishing a lesson.
+
+     On merge, remote wins only where it is genuinely ahead: a unit already
+     done stays done, and a score can rise but never fall. That way two
+     devices converge instead of overwriting each other. */
+  function db() { return window.NO && window.NO.db && window.NO.db.available() ? window.NO.db : null; }
+
+  function push(courseId) {
+    var d = db(), s = state(courseId);
+    if (!d || !s) return Promise.resolve(false);
+    return d.saveProgress(courseId, {
+      enrolled: !!s.enrolled,
+      started: s.started || null,
+      claimed: s.claimed || false,
+      done: s.done || {},
+      scores: s.scores || {}
+    }).then(function (r) { return !!r.ok; }, function () { return false; });
+  }
+
+  /** Pulls remote progress and folds it into the local copy. */
+  function pull(courseId) {
+    var d = db();
+    if (!d || !d.learnerKey()) return Promise.resolve(false);
+    return d.fetchProgress().then(function (r) {
+      if (!r.ok || !r.data) return false;
+      var remote = r.data[courseId];
+      if (!remote) return false;
+      var local = state(courseId);
+      if (!local) return false;
+
+      if (remote.enrolled) local.enrolled = true;
+      if (remote.started && !local.started) local.started = remote.started;
+      if (remote.claimed && remote.claimed !== 'false' && !local.claimed) local.claimed = remote.claimed;
+
+      Object.keys(remote.done || {}).forEach(function (k) {
+        if (remote.done[k]) local.done[k] = true;
+      });
+      Object.keys(remote.scores || {}).forEach(function (k) {
+        var rv = remote.scores[k], lv = local.scores[k];
+        if (typeof rv === 'number' && (typeof lv !== 'number' || rv > lv)) local.scores[k] = rv;
+      });
+
+      var whole = load();
+      whole.progress[whole.session][courseId] = local;
+      save(whole);
+      return true;
+    }, function () { return false; });
+  }
+
+  /** Called after sign-up/log-in so this browser has a learner key. */
+  function link(user) {
+    var d = db();
+    if (!d || !user) return Promise.resolve(false);
+    return d.ensureLearner(user.name, user.email, user.newsletter)
+      .then(function (r) { return !!r.ok; }, function () { return false; });
+  }
+
+  /* The public methods wrap the local ones so a sync happens on every
+     change without any caller having to remember to ask for one. The local
+     write still decides the return value; the push is fire-and-forget. */
   return {
-    signUp: signUp, logIn: logIn, logOut: logOut, current: current,
-    state: state, enrol: enrol, isEnrolled: isEnrolled,
-    markDone: markDone, setScore: setScore, claim: claim,
+    signUp: function (n, e, p, nl) {
+      return signUp(n, e, p, nl).then(function (u) { link(u); return u; });
+    },
+    logIn: function (e, p) {
+      return logIn(e, p).then(function (u) { link(u); return u; });
+    },
+    enrol: function (c) { var r = enrol(c); if (r) push(c); return r; },
+    markDone: function (c, u) { var r = markDone(c, u); if (r) push(c); return r; },
+    setScore: function (c, q, pct) { var r = setScore(c, q, pct); if (r) push(c); return r; },
+    claim: function (c) { var r = claim(c); if (r) push(c); return r; },
+
+    logOut: logOut, current: current,
+    state: state, isEnrolled: isEnrolled,
+    push: push, pull: pull, link: link,
+    learnerKey: function () { var d = db(); return d ? d.learnerKey() : null; },
+    synced: function () { return !!db(); },
     available: (function () {
       try { localStorage.setItem('no.t', '1'); localStorage.removeItem('no.t'); return true; }
       catch (e) { return false; }

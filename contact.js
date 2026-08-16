@@ -71,6 +71,25 @@
   function submitRequest(payload) {
     payload.sentAt = new Date().toISOString();
 
+    /* Supabase is the primary destination. It is tried first, and only if
+       it is unreachable do we fall back — to a mail relay if one is
+       configured, and to this device otherwise. A visitor's message is
+       never dropped because the network blinked. */
+    if (window.NO && window.NO.db && window.NO.db.available()) {
+      var send = payload.type === 'booking'
+        ? window.NO.db.requestBooking(payload)
+        : window.NO.db.sendMessage(payload);
+
+      return send.then(function (res) {
+        if (res.ok) return { stored: false, db: true };
+        // Held locally so it survives, and reported honestly to the reader.
+        queue(payload);
+        throw new Error(res.error && res.error.message
+          ? res.error.message
+          : 'the database could not be reached');
+      });
+    }
+
     if (ENDPOINT) {
       var body = {};
       Object.keys(payload).forEach(function (k) {

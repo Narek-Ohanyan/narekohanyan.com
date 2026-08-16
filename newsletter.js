@@ -95,6 +95,20 @@
   function send(payload) {
     payload.sentAt = new Date().toISOString();
 
+    /* Straight into the subscribers table. A repeat sign-up is reported as
+       success — the reader asked to be on the list and they are on it, so
+       "you are already subscribed" is the honest answer, not an error. */
+    if (window.NO && window.NO.db && window.NO.db.available()) {
+      return window.NO.db.subscribe(payload.email, payload.name, payload.kind || 'newsroom')
+        .then(function (res) {
+          if (res.ok) return { stored: false, db: true, duplicate: !!res.duplicate };
+          queue(payload);
+          throw new Error(res.error && res.error.message
+            ? res.error.message
+            : 'the database could not be reached');
+        });
+    }
+
     if (ENDPOINT) {
       var body = {
         kind: payload.kind,
