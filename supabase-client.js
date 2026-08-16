@@ -21,7 +21,6 @@ window.NO = window.NO || {};
 window.NO.db = (function () {
   'use strict';
 
-  var LEARNER_KEY = 'no.academy.learnerKey';
   var client = null;
   var ready = false;
 
@@ -33,7 +32,7 @@ window.NO.db = (function () {
       if (!cfg || !cfg.url || !cfg.publishableKey) return (client = null);
       if (!window.supabase || !window.supabase.createClient) return (client = null);
       client = window.supabase.createClient(cfg.url, cfg.publishableKey, {
-        auth: { persistSession: false, autoRefreshToken: false },
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
         global: { headers: { 'x-client-info': 'narekohanyan-site' } }
       });
     } catch (e) { client = null; }
@@ -115,47 +114,105 @@ window.NO.db = (function () {
     }));
   }
 
-  /* ── Green Academy ────────────────────────────────────────────────────
-     The learner key is a capability: whoever holds it can see that
-     learner's progress and nobody else can. It lives in localStorage and
-     is minted on first use. No password ever leaves the browser. */
-  function learnerKey() {
-    try { return localStorage.getItem(LEARNER_KEY) || null; } catch (e) { return null; }
-  }
-  function setLearnerKey(k) {
-    try { localStorage.setItem(LEARNER_KEY, k); return true; } catch (e) { return false; }
-  }
-
-  function register(name, email, newsletter) {
+  /* ── Green Academy: authentication ────────────────────────────────────
+     Passwords go straight to Supabase Auth and are never held, hashed or
+     logged by this site. The session lives in localStorage under Supabase's
+     own key and is refreshed automatically. */
+  function signUp(email, password, meta) {
     var c = init();
     if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('academy_register', {
-      p_name: nn(name, 200), p_email: nn(email, 320), p_newsletter: !!newsletter
-    })).then(function (r) {
-      if (r.ok && r.data) setLearnerKey(r.data);
-      return r;
-    });
+    return c.auth.signUp({
+      email: email, password: password,
+      options: { data: meta || {}, emailRedirectTo: window.location.origin + '/academy.html' }
+    }).then(function (r) {
+      if (r.error) return { ok: false, error: r.error };
+      // No session means the project requires email confirmation.
+      if (!r.data.session) return { ok: true, pending: true, user: r.data.user };
+      return { ok: true, session: r.data.session, user: r.data.user };
+    }, function (e) { return { ok: false, error: e, offline: true }; });
   }
 
-  /** Ensures a key exists, registering one if this browser has none. */
-  function ensureLearner(name, email, newsletter) {
-    var k = learnerKey();
-    if (k) return Promise.resolve({ ok: true, data: k });
-    return register(name, email, newsletter);
+  function signIn(email, password) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return c.auth.signInWithPassword({ email: email, password: password })
+      .then(function (r) {
+        if (r.error) return { ok: false, error: r.error };
+        return { ok: true, session: r.data.session, user: r.data.user };
+      }, function (e) { return { ok: false, error: e, offline: true }; });
   }
 
-  function fetchProgress() {
-    var c = init(), k = learnerKey();
-    if (!c || !k) return Promise.resolve({ ok: false, offline: !c });
-    return wrap(c.rpc('academy_fetch', { p_key: k }));
+  function signOut() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: true });
+    return c.auth.signOut().then(function () { return { ok: true }; },
+                                function () { return { ok: true }; });
   }
 
-  function saveProgress(courseId, state) {
-    var c = init(), k = learnerKey();
-    if (!c || !k) return Promise.resolve({ ok: false, offline: !c });
-    return wrap(c.rpc('academy_save', {
-      p_key: k, p_course: String(courseId), p_state: state || {}
+  function getSession() {
+    var c = init();
+    if (!c) return Promise.resolve(null);
+    return c.auth.getSession().then(function (r) {
+      return (r && r.data) ? r.data.session : null;
+    }, function () { return null; });
+  }
+
+  function onAuthChange(fn) {
+    var c = init();
+    if (!c) return function () {};
+    var sub = c.auth.onAuthStateChange(function (_evt, session) { fn(session); });
+    return function () { try { sub.data.subscription.unsubscribe(); } catch (e) {} };
+  }
+
+  function resetPassword(email) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.auth.resetPasswordForEmail(String(email).trim(), {
+      redirectTo: window.location.origin + '/academy.html'
     }));
+  }
+
+  /* ── Green Academy: progress ──────────────────────────────────────────
+     RLS scopes every row to the signed-in user, so these queries carry no
+     user_id filter of their own for reads — the database applies it. On
+     write the id is set explicitly because the INSERT policy checks it. */
+  function fetchProgress() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return c.from('course_progress')
+      .select('course_id, enrolled, started_at, claimed_at, done, scores')
+      .then(function (r) {
+        if (r.error) return { ok: false, error: r.error };
+        var out = {};
+        (r.data || []).forEach(function (row) {
+          out[row.course_id] = {
+            enrolled: !!row.enrolled,
+            started: row.started_at,
+            claimed: row.claimed_at || false,
+            done: row.done || {},
+            scores: row.scores || {}
+          };
+        });
+        return { ok: true, data: out };
+      }, function (e) { return { ok: false, error: e, offline: true }; });
+  }
+
+  function saveProgress(courseId, s) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return c.auth.getUser().then(function (u) {
+      var id = u && u.data && u.data.user ? u.data.user.id : null;
+      if (!id) return { ok: false, error: new Error('not signed in') };
+      return wrap(c.from('course_progress').upsert({
+        user_id: id,
+        course_id: String(courseId).slice(0, 100),
+        enrolled: !!s.enrolled,
+        started_at: s.started || null,
+        claimed_at: (s.claimed && s.claimed !== true) ? s.claimed : null,
+        done: s.done || {},
+        scores: s.scores || {}
+      }, { onConflict: 'user_id,course_id' }));
+    }, function (e) { return { ok: false, error: e, offline: true }; });
   }
 
   return {
@@ -163,10 +220,9 @@ window.NO.db = (function () {
     subscribe: subscribe,
     sendMessage: sendMessage,
     requestBooking: requestBooking,
-    learnerKey: learnerKey,
-    setLearnerKey: setLearnerKey,
-    register: register,
-    ensureLearner: ensureLearner,
+    signUp: signUp, signIn: signIn, signOut: signOut,
+    getSession: getSession, onAuthChange: onAuthChange,
+    resetPassword: resetPassword,
     fetchProgress: fetchProgress,
     saveProgress: saveProgress
   };

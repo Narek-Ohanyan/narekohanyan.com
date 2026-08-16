@@ -211,14 +211,30 @@
     if (pw !== pw2) fail('su-pw2', 'The two passwords do not match.');
     if (bad.length) return summarise('signupErrors', bad);
 
-    A.signUp(name, email, pw, news).then(show).catch(function (err) {
+    A.signUp(name, email, pw, news).then(function (res) {
+      if (res && res.pending) {
+        // The project requires confirmation: the account exists but there
+        // is no session, so say so rather than dropping them at a gate
+        // that looks like the sign-up simply failed.
+        var note = document.getElementById('authNote');
+        note.textContent = 'Almost there — check ' + res.email + ' for a confirmation link, ' +
+                           'then come back and sign in.';
+        note.hidden = false;
+        paneSignup.reset();
+        tabLogin.click();
+        return;
+      }
+      show();
+    }).catch(function (err) {
       summarise('signupErrors', [{ id: 'su-email', msg: err.message }]);
     });
   });
 
   /* ── dashboard events ──────────────────────────────────────────── */
   document.getElementById('logout').addEventListener('click', function () {
-    A.logOut(); page = 1; query = ''; document.getElementById('q').value = ''; show();
+    Promise.resolve(A.logOut()).then(function () {
+      page = 1; query = ''; document.getElementById('q').value = ''; show();
+    });
   });
 
   document.addEventListener('click', function (e) {
@@ -246,5 +262,12 @@
     note.hidden = false;
   }
 
-  show();
+  /* Render only once any stored session has been restored — otherwise a
+     returning learner sees the signed-out gate flash before their
+     dashboard replaces it. */
+  if (A.ready) {
+    A.ready().then(show, show);
+  } else {
+    show();
+  }
 }());

@@ -1,154 +1,217 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Online Green Academy — accounts and progress
    ───────────────────────────────────────────────────────────────────────
-   ⚠ READ THIS BEFORE RELYING ON IT.
+   Accounts are real now. Sign-up, sign-in and sessions are handled by
+   Supabase Auth: passwords are hashed and stored by Supabase, never by
+   this site, and never in localStorage. Progress lives in Postgres, owned
+   by the signed-in user and fenced off by row level security — one learner
+   cannot read or write another's rows even with a crafted request.
 
-   This site is static: there is no server, no database, no session. Every
-   account and every score below lives in localStorage, in one browser, on
-   one device. That means:
+   The interface below is deliberately unchanged from the localStorage
+   version — signUp / logIn / logOut / current / state / enrol / markDone /
+   setScore / claim — so the pages that call it did not have to be rewritten
+   around a new shape. Two things did change and callers must honour them:
 
-     · a learner who switches browser or clears data loses their progress
-     · nothing is shared between devices
-     · anyone can open devtools and mark themselves complete
+     · ready() resolves once the stored session has been restored. Render
+       after it, or a returning learner flashes the signed-out view.
+     · signUp() may resolve with { pending: true } when the project
+       requires email confirmation, meaning the account exists but there is
+       no session yet.
 
-   Passwords are salted and hashed with SHA-256 rather than stored in the
-   clear, but that is damage limitation, not security — the check happens
-   on the same machine as the data. Treat this as a working prototype of
-   the flow, not as real authentication. Wiring it to a backend (or to a
-   hosted LMS) is what makes it real; the shape of the data here is
-   deliberately close to what such a backend would store.
+   A local mirror of progress is kept so the course still renders if the
+   network drops mid-lesson; the database remains the source of truth and
+   wins on reload.
    ═══════════════════════════════════════════════════════════════════════ */
 
 window.Academy = (function () {
   'use strict';
 
-  var KEY = 'no.academy.v1';
+  var MIRROR = 'no.academy.mirror.v2';
+  var COURSE_DEFAULT = { enrolled: false, done: {}, scores: {}, claimed: false, started: null };
 
-  function load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || {}; }
-    catch (e) { return {}; }
-  }
-  function save(db) {
-    try { localStorage.setItem(KEY, JSON.stringify(db)); return true; }
-    catch (e) { return false; }          // private mode, or quota
-  }
+  var user = null;        // { id, name, email }
+  var progress = {};      // { courseId: state }
+  var readyPromise = null;
+
   function db() {
-    var d = load();
-    d.users = d.users || {};
-    d.progress = d.progress || {};
-    return d;
+    return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db : null;
   }
 
-  // ── password hashing ────────────────────────────────────────────────
-  function randomSalt() {
-    var a = new Uint8Array(16);
-    (window.crypto || window.msCrypto).getRandomValues(a);
-    return Array.prototype.map.call(a, function (b) {
-      return ('0' + b.toString(16)).slice(-2);
-    }).join('');
+  /* ── local mirror (offline resilience only) ─────────────────────── */
+  function readMirror() {
+    try { return JSON.parse(localStorage.getItem(MIRROR)) || {}; } catch (e) { return {}; }
+  }
+  function writeMirror() {
+    try {
+      var all = readMirror();
+      if (user) all[user.id] = progress;
+      localStorage.setItem(MIRROR, JSON.stringify(all));
+    } catch (e) { /* private browsing — the database still has it */ }
+  }
+  function loadMirror() {
+    if (!user) return;
+    var all = readMirror();
+    progress = all[user.id] || {};
   }
 
-  function hash(pw, salt) {
-    var enc = new TextEncoder().encode(salt + '::' + pw);
-    return crypto.subtle.digest('SHA-256', enc).then(function (buf) {
-      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
-        return ('0' + b.toString(16)).slice(-2);
-      }).join('');
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+
+  function ensure(courseId) {
+    if (!user) return null;
+    if (!progress[courseId]) progress[courseId] = clone(COURSE_DEFAULT);
+    return progress[courseId];
+  }
+
+  /* ── session ────────────────────────────────────────────────────── */
+  function adopt(session) {
+    if (!session || !session.user) { user = null; progress = {}; return null; }
+    var m = session.user.user_metadata || {};
+    user = {
+      id: session.user.id,
+      email: session.user.email,
+      name: m.full_name || (session.user.email || '').split('@')[0],
+      newsletter: !!m.newsletter
+    };
+    return user;
+  }
+
+  /** Resolves once any stored session is restored and progress pulled. */
+  function ready() {
+    if (readyPromise) return readyPromise;
+    var d = db();
+    if (!d) { readyPromise = Promise.resolve(null); return readyPromise; }
+
+    readyPromise = d.getSession().then(function (session) {
+      adopt(session);
+      if (!user) return null;
+      loadMirror();
+      return refresh().then(function () { return user; });
+    }).catch(function () { return null; });
+
+    // Keep this module in step with sign-in/out that happens elsewhere,
+    // including in another tab.
+    d.onAuthChange(function (session) {
+      var before = user && user.id;
+      adopt(session);
+      if (!user) { progress = {}; return; }
+      if (user.id !== before) { loadMirror(); refresh(); }
     });
+
+    return readyPromise;
   }
 
-  // ── accounts ────────────────────────────────────────────────────────
-  function normalise(email) { return String(email || '').trim().toLowerCase(); }
+  /** Pulls the authoritative progress for the signed-in user. */
+  function refresh() {
+    var d = db();
+    if (!d || !user) return Promise.resolve(false);
+    return d.fetchProgress().then(function (res) {
+      if (!res.ok || !res.data) return false;
+      progress = res.data;
+      writeMirror();
+      return true;
+    }, function () { return false; });
+  }
 
+  function push(courseId) {
+    var d = db(), s = progress[courseId];
+    if (!d || !user || !s) return Promise.resolve(false);
+    writeMirror();
+    return d.saveProgress(courseId, s).then(function (r) { return !!r.ok; },
+                                            function () { return false; });
+  }
+
+  /* ── accounts ───────────────────────────────────────────────────── */
   function signUp(name, email, pw, newsletter) {
     var d = db();
-    var id = normalise(email);
-    if (d.users[id]) return Promise.reject(new Error('An account already exists for that email address.'));
-    var salt = randomSalt();
-    return hash(pw, salt).then(function (h) {
-      d.users[id] = {
-        name: String(name).trim(),
-        email: id,
-        salt: salt,
-        hash: h,
-        newsletter: !!newsletter,
-        joined: new Date().toISOString()
-      };
-      d.session = id;
-      if (!save(d)) throw new Error('Your browser is blocking local storage, so the account could not be saved. Private browsing usually causes this.');
-      return d.users[id];
+    if (!d) return Promise.reject(new Error('The academy cannot reach its database right now. Please try again in a moment.'));
+    return d.signUp(String(email).trim(), pw, {
+      full_name: String(name || '').trim(),
+      newsletter: !!newsletter
+    }).then(function (res) {
+      if (!res.ok) throw new Error(friendly(res.error));
+      if (res.pending) return { pending: true, email: String(email).trim() };
+      adopt(res.session);
+      progress = {};
+      // A sign-up that ticked the newsletter box should actually subscribe.
+      if (newsletter) d.subscribe(email, name, 'academy');
+      return user;
     });
   }
 
   function logIn(email, pw) {
     var d = db();
-    var u = d.users[normalise(email)];
-    // Same message either way: not saying which half was wrong.
-    var wrong = new Error('That email and password combination does not match an account.');
-    if (!u) return Promise.reject(wrong);
-    return hash(pw, u.salt).then(function (h) {
-      if (h !== u.hash) throw wrong;
-      d.session = u.email;
-      save(d);
-      return u;
+    if (!d) return Promise.reject(new Error('The academy cannot reach its database right now. Please try again in a moment.'));
+    return d.signIn(String(email).trim(), pw).then(function (res) {
+      if (!res.ok) throw new Error(friendly(res.error));
+      adopt(res.session);
+      loadMirror();
+      return refresh().then(function () { return user; });
     });
   }
 
-  function logOut() { var d = db(); delete d.session; save(d); }
-
-  function current() {
+  function logOut() {
     var d = db();
-    return d.session ? d.users[d.session] || null : null;
+    user = null; progress = {}; readyPromise = null;
+    return d ? d.signOut() : Promise.resolve();
   }
 
-  // ── progress ────────────────────────────────────────────────────────
-  function record(courseId) {
-    var d = db(), u = d.session;
-    if (!u) return null;
-    d.progress[u] = d.progress[u] || {};
-    d.progress[u][courseId] = d.progress[u][courseId] ||
-      { enrolled: false, done: {}, scores: {}, claimed: false, started: null };
-    return d;
+  function current() { return user; }
+
+  /** Supabase's messages are accurate but terse; these are for readers. */
+  function friendly(err) {
+    var m = (err && (err.message || err.msg)) ? String(err.message || err.msg) : '';
+    if (/already registered|already been registered|User already/i.test(m))
+      return 'An account already exists for that email address. Try signing in instead.';
+    if (/Invalid login credentials/i.test(m))
+      return 'That email and password combination does not match an account.';
+    if (/Email not confirmed/i.test(m))
+      return 'Please confirm your email address first — check your inbox for the link.';
+    if (/Password should be at least/i.test(m))
+      return 'That password is too short. Use at least 8 characters.';
+    if (/rate limit|too many/i.test(m))
+      return 'Too many attempts just now. Please wait a minute and try again.';
+    if (/fetch|network|Failed to/i.test(m))
+      return 'Could not reach the academy. Check your connection and try again.';
+    return m || 'Something went wrong. Please try again.';
   }
 
-  function state(courseId) {
-    var d = record(courseId);
-    if (!d) return null;
-    return d.progress[d.session][courseId];
-  }
+  /* ── progress ───────────────────────────────────────────────────── */
+  function state(courseId) { return user ? (progress[courseId] || null) : null; }
 
   function enrol(courseId) {
-    var d = record(courseId);
-    if (!d) return false;
-    var s = d.progress[d.session][courseId];
+    var s = ensure(courseId);
+    if (!s) return false;
     s.enrolled = true;
     s.started = s.started || new Date().toISOString();
-    return save(d);
+    push(courseId);
+    return true;
   }
 
   function markDone(courseId, unitId) {
-    var d = record(courseId);
-    if (!d) return false;
-    d.progress[d.session][courseId].done[unitId] = true;
-    return save(d);
+    var s = ensure(courseId);
+    if (!s) return false;
+    s.done[unitId] = true;
+    push(courseId);
+    return true;
   }
 
   /** Keeps the best score only — a retake can raise a mark, never lower it. */
   function setScore(courseId, quizId, pct) {
-    var d = record(courseId);
-    if (!d) return false;
-    var s = d.progress[d.session][courseId];
+    var s = ensure(courseId);
+    if (!s) return false;
     var prev = s.scores[quizId];
     if (typeof prev !== 'number' || pct > prev) s.scores[quizId] = pct;
     if (pct >= 80) s.done[quizId] = true;
-    return save(d);
+    push(courseId);
+    return true;
   }
 
   function claim(courseId) {
-    var d = record(courseId);
-    if (!d) return false;
-    d.progress[d.session][courseId].claimed = new Date().toISOString();
-    return save(d);
+    var s = ensure(courseId);
+    if (!s) return false;
+    s.claimed = new Date().toISOString();
+    push(courseId);
+    return true;
   }
 
   function isEnrolled(courseId) {
@@ -156,95 +219,19 @@ window.Academy = (function () {
     return !!(s && s.enrolled);
   }
 
-  /* ── database sync ────────────────────────────────────────────────────
-     Progress is mirrored to Supabase so it survives a cleared cache or a
-     change of device. Three things stay true:
-
-       · localStorage remains the source of truth for the running page, so
-         the academy still works with no network at all;
-       · the password never leaves this browser — the database identifies a
-         learner by an unguessable key, not by credentials;
-       · a failed sync is silent. Losing a network round-trip must not stop
-         someone finishing a lesson.
-
-     On merge, remote wins only where it is genuinely ahead: a unit already
-     done stays done, and a score can rise but never fall. That way two
-     devices converge instead of overwriting each other. */
-  function db() { return window.NO && window.NO.db && window.NO.db.available() ? window.NO.db : null; }
-
-  function push(courseId) {
-    var d = db(), s = state(courseId);
-    if (!d || !s) return Promise.resolve(false);
-    return d.saveProgress(courseId, {
-      enrolled: !!s.enrolled,
-      started: s.started || null,
-      claimed: s.claimed || false,
-      done: s.done || {},
-      scores: s.scores || {}
-    }).then(function (r) { return !!r.ok; }, function () { return false; });
-  }
-
-  /** Pulls remote progress and folds it into the local copy. */
-  function pull(courseId) {
-    var d = db();
-    if (!d || !d.learnerKey()) return Promise.resolve(false);
-    return d.fetchProgress().then(function (r) {
-      if (!r.ok || !r.data) return false;
-      var remote = r.data[courseId];
-      if (!remote) return false;
-      var local = state(courseId);
-      if (!local) return false;
-
-      if (remote.enrolled) local.enrolled = true;
-      if (remote.started && !local.started) local.started = remote.started;
-      if (remote.claimed && remote.claimed !== 'false' && !local.claimed) local.claimed = remote.claimed;
-
-      Object.keys(remote.done || {}).forEach(function (k) {
-        if (remote.done[k]) local.done[k] = true;
-      });
-      Object.keys(remote.scores || {}).forEach(function (k) {
-        var rv = remote.scores[k], lv = local.scores[k];
-        if (typeof rv === 'number' && (typeof lv !== 'number' || rv > lv)) local.scores[k] = rv;
-      });
-
-      var whole = load();
-      whole.progress[whole.session][courseId] = local;
-      save(whole);
-      return true;
-    }, function () { return false; });
-  }
-
-  /** Called after sign-up/log-in so this browser has a learner key. */
-  function link(user) {
-    var d = db();
-    if (!d || !user) return Promise.resolve(false);
-    return d.ensureLearner(user.name, user.email, user.newsletter)
-      .then(function (r) { return !!r.ok; }, function () { return false; });
-  }
-
-  /* The public methods wrap the local ones so a sync happens on every
-     change without any caller having to remember to ask for one. The local
-     write still decides the return value; the push is fire-and-forget. */
   return {
-    signUp: function (n, e, p, nl) {
-      return signUp(n, e, p, nl).then(function (u) { link(u); return u; });
-    },
-    logIn: function (e, p) {
-      return logIn(e, p).then(function (u) { link(u); return u; });
-    },
-    enrol: function (c) { var r = enrol(c); if (r) push(c); return r; },
-    markDone: function (c, u) { var r = markDone(c, u); if (r) push(c); return r; },
-    setScore: function (c, q, pct) { var r = setScore(c, q, pct); if (r) push(c); return r; },
-    claim: function (c) { var r = claim(c); if (r) push(c); return r; },
+    ready: ready, refresh: refresh,
+    signUp: signUp, logIn: logIn, logOut: logOut, current: current,
+    state: state, enrol: enrol, isEnrolled: isEnrolled,
+    markDone: markDone, setScore: setScore, claim: claim,
 
-    logOut: logOut, current: current,
-    state: state, isEnrolled: isEnrolled,
-    push: push, pull: pull, link: link,
-    learnerKey: function () { var d = db(); return d ? d.learnerKey() : null; },
-    synced: function () { return !!db(); },
+    // Kept as a boolean because the UI tests it as one. It reports whether
+    // this browser allows local storage, which is what the on-screen
+    // warning is about; online() is the separate question of reachability.
     available: (function () {
       try { localStorage.setItem('no.t', '1'); localStorage.removeItem('no.t'); return true; }
       catch (e) { return false; }
-    }())
+    }()),
+    online: function () { return !!db(); }
   };
 }());
