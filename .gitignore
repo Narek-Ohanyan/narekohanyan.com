@@ -1,0 +1,51 @@
+# ── macOS ──────────────────────────────────────────────────────────────
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ── Editors ────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ── Working files ──────────────────────────────────────────────────────
+_*.html          # temporary preview harnesses
+*.bak
+__pycache__/
+
+# ── Media ──────────────────────────────────────────────────────────────
+# Media/ holds ~1.1 GB of untouched camera originals (raw .MOV files and
+# 20-40 MB JPEGs straight off the card). Those are irreplaceable, but they
+# do not belong in git — GitHub rejects any single file over 100 MB, and one
+# original here is 111 MB. Back them up to a drive or cloud storage instead.
+#
+# What the site actually serves is the processed set in Media/web (67 MB,
+# 258 files), plus the five files listed below. Everything else is ignored.
+#
+# NOTE: adding a new asset anywhere in Media/ outside Media/web means adding
+# an exception here too, or git will silently skip it.
+Media/*
+!Media/web/
+!Media/logo_white.png
+!Media/window_guy.png
+!Media/hero_video.mp4
+!Media/hero_video_mobile.mp4
+!Media/edu/
+Media/edu/*
+!Media/edu/hero.MP4
+
+# ── Secrets ────────────────────────────────────────────────────────────
+# The Gemini key belongs in the host's environment variables, never in a
+# file here. These rules are a backstop in case one is created locally.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets.json
+
+# ── Host build output ──────────────────────────────────────────────────
+.netlify/
+.vercel/
+node_modules/

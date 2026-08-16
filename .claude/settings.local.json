@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/narek/.claude/**)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(gh auth *)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm -v)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p ~/.npm-global)",
+      "Bash(npm config *)",
+      "Bash(rm -rf \"/Users/narek/Desktop/Personal Website/.claude/skills\")",
+      "Bash(~/.npm-global/bin/uipro init *)",
+      "Bash(python3 analyze.py small.png)",
+      "Bash(python3 refine.py small.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py \"personal portfolio cinematic dark immersive filmmaker\" --design-system --motion 9 --variance 7 -p \"Personal Website\")",
+      "Bash(python3 ~/.claude/skills/ui-ux-pro-max/scripts/search.py \"elegant editorial display serif high contrast\" --domain typography -n 4)",
+      "Bash(node --check main.js)"
+    ]
+  }
+}

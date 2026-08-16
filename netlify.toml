@@ -1,0 +1,15 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# The page calls /api/gemini; Netlify serves functions from a different path.
+[[redirects]]
+  from = "/api/gemini"
+  to = "/.netlify/functions/gemini"
+  status = 200
+
+# Pretty URL for the essay platform.
+[[redirects]]
+  from = "/Essay"
+  to = "/Essay/index.html"
+  status = 200

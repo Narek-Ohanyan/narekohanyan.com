@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Leaf silhouette in the brand shape: two opposite corners drawn to a
+       point, two left soft — the same language as the buttons and cards. -->
+  <path d="M4 4h38a18 18 0 0 1 18 18v38H22A18 18 0 0 1 4 42Z" fill="#1B3E26"/>
+  <path d="M46 17c0 16.5-8.6 24.8-19 24.8A11.9 11.9 0 0 1 15 29.9C15 21 26 17 46 17Z"
+        fill="none" stroke="#F5EC9A" stroke-width="3.4" stroke-linejoin="round"/>
+  <path d="M15 49c3.3-8.6 9.5-14.8 18.6-18.5" fill="none" stroke="#F5EC9A"
+        stroke-width="3.4" stroke-linecap="round"/>
+</svg>

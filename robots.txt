@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Generated pages and working files
+Disallow: /i18n/
+
+Sitemap: https://narekohanyan.com/sitemap.xml

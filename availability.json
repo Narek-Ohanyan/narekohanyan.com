@@ -1,0 +1,43 @@
+{
+  "_comment": [
+    "Edit this file to change what the booking calendar offers. It is read at",
+    "page load, so a change here takes effect on the next refresh — no code.",
+    "",
+    "hours        Open window per weekday, [firstHour, lastHour] on a 24h clock.",
+    "             lastHour is exclusive: [9, 18] offers 09:00 through 17:00-18:00.",
+    "             Use null for a day you never take.",
+    "minNoticeDays How far ahead the first bookable day sits.",
+    "maxAheadDays  How far out the calendar will accept a booking.",
+    "blackout     Whole days that are closed (holidays, travel, deadlines).",
+    "busy         Specific blocks already taken. Google Calendar can fill this",
+    "             in automatically — see the note at the top of contact.js."
+  ],
+
+  "timezone": "Asia/Yerevan",
+  "utcOffset": 4,
+
+  "hours": {
+    "1": [9, 20],
+    "2": [9, 20],
+    "3": [9, 20],
+    "4": [9, 20],
+    "5": [9, 20],
+    "6": [9, 20],
+    "0": [9, 20]
+  },
+
+  "minNoticeDays": 2,
+  "maxAheadDays": 240,
+
+  "blackout": ["2026-08-15"],
+
+  "busy": [
+    { "start": "2026-08-17T14:00+04:00", "end": "2026-08-17T15:00+04:00" },
+    { "start": "2026-08-18T09:00+04:00", "end": "2026-08-18T13:00+04:00" },
+    { "start": "2026-08-18T13:00+04:00", "end": "2026-08-18T15:00+04:00" },
+    { "start": "2026-08-18T16:00+04:00", "end": "2026-08-18T17:00+04:00" },
+    { "start": "2026-08-20T12:00+04:00", "end": "2026-08-20T14:00+04:00" },
+    { "start": "2026-08-20T16:00+04:00", "end": "2026-08-20T17:00+04:00" }
+    
+  ]
+}

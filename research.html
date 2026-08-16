@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Research — Climate Science & Earth System Dynamics</title>
+<meta name="theme-color" content="#1A1D20">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="Media/logo_white.png">
+<link rel="preload" as="image" href="Media/web/research/forest.jpg">
+<link rel="stylesheet" href="styles.css?v=940fd1ec41">
+
+<!--seo-->
+<meta name="description" content="Cloud-native CMIP6 pipelines, forest vulnerability modelling at WSL and the AUA Acopian Center, and the Armenia Reforestation Predictive Framework.">
+<meta name="keywords" content="climate research, CMIP6, Earth system dynamics, forest resilience modelling, vapor pressure deficit, machine learning climate, Pangeo, xarray, GEDI, Armenia reforestation">
+<meta name="author" content="Narek Ohanyan">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://narekohanyan.com/research.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Narek Ohanyan">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://narekohanyan.com/research.html">
+<meta property="og:title" content="Research — Climate Science & Earth System Dynamics">
+<meta property="og:description" content="Cloud-native CMIP6 pipelines, forest vulnerability modelling at WSL and the AUA Acopian Center, and the Armenia Reforestation Predictive Framework.">
+<meta property="og:image" content="https://narekohanyan.com/Media/web/og/research.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Narek Ohanyan — climate and environmental researcher">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research — Climate Science & Earth System Dynamics">
+<meta name="twitter:description" content="Cloud-native CMIP6 pipelines, forest vulnerability modelling at WSL and the AUA Acopian Center, and the Armenia Reforestation Predictive Framework.">
+<meta name="twitter:image" content="https://narekohanyan.com/Media/web/og/research.jpg">
+<!--/seo-->
+</head>
+<body data-page="research.html">
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ══ Icon sprite ══ One stroke family, 1.6px, 24-grid. Drawn inline so the
+     page carries no icon-font dependency and every glyph inherits currentColor.
+     Each <use> is decorative: the text beside it carries the meaning. ══ -->
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <g id="i-cloud"><path d="M17.5 19a4.5 4.5 0 0 0 .4-8.98 6 6 0 0 0-11.64-1.6A4 4 0 0 0 6.5 19Z"/></g>
+    <g id="i-thermo"><path d="M14 14.76V4a2 2 0 1 0-4 0v10.76a4.5 4.5 0 1 0 4 0Z"/><path d="M12 16.5v-6"/></g>
+    <g id="i-layers"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/><path d="m3 17 9 4 9-4"/></g>
+    <g id="i-model"><circle cx="12" cy="5" r="2.4"/><circle cx="5" cy="18" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M10.4 6.9 6.6 15.7M13.6 6.9l3.8 8.8M7.4 18h9.2"/></g>
+    <g id="i-cpu"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/><path d="M10 10h4v4h-4z"/><path d="M9.5 3v3.5M14.5 3v3.5M9.5 17.5V21M14.5 17.5V21M3 9.5h3.5M3 14.5h3.5M17.5 9.5H21M17.5 14.5H21"/></g>
+    <g id="i-globe"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z"/></g>
+    <g id="i-chart"><path d="M3 20h18"/><path d="M6 20v-6M11 20V8M16 20v-9M21 20V5"/></g>
+    <g id="i-trees"><path d="M9 21v-4"/><path d="M9 17 5.5 12H7L4 7.5h3L9 4l2 3.5h3L11 12h1.5L9 17Z"/><path d="M17 21v-3.5"/><path d="M17 17.5 14.6 14H16l-2-3h1.6L17 8l1.4 3H20l-2 3h1.4L17 17.5Z"/></g>
+    <g id="i-satellite"><path d="m7 13-3.5 3.5a2.1 2.1 0 0 0 0 3l1 1a2.1 2.1 0 0 0 3 0L11 17"/><path d="m13 11 6.5-6.5a2.1 2.1 0 0 0-3-3L10 8"/><path d="m6.5 9.5 8 8"/><path d="M15.5 15.5 18 18"/><path d="M20 14a5 5 0 0 1-5 5"/></g>
+    <g id="i-book"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5Z"/><path d="M4 17.5h15"/></g>
+    <g id="i-scope"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></g>
+    <g id="i-arrow"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></g>
+    <g id="i-ext"><path d="M14 4h6v6"/><path d="m20 4-9 9"/><path d="M18 14v5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 19V8a1.5 1.5 0 0 1 1.5-1.5H10"/></g>
+    <g id="i-github"><path d="M9 19c-4.5 1.5-4.5-2.5-6.5-3m13 5v-3.9a3.4 3.4 0 0 0-.9-2.6c3-.3 6.1-1.5 6.1-6.6a5.1 5.1 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.6 12.6 0 0 0-6.6 0C6.3 1.9 5.2 2.2 5.2 2.2a4.8 4.8 0 0 0-.1 3.6A5.1 5.1 0 0 0 3.7 9.4c0 5.1 3.1 6.3 6.1 6.6a3.4 3.4 0 0 0-.9 2.6V22"/></g>
+  </defs>
+</svg>
+
+<!-- ══ NAV ══ Transparent over the hero photograph, solid once past it ══ -->
+<header id="nav" class="nav" data-scrim="on">
+  <a class="nav__mark" href="index.html" aria-label="Narek Ohanyan — home">
+    <span class="nav__mark-glyph" aria-hidden="true">
+      <img src="Media/logo_white.png" alt="">
+    </span>
+    <span class="nav__mark-text">Narek&nbsp;Ohanyan</span>
+  </a>
+
+  <nav id="navLinks" class="nav__links" aria-label="Primary">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="research.html">Research</a>
+
+    <div class="nav__group">
+      <button id="portfolioBtn" class="nav__group-btn" type="button"
+              aria-expanded="false" aria-controls="portfolioMenu">
+        Portfolio
+        <svg class="nav__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.8" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div id="portfolioMenu" class="nav__sub" hidden>
+        <a href="policy.html">Policy &amp; Leadership</a>
+        <a href="education.html">Environmental Education</a>
+        <a href="projects.html">Project Leadership</a>
+        <a href="resources.html">Resource Hub</a>
+      </div>
+    </div>
+
+    <a href="publications.html">Publications</a>
+    <a href="media.html">Media &amp; News</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="nav__tools">
+
+
+    <button id="menuBtn" class="nav__burger" type="button"
+            aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+      <span class="nav__burger-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
+  </div>
+</header>
+<div id="navScrim" class="nav__backdrop" hidden></div>
+
+<!-- ══ Section rail ══ A chapter index for a long page. Hidden below 1180px,
+     where the page is short enough to scroll and the rail would crowd. ══ -->
+<nav id="rail" class="rail" aria-label="Sections on this page">
+  <ol class="rail__list" role="list">
+    <li><a href="#focus"><span class="rail__dot" aria-hidden="true"></span><span class="rail__label">Focus</span></a></li>
+    <li><a href="#experience"><span class="rail__dot" aria-hidden="true"></span><span class="rail__label">Experience</span></a></li>
+    <li><a href="#arpf"><span class="rail__dot" aria-hidden="true"></span><span class="rail__label">ARPF</span></a></li>
+    <li><a href="#stack"><span class="rail__dot" aria-hidden="true"></span><span class="rail__label">Stack</span></a></li>
+    <li><a href="#goals"><span class="rail__dot" aria-hidden="true"></span><span class="rail__label">Goals</span></a></li>
+  </ol>
+</nav>
+
+<main id="main" class="content research">
+
+  <!-- ══ Hero ══════════════════════════════════════════════════════════ -->
+  <section class="rhero" aria-labelledby="rhero-h">
+    <div class="rhero__media" aria-hidden="true">
+      <img id="heroImg" src="Media/web/research/forest.jpg" alt=""
+           width="1024" height="576" fetchpriority="high" decoding="async">
+      <span class="rhero__wash"></span>
+    </div>
+
+    <div class="rhero__body">
+      <p class="eyebrow eyebrow--on-dark rhero__brow">Climate change &amp; Earth system dynamics</p>
+      <h1 id="rhero-h" class="rhero__title">
+        <span class="rhero__line">Research &amp;</span>
+        <span class="rhero__line rhero__line--alt">technical projects</span>
+      </h1>
+      <p class="rhero__lede">Engineering cloud-native pipelines that move climate science from
+        retrospective observation to actionable forecasting.</p>
+    </div>
+
+    <a class="rhero__cue" href="#focus" aria-label="Skip to the research focus">
+      <span class="rhero__cue-line" aria-hidden="true"></span>
+      <span class="rhero__cue-text">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ══ Research focus ════════════════════════════════════════════════ -->
+  <section id="focus" class="focus" aria-labelledby="focus-h">
+    <div class="focus__inner">
+      <header class="focus__head" data-reveal>
+        <p class="eyebrow">Research focus &amp; field</p>
+        <h2 id="focus-h" class="section-title">Climate change &amp;<br>Earth system dynamics</h2>
+      </header>
+
+      <div class="focus__body">
+        <p class="focus__lede" data-reveal>My research is driven by the urgent need to understand,
+          quantify, and adapt to the escalating impacts of global climate change. I operate at the
+          intersection of computational data science, Earth system dynamics, and climate policy,
+          focusing on how shifting atmospheric thermodynamics disrupt physical environments and the
+          societies that depend on them.</p>
+
+        <!-- The thesis of the whole page; it earns display size. -->
+        <blockquote class="thesis" data-reveal>
+          <p>Computer science is a methodology,<br><em>not an endpoint.</em></p>
+        </blockquote>
+
+        <p data-reveal>While my recent specialized work has centered on terrestrial macroecology and
+          forest resilience, my broader scientific interest lies in untangling complex climate data
+          to answer critical questions about environmental risk, tipping points, and planetary
+          boundaries. By engineering cloud-native, high-throughput pipelines to process global-scale
+          data (CMIP6, NetCDF), I build predictive systems that move climate science from
+          retrospective observation to actionable forecasting.</p>
+
+        <p data-reveal>Ultimately, my focus is on translating massive computational climate datasets
+          into clear, evidence-based insights that drive climate-smart conservation, governance, and
+          adaptation strategies.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Research experience ═══════════════════════════════════════════ -->
+  <section id="experience" class="strata" aria-labelledby="strata-h">
+    <div class="strata__inner">
+      <header class="strata__head" data-reveal>
+        <p class="eyebrow">Research experience</p>
+        <h2 id="strata-h" class="section-title">Where the work is done</h2>
+      </header>
+
+      <ol class="strata__list" role="list">
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">01</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-scope"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">Swiss Federal Institute for Forest, Snow
+              and Landscape&nbsp;Research <abbr title="Swiss Federal Institute for Forest, Snow and Landscape Research">(WSL)</abbr></h3>
+            <p class="stratum__role">Guest Scientist <span aria-hidden="true">·</span> Birmensdorf, Switzerland</p>
+            <p class="stratum__text">Collaborating with domain experts to scale and refine predictive
+              models of forest structural vulnerability. This work integrates CHELSA bioclimatic
+              datasets and bias-corrected environmental data to validate macroecological assumptions
+              regarding spatial carrying capacity and atmospheric stress.</p>
+            <ul class="tags" role="list"><li>CHELSA</li><li>Bias correction</li><li>Carrying capacity</li></ul>
+          </div>
+          <figure class="stratum__figure">
+            <img src="Media/web/research/wsl.jpg"
+                 alt="Aerial view of the WSL research campus at Birmensdorf, showing laboratory buildings alongside experimental planting plots"
+                 width="678" height="452" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">02</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-trees"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">AUA Acopian Center for the Environment
+              <span class="stratum__sub">FORACCA Initiative</span></h3>
+            <p class="stratum__role">Researcher <span aria-hidden="true">·</span> Yerevan, Armenia</p>
+            <p class="stratum__text">Developed a computational framework targeting Output&nbsp;1.2 of the
+              Forest Restoration and Climate Change in Armenia (FORACCA) initiative. Engineered a
+              full-stack, automated pipeline to map long-term atmospheric stressors to static 3D
+              forest structural outcomes.</p>
+            <ul class="tags" role="list"><li>Automated pipeline</li><li>3D forest structure</li><li>Atmospheric stressors</li></ul>
+          </div>
+          <figure class="stratum__figure">
+            <img src="Media/web/research/acopian.jpg"
+                 alt="Narek Ohanyan working at a microscope in the AUA Acopian Center for the Environment laboratory"
+                 width="1600" height="819" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">03</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-satellite"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">Independent Earth Observation Research</h3>
+            <p class="stratum__role">Dilijan &amp; Syunik regional forests, Armenia</p>
+            <p class="stratum__text">Designed and executed an automated image processing pipeline to
+              quantify carbon sequestration potentials via Leaf Area Index (LAI). Developed
+              macro-driven binarization and structural analysis protocols on multi-temporal canopy
+              datasets.</p>
+            <ul class="tags" role="list"><li>Leaf Area Index</li><li>Binarization</li><li>Multi-temporal canopy</li></ul>
+          </div>
+          <figure class="stratum__figure">
+            <img src="Media/web/research/lai.jpg"
+                 alt="Leaf Area Index raster over Armenian terrain, rendered on a 0–255 colour ramp where deeper reds mark valley floors and roads and lighter tones mark denser canopy"
+                 width="1298" height="818" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">04</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-book"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">Independent Authorship</h3>
+            <p class="stratum__role">Author, <cite>The Overshoot: Life After the 1.5&deg;C Limit</cite></p>
+            <p class="stratum__text">Published an independent monograph analyzing the systemic
+              cascading effects of breaching key planetary boundaries, bridging physical climate
+              realities with socio-environmental adaptation strategies.</p>
+            <p class="stratum__more">
+              <a href="the-overshoot.html">Read about the book
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </p>
+          </div>
+          <!-- A book is an object, not a scene: shown whole rather than cropped. -->
+          <figure class="stratum__figure stratum__figure--object">
+            <img src="Media/web/research/overshoot.jpg"
+                 alt="Cover of The Overshoot: Life After the 1.5°C Limit by Narek Ohanyan"
+                 width="711" height="1100" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">05</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-book"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">Climate Researcher &amp; Curriculum Developer
+              <span class="stratum__sub">AUA Acopian Center for the Environment</span></h3>
+            <p class="stratum__role">January &ndash; June 2026 <span aria-hidden="true">&middot;</span> Yerevan, Armenia</p>
+            <ul class="stratum__points">
+              <li>Co-architected a bilingual pedagogical framework addressing the Climate Crisis by
+                translating complex mitigation data into youth leadership modules.</li>
+              <li>Developed a comprehensive, bilingual (Armenian&ndash;English) pedagogical framework
+                addressing the Triple Planetary Crisis.</li>
+              <li>Structured interactive training modules for educators and students, translating
+                complex data into accessible youth curricula.</li>
+              <li>Co-architected a train-the-trainer methodology, producing detailed lecture
+                presentations and activity guidelines to equip youth leaders to advocate for
+                evidence-based climate policies in Armenia and on the international stage.</li>
+            </ul>
+            <ul class="tags" role="list"><li>Bilingual framework</li><li>Train-the-trainer</li><li>Triple Planetary Crisis</li></ul>
+          </div>
+          <figure class="stratum__figure">
+            <img src="Media/web/research/curriculum.jpg"
+                 alt="Narek Ohanyan in discussion around a table with other participants during a curriculum development workshop"
+                 width="1400" height="933" loading="lazy" decoding="async">
+          </figure>
+        </li>
+        <li class="stratum stratum--media" data-reveal>
+          <div class="stratum__rail" aria-hidden="true">
+            <span class="stratum__n">06</span>
+            <svg class="ico ico--lg" viewBox="0 0 24 24"><use href="#i-globe"/></svg>
+          </div>
+          <div class="stratum__body">
+            <h3 class="stratum__title">Water &amp; Citizen Science Toolkit Developer
+              <span class="stratum__sub">AUA Acopian Center &middot; OTTERS Project</span></h3>
+            <p class="stratum__role">March &ndash; June 2025 <span aria-hidden="true">&middot;</span> Yerevan, Armenia</p>
+            <ul class="stratum__points">
+              <li>Operationalized citizen science by developing water quality monitoring toolkits
+                under the EU-funded OTTERS Project, ensuring alignment with scientific data
+                standards.</li>
+              <li>Authored field protocols that let schools and community groups take defensible
+                physical and chemical measurements without access to laboratory equipment.</li>
+              <li>Structured the sampling design so records gathered by non-specialists stay
+                comparable across sites and seasons &mdash; the condition under which
+                citizen-collected data becomes usable evidence rather than anecdote.</li>
+              <li>Published the result as an open educational resource for educators across the
+                project partnership.</li>
+            </ul>
+            <ul class="tags" role="list"><li>Citizen science</li><li>Water quality</li><li>EU-funded</li></ul>
+            <p class="stratum__more">
+              <a href="https://otters-eu.aua.am/wp-content/uploads/2025/06/OTTERS_Monitoring_Water_Quality_Toolkit_Eng.pdf"
+                 target="_blank" rel="noopener noreferrer">Read the toolkit
+                <span class="visually-hidden">(PDF, opens in a new tab)</span>
+                <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ext"/></svg></a>
+            </p>
+          </div>
+          <figure class="stratum__figure">
+            <img src="Media/web/research/otters.jpg"
+                 alt="Cover of the OTTERS water quality monitoring toolkit for educators"
+                 width="595" height="847" loading="lazy" decoding="async">
+          </figure>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ══ Featured tool: ARPF ═══════════════════════════════════════════ -->
+  <section id="arpf" class="arpf" aria-labelledby="arpf-h">
+    <div class="arpf__inner">
+
+      <header class="arpf__head" data-reveal>
+        <p class="eyebrow eyebrow--on-dark">Featured tool</p>
+        <h2 id="arpf-h" class="section-title section-title--on-dark">The ARPF ecosystem</h2>
+        <p class="arpf__sub">Armenia Reforestation Predictive Framework
+          <span class="arpf__ver">v2.0 &mdash; in development at WSL</span></p>
+        <p class="arpf__lede">Originally developed as my BSCS capstone and actively expanding during my
+          tenure at WSL, this framework models the biophysical limits of forest vertical structure
+          under future IPCC CMIP6 scenarios (2041&ndash;2100).</p>
+
+        <div class="arpf__actions">
+          <a class="btn btn--leaf" href="https://armenia-reforestation-predictive-framework.streamlit.app/"
+             target="_blank" rel="noopener noreferrer">
+            Open the live app <span class="visually-hidden">(v1.0, opens in a new tab)</span>
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-ext"/></svg>
+          </a>
+          <a class="btn btn--wire" href="https://github.com/Narek-Ohanyan/armenia-reforestation-predictive-framework"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
+            GitHub repository <span class="visually-hidden">(opens in a new tab)</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- The real v1.0 interface, framed as an application window so it reads
+           as a running tool rather than a decorative screenshot. -->
+      <figure class="shot" data-reveal>
+        <div class="shot__frame">
+          <div class="shot__bar" aria-hidden="true">
+            <span class="shot__dots"><i></i><i></i><i></i></span>
+            <span class="shot__url">armenia-reforestation-predictive-framework.streamlit.app</span>
+          </div>
+          <img src="Media/web/research/arpf.png"
+               alt="The ARPF web application showing the historical baseline canopy structure of Armenia on a 1 km grid, with a landscape mean of 5.97 metres over the 1979–2018 observational period"
+               width="2000" height="1068" loading="lazy" decoding="async">
+        </div>
+        <figcaption>ARPF v1.0 &mdash; historical baseline canopy structure, 1&nbsp;km grid,
+          1979&ndash;2018 observational stable state.</figcaption>
+      </figure>
+
+      <ul class="arpf-pillars" role="list">
+        <li class="arpf-pillar" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cloud"/></svg>
+          <h3>Cloud-native big data</h3>
+          <p>Utilizes Pangeo infrastructure, xarray, and Google Cloud Storage to lazy-load massive
+            CMIP6 NetCDF multi-model ensembles, bypassing traditional geoprocessing bottlenecks.</p>
+        </li>
+        <li class="arpf-pillar" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-thermo"/></svg>
+          <h3>Thermodynamic rigor</h3>
+          <p>Avoids mathematical averaging artifacts by calculating Vapor Pressure Deficit (VPD)
+            daily via the Clausius&ndash;Clapeyron relationship before aggregating into climatological
+            epochs.</p>
+        </li>
+        <li class="arpf-pillar" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-layers"/></svg>
+          <h3>Bioclimatic stacking</h3>
+          <p>Space-for-time substitution normalizes stress integrals against the standard deviation
+            of canopy height (&sigma;(H)&#8315;&sup1;) to account for the heightened hydraulic friction
+            of complex canopies.</p>
+        </li>
+        <li class="arpf-pillar" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-model"/></svg>
+          <h3>Interpretable machine learning</h3>
+          <p>Deploys a Random Forest Regressor with Shapley Additive Explanations (SHAP) to unpack the
+            ecophysiological drivers of canopy collapse &mdash; validating that atmospheric drying power
+            is the primary constraint on vertical growth.</p>
+        </li>
+      </ul>
+
+      <p class="arpf__note" data-reveal>A dedicated page for the ecosystem will follow when v2.0 is
+        ready.</p>
+    </div>
+  </section>
+
+  <!-- ══ Skills & stack ════════════════════════════════════════════════ -->
+  <section id="stack" class="stack" aria-labelledby="stack-h">
+    <div class="stack__inner">
+      <header class="stack__head" data-reveal>
+        <p class="eyebrow">Research skills &amp; technical stack</p>
+        <h2 id="stack-h" class="section-title">The toolkit</h2>
+      </header>
+
+      <div class="stack__grid">
+        <article class="kit" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cpu"/></svg>
+          <h3>Computational infrastructure</h3>
+          <ul class="chips" role="list">
+            <li>Python</li><li>R</li><li>Pangeo catalog</li>
+            <li>Cloud-native computing</li><li>Google Cloud Storage</li>
+          </ul>
+        </article>
+
+        <article class="kit" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-globe"/></svg>
+          <h3>Geospatial &amp; climate data</h3>
+          <ul class="chips" role="list">
+            <li>NetCDF climate arrays</li><li>xarray</li><li>rioxarray</li><li>rasterio</li>
+            <li>GIS &amp; spatial regression</li><li>GEDI structural metrics</li>
+            <li>Sentinel-2 vegetation height models</li>
+          </ul>
+        </article>
+
+        <article class="kit" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chart"/></svg>
+          <h3>Machine learning &amp; statistics</h3>
+          <ul class="chips" role="list">
+            <li>Random Forest Regressors</li><li>SHAP interpretability</li>
+            <li>Multi-temporal supervised learning</li>
+          </ul>
+        </article>
+
+        <article class="kit" data-reveal>
+          <svg class="ico ico--lg" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-trees"/></svg>
+          <h3>Domain expertise</h3>
+          <ul class="chips" role="list">
+            <li>Forest structural climax modeling</li><li>Land&ndash;atmosphere interactions</li>
+            <li>Thermodynamic stress derivation</li><li>Climate risk mapping</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Academic goals ════════════════════════════════════════════════ -->
+  <section id="goals" class="goals" aria-labelledby="goals-h">
+    <div class="goals__inner">
+      <p class="eyebrow eyebrow--on-dark" data-reveal>Academic goals</p>
+      <h2 id="goals-h" class="section-title section-title--on-dark" data-reveal>What comes next</h2>
+
+      <p class="goals__text" data-reveal>Having established a robust foundation in spatial analytics,
+        algorithmic design, and climate informatics, my primary objective is to pursue a
+        <strong>Ph.D. in Earth System Science, Climate Dynamics</strong>, or a closely related
+        discipline at a leading research institution.</p>
+
+      <p class="goals__text" data-reveal>Because I treat computer science as an adaptable toolkit
+        rather than a restrictive discipline, I am eager to apply my computational background to a
+        broad range of systemic climate questions &mdash; terrestrial ecohydrology, land&ndash;atmosphere
+        interactions, atmospheric risk assessment, global tipping points. My goal is to fuse
+        high-performance computing with foundational Earth science to develop next-generation
+        predictive models that untangle complex Earth system dynamics and help humanity navigate the
+        defining crisis of our time.</p>
+
+      <div class="goals__actions" data-reveal>
+        <a class="btn btn--leaf" href="contact.html">Discuss a collaboration
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--wire" href="https://github.com/Narek-Ohanyan"
+           target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-github"/></svg>
+          GitHub <span class="visually-hidden">profile (opens in a new tab)</span>
+        </a>
+        <a class="btn btn--wire" href="publications.html">See publications
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Narek Ohanyan</p>
+    <p>Between science and activism</p>
+  </footer>
+</main>
+
+<script src="site.js?v=50a8e17fca"></script>
+<script src="research.js?v=5dbe79956a"></script>
+</body>
+</html>

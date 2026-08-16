@@ -1,0 +1,119 @@
+/* Stashed while the language feature is on hold.
+   Re-append to styles.css when localisation resumes. */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LANGUAGE
+   ───────────────────────────────────────────────────────────────────────
+   The switcher lives in the nav tools, beside the burger, so it is in the
+   same place on every page and in every locale.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.lang { position: relative; }
+.lang__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  min-height: 44px;
+  padding: .4rem .6rem;
+  font-family: var(--ui);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  opacity: .92;
+}
+.lang__btn:hover { opacity: 1; }
+.lang__globe { width: 1.05rem; height: 1.05rem; flex: 0 0 auto; }
+.lang__now { font-variant-numeric: tabular-nums; }
+
+.lang__menu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  inset-inline-end: 0;
+  z-index: 60;
+  min-width: 11rem;
+  margin: 0;
+  padding: .4rem;
+  list-style: none;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 1rem .2rem 1rem .2rem;      /* the house leaf */
+  box-shadow: 0 26px 60px -30px rgba(26, 29, 32, .55);
+}
+.lang__menu[hidden] { display: none; }
+.lang__menu a {
+  display: block;
+  min-height: 44px;
+  line-height: 1.5;
+  padding: .6rem .8rem;
+  font-family: var(--ui);
+  font-size: .92rem;
+  text-decoration: none;
+  color: var(--charcoal);
+  border-radius: .55rem;
+}
+.lang__menu a:hover { background: var(--alabaster); }
+.lang__menu a[aria-current="true"] { font-weight: 700; color: var(--forest); }
+
+/* ── right-to-left ─────────────────────────────────────────────────────
+   Spacing and alignment mirror automatically now that the stylesheet uses
+   logical properties. What does not mirror on its own is the leaf: its
+   drawn-out corners are a fixed diagonal, so the pairs are swapped by hand
+   to keep the shape reading the same way against the text. */
+[dir="rtl"] .btn--leaf,
+[dir="rtl"] .btn--wire,
+[dir="rtl"] .btn--ghost { border-radius: .25rem 1.75rem .25rem 1.75rem; }
+[dir="rtl"] .btn--leaf:hover,
+[dir="rtl"] .btn--wire:hover,
+[dir="rtl"] .btn--ghost:hover { border-radius: .8rem; }
+
+[dir="rtl"] .leaf-card    { border-radius: .5rem 3rem .5rem 3rem; }
+[dir="rtl"] .stratum      { border-radius: .35rem 1.75rem .35rem 1.75rem; }
+[dir="rtl"] .degree       { border-radius: .4rem 2.25rem .4rem 2.25rem; }
+[dir="rtl"] .fellow       { border-radius: .35rem 1.75rem .35rem 1.75rem; }
+[dir="rtl"] .cert         { border-radius: .22rem 1.15rem .22rem 1.15rem; }
+[dir="rtl"] .kit          { border-radius: .3rem 1.5rem .3rem 1.5rem; }
+[dir="rtl"] .arpf-pillar  { border-radius: .28rem 1.35rem .28rem 1.35rem; }
+[dir="rtl"] .chips li     { border-radius: .18rem .7rem .18rem .7rem; }
+[dir="rtl"] .tags li      { border-radius: .16rem .65rem .16rem .65rem; }
+[dir="rtl"] .chip-btn     { border-radius: .2rem 1rem .2rem 1rem; }
+[dir="rtl"] .lang__menu   { border-radius: .2rem 1rem .2rem 1rem; }
+[dir="rtl"] .stratum__figure img { border-radius: .28rem 1.25rem .28rem 1.25rem; }
+
+/* Arrow glyphs point the way the reader travels. */
+[dir="rtl"] .btn span[aria-hidden="true"],
+[dir="rtl"] .stratum__more .ico,
+[dir="rtl"] .leaf-card__cta span[aria-hidden="true"] { transform: scaleX(-1); }
+[dir="rtl"] .stratum__more a:hover .ico { transform: scaleX(-1) translateX(4px); }
+
+/* Latin proper nouns and code keep their own direction inside RTL prose. */
+[dir="rtl"] cite, [dir="rtl"] code, [dir="rtl"] abbr { direction: ltr; unicode-bidi: isolate; }
+
+/* Arabic and Persian need a face with real coverage; Playfair has none. */
+[lang="ar"], [lang="fa"] {
+  --display: "Noto Naskh Arabic", "Geeza Pro", "Times New Roman", serif;
+  --body:    "Noto Sans Arabic", "Geeza Pro", -apple-system, sans-serif;
+  --ui:      "Noto Sans Arabic", "Geeza Pro", -apple-system, sans-serif;
+}
+[lang="hy"] {
+  --display: "Noto Serif Armenian", "Mshtakan", Georgia, serif;
+  --body:    "Noto Sans Armenian", "Mshtakan", -apple-system, sans-serif;
+  --ui:      "Noto Sans Armenian", "Mshtakan", -apple-system, sans-serif;
+}
+[lang="zh"] {
+  --display: "Noto Serif SC", "Songti SC", "PingFang SC", Georgia, serif;
+  --body:    "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+  --ui:      "Noto Sans SC", "PingFang SC", -apple-system, sans-serif;
+}
+/* The display face is set at tight tracking for Playfair; other scripts
+   need their natural spacing back. */
+[lang="ar"] .section-title, [lang="fa"] .section-title,
+[lang="hy"] .section-title, [lang="zh"] .section-title,
+[lang="ar"] .rhero__title,  [lang="fa"] .rhero__title,
+[lang="hy"] .rhero__title,  [lang="zh"] .rhero__title {
+  letter-spacing: normal;
+  line-height: 1.25;
+}
