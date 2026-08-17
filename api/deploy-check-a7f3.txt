@@ -1,1 +1,0 @@
-deploy check — this file is deleted once it has served its purpose
