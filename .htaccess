@@ -1,0 +1,106 @@
+# ═══════════════════════════════════════════════════════════════════════
+# narekohanyan.com — Hostinger (Apache/LiteSpeed reads this file)
+# ───────────────────────────────────────────────────────────────────────
+# Written to clear up the SEO left behind by the previous Nicepage site.
+# Three jobs, in order of how much they matter:
+#
+#   1. One canonical address. https, no www, no /index.html. Right now the
+#      server answers on four spellings of the homepage, and Google treats
+#      each as a separate page competing with the others.
+#   2. 301 the old Nicepage URLs. A 301 tells Google the page MOVED and
+#      passes its accumulated ranking to the new address; a 404 just says
+#      "gone" and the old link keeps appearing in results until Google
+#      gives up on it, which takes weeks.
+#   3. A real 404 page for anything with no equivalent.
+#
+# Everything uses mod_rewrite rather than a mix of Redirect and
+# RewriteRule, because the two run at different stages and interleaving
+# them produces redirects that fire in the wrong order.
+# ═══════════════════════════════════════════════════════════════════════
+
+RewriteEngine On
+
+# ── 1. One canonical address ──────────────────────────────────────────
+# Force https.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Drop www. Both spellings currently return 200 independently, which is a
+# duplicate of the entire site.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
+# /index.html and / are the same page; keep the shorter one.
+RewriteCond %{THE_REQUEST} \s/+(.*/)?index\.html[\s?] [NC]
+RewriteRule ^(.*)index\.html$ /$1 [R=301,L]
+
+# ── 2. Retire the old Nicepage URLs ───────────────────────────────────
+# Only URLs with a genuine equivalent are redirected. Sending everything
+# to the homepage instead would look like a soft 404 to Google and can
+# suppress the whole site, so unmatched old pages are left to 404 below.
+#
+# /home.html is the one Google is still showing as a "Home" sitelink.
+RewriteRule ^home\.html$        / [R=301,L,NC]
+RewriteRule ^main\.html$        / [R=301,L,NC]
+RewriteRule ^index-2\.html$     / [R=301,L,NC]
+
+# Nicepage exports often capitalise; Apache is case sensitive by default.
+RewriteRule ^About\.html$       /about.html      [R=301,L]
+RewriteRule ^Contact\.html$     /contact.html    [R=301,L]
+RewriteRule ^Blog\.html$        /blog.html       [R=301,L]
+RewriteRule ^Research\.html$    /research.html   [R=301,L]
+
+# Plausible old section names mapped to their nearest new page.
+RewriteRule ^cv\.html$          /about.html      [R=301,L,NC]
+RewriteRule ^resume\.html$      /about.html      [R=301,L,NC]
+RewriteRule ^bio\.html$         /about.html      [R=301,L,NC]
+RewriteRule ^portfolio\.html$   /projects.html   [R=301,L,NC]
+RewriteRule ^work\.html$        /projects.html   [R=301,L,NC]
+RewriteRule ^services\.html$    /contact.html    [R=301,L,NC]
+RewriteRule ^gallery\.html$     /media.html      [R=301,L,NC]
+RewriteRule ^news\.html$        /media.html      [R=301,L,NC]
+RewriteRule ^publications?\.html$ /publications.html [R=301,L,NC]
+
+# Pretty URL for the essay platform, so /Essay works without the folder
+# slash and matches what the sitemap advertises.
+RewriteRule ^Essay/?$ /Essay/index.html [L]
+
+# ── 3. Error page ─────────────────────────────────────────────────────
+ErrorDocument 404 /404.html
+
+# ── 4. Compression and caching ────────────────────────────────────────
+# Not SEO housekeeping as such, but page speed is a ranking signal and
+# these are the two cheapest wins available on shared hosting.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml \
+    application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # HTML must stay fresh, or edits take a week to appear.
+  ExpiresByType text/html "access plus 0 seconds"
+  # CSS and JS carry a ?v= content hash from stamp.py, so they can be
+  # cached hard — a change to the file changes the URL.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType video/mp4 "access plus 6 months"
+  ExpiresByType application/xml "access plus 1 hour"
+</IfModule>
+
+# ── 5. Basic hardening ────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Do not serve the working files if they are ever uploaded by accident.
+<FilesMatch "^\.(env|gitignore)|\.(py|md|toml|lock)$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes

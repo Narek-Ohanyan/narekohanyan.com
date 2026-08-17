@@ -166,6 +166,12 @@ P = {
  "default.jpg", "0.7", "monthly", "website"),
 }
 
+# Pages that belong in the sitemap but are not stamped with the site's meta
+# block — the essay platform ships its own head and its own design.
+SITEMAP_EXTRA = [
+    ("Essay/index.html", "Essay", "0.7", "monthly"),
+]
+
 PERSON = {
  "@context": "https://schema.org", "@type": "Person",
  "name": NAME, "url": SITE + "/",
@@ -240,11 +246,15 @@ def main():
         f.write_text(h, encoding="utf-8")
         done += 1
 
+    entries = [(("" if p == "index.html" else p), P[p][4], P[p][5])
+               for p in P if (root / p).exists()]
+    entries += [(pretty, pri, cf) for f, pretty, pri, cf in SITEMAP_EXTRA
+                if (root / f).exists()]
     urls = "\n".join(
-        f'  <url>\n    <loc>{SITE}/{"" if p=="index.html" else p}</loc>\n'
-        f'    <lastmod>{TODAY}</lastmod>\n    <changefreq>{P[p][5]}</changefreq>\n'
-        f'    <priority>{P[p][4]}</priority>\n  </url>'
-        for p in P if (root / p).exists())
+        f'  <url>\n    <loc>{SITE}/{loc}</loc>\n'
+        f'    <lastmod>{TODAY}</lastmod>\n    <changefreq>{cf}</changefreq>\n'
+        f'    <priority>{pri}</priority>\n  </url>'
+        for loc, pri, cf in entries)
     (root / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

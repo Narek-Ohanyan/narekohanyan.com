@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Page not found — Narek Ohanyan</title>
+<meta name="theme-color" content="#FBFBFB">
+<!-- A 404 must never be indexed, and must never be mistaken for a real page. -->
+<meta name="robots" content="noindex, follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="Media/logo_white.png">
+<link rel="stylesheet" href="styles.css?v=537041890f">
+
+<style>
+  /* Small enough to keep inline: this page must render even if something
+     about the main stylesheet fails. */
+  .nf {
+    min-height: 78vh;
+    display: grid;
+    place-items: center;
+    padding: 8rem 1.5rem 5rem;
+    text-align: center;
+  }
+  .nf__inner { max-width: 40rem; }
+  body { background: var(--alabaster); }
+  .nf__code {
+    font-family: var(--ui);
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: var(--forest);
+    margin: 0 0 1.1rem;
+  }
+  .nf__h {
+    font-family: var(--display);
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.05; margin: 0 0 1.1rem;
+    color: var(--fg);
+  }
+  .nf__p { margin: 0 0 2rem; color: var(--fg-muted); line-height: 1.65; }
+  .nf__links {
+    display: flex; flex-wrap: wrap; gap: .6rem 1.4rem;
+    justify-content: center;
+    font-family: var(--ui);
+    font-size: .82rem; letter-spacing: .04em;
+  }
+  .nf__links a { color: var(--forest); }
+  .nf__go { margin: 0 0 2.4rem; }
+</style>
+</head>
+<body data-page="404">
+
+<main id="main" class="content nf">
+  <div class="nf__inner">
+    <p class="nf__code">Error 404</p>
+    <h1 class="nf__h">This page isn&rsquo;t here any more</h1>
+    <p class="nf__p">The site was rebuilt in 2026, and a few old addresses did not survive the move.
+      Nothing is lost &mdash; it has almost certainly just changed name.</p>
+
+    <p class="nf__go">
+      <a class="btn btn--leaf" href="/">Go to the homepage</a>
+    </p>
+
+    <nav class="nf__links" aria-label="Main sections">
+      <a href="/about.html">About</a>
+      <a href="/research.html">Research</a>
+      <a href="/policy.html">Policy</a>
+      <a href="/education.html">Education</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/resources.html">Resources</a>
+      <a href="/publications.html">Publications</a>
+      <a href="/media.html">Media</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 Narek Ohanyan</p>
+  <p>Between science and activism</p>
+</footer>
+
+</body>
+</html>
