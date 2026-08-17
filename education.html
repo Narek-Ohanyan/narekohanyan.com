@@ -118,8 +118,12 @@
   <section class="ed-hero" aria-labelledby="ed-h">
     <div class="ed-hero__media" aria-hidden="true">
       <!-- muted + playsinline so it can autoplay; the pause control below
-           is the required stop for motion-sensitive readers. -->
-      <video id="edVideo" playsinline muted loop preload="metadata"
+           is the required stop for motion-sensitive readers. preload="auto"
+           because education.js calls play() as soon as the script runs —
+           "metadata" would leave the browser waiting until that call before
+           it starts fetching any video bytes at all, costing a beat of lag
+           on an element that is above the fold and already autoplaying. -->
+      <video id="edVideo" playsinline muted loop preload="auto"
              poster="Media/web/edu/climapolis/01.jpg">
         <source src="Media/edu/hero.MP4" type="video/mp4">
       </video>
