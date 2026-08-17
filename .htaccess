@@ -65,6 +65,12 @@ RewriteRule ^publications?\.html$ /publications.html [R=301,L,NC]
 # slash and matches what the sitemap advertises.
 RewriteRule ^Essay/?$ /Essay/index.html [L]
 
+# The essay platform calls fetch("/api/gemini") with no extension, the same
+# path the Node adapter answers to on Netlify/Vercel. Hostinger runs PHP,
+# not Node, so this routes the identical URL to api/gemini.php instead —
+# the front end needed no change at all.
+RewriteRule ^api/gemini/?$ api/gemini.php [L]
+
 # ── 3. Error page ─────────────────────────────────────────────────────
 ErrorDocument 404 /404.html
 
@@ -100,6 +106,16 @@ ErrorDocument 404 /404.html
 
 # Do not serve the working files if they are ever uploaded by accident.
 <FilesMatch "^\.(env|gitignore)|\.(py|md|toml|lock)$">
+  Require all denied
+</FilesMatch>
+
+# api/secrets.php holds the Gemini key in plain text. PHP execution is what
+# actually protects it day to day, but if that is ever misconfigured on a
+# request — a bad rule, a moved file, a host-level PHP outage that falls
+# back to serving files raw — this stops the key being handed out as plain
+# text instead. Defense in depth: this should never be the layer doing the
+# real work, but it costs nothing to have.
+<FilesMatch "^secrets\.php$">
   Require all denied
 </FilesMatch>
 

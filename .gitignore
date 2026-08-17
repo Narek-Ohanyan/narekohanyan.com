@@ -44,6 +44,10 @@ Media/edu/*
 *.key
 *.pem
 secrets.json
+# Hostinger has no environment-variable panel on every plan, so the PHP
+# proxy falls back to this file for the key. Real one is uploaded directly
+# via File Manager, never committed; api/secrets.example.php is the template.
+api/secrets.php
 
 # ── Host build output ──────────────────────────────────────────────────
 .netlify/
