@@ -1417,7 +1417,13 @@ a { color: inherit; }
 @media (max-width: 430px) {
   :root { --gut: 1rem; }
   .nav__links { gap: .7rem; }
-  .nav__links a { font-size: .78rem; letter-spacing: .05em; }
+  /* PORTFOLIO is a <button> because it opens a submenu, so a selector that
+     only names `a` leaves it at the drawer's 1rem while every link beside it
+     drops to .78rem — it read a size larger than its neighbours. Both
+     elements are listed here for the same reason they are listed together in
+     the drawer block above. */
+  .nav__links a,
+  .nav__group-btn { font-size: .78rem; letter-spacing: .05em; }
   .nav__mark-glyph { width: 38px; height: 20px; }
   .nav__toggle { padding: .5rem .35rem; margin-inline-end: -.35rem; }
 }
