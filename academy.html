@@ -223,8 +223,8 @@
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#a-arrow"/></svg></button>
         </form>
 
-        <p class="auth__small">Your account is stored in this browser only. Read what that means
-          under <a href="#local-note">a note on accounts</a>.</p>
+        <p class="auth__small">Your progress is saved to your account, so it follows you to any
+          device. Read what is stored under <a href="#local-note">a note on accounts</a>.</p>
       </div>
     </div>
   </section>
@@ -288,18 +288,20 @@
   <section id="local-note" class="lnote" aria-labelledby="lnote-h">
     <div class="lnote__inner">
       <h2 id="lnote-h" class="lnote__h">A note on accounts</h2>
-      <p>This academy runs entirely inside your browser. Your account and your progress are saved on
-        this device with local storage &mdash; nothing is sent anywhere, and there is no server holding
-        your details. That has two consequences worth knowing before you start:</p>
+      <p>Your account is a real one. Sign-in is handled by Supabase, an established authentication
+        service: your password is hashed and stored there, and this website never sees it, never
+        stores it, and could not read it if it wanted to.</p>
       <ul>
-        <li>Your progress will not follow you to another browser, another device, or survive clearing
-          your browsing data.</li>
-        <li>Because the check happens on your own machine, this is not real account security. Use a
-          password you do not use elsewhere.</li>
+        <li>Your progress is saved to a database against your account, so it follows you to another
+          browser or another device &mdash; just sign in.</li>
+        <li>Only you can read it. Access is enforced by the database itself, so no other learner can
+          reach your progress even by asking for it directly.</li>
+        <li>What is kept is deliberately small: your name, your email address, and which lessons and
+          quizzes you have finished. Nothing else.</li>
       </ul>
-      <p>The course itself is complete and free, and your certificate is generated locally. When the
-        academy moves to a hosted platform, accounts and progress will carry proper server-side
-        storage.</p>
+      <p>The course is complete and free, and your certificate is generated on your own device. If you
+        would like your account and progress deleted, <a href="contact.html?subject=Delete%20my%20academy%20account">ask
+        and it will be removed</a>.</p>
     </div>
   </section>
 

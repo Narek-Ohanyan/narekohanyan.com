@@ -494,29 +494,41 @@
     if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open');
   });
 
-  /* ── boot ───────────────────────────────────────────────────────── */
-  var user = A.current();
-  var gate = document.getElementById('cgate');
-  var shell = document.getElementById('courseShell');
+  /* ── boot ───────────────────────────────────────────────────────────
+     The session is restored asynchronously — it is read from storage and
+     the progress is fetched over the network — so nothing may be decided
+     until ready() resolves. Asking A.current() before that always answers
+     null, which would show the signed-out gate to someone who is in fact
+     signed in. */
+  function boot() {
+    var user = A.current();
+    var gate = document.getElementById('cgate');
+    var shell = document.getElementById('courseShell');
 
-  if (!user) {
-    gate.hidden = false;
-  } else if (!A.isEnrolled(C.id)) {
-    gate.hidden = false;
-    document.getElementById('cgateTitle').textContent = 'Enrol to open this course';
-    document.getElementById('cgateText').textContent =
-      'You are signed in as ' + user.name + ', but not enrolled in this course yet. It is free.';
-  } else {
-    shell.hidden = false;
-    document.getElementById('cbarWho').textContent = user.name;
+    gate.hidden = true;
+    shell.hidden = true;
 
-    // Resume where they stopped: first step not yet complete.
-    var s = S();
-    var resume = seq.findIndex(function (e) {
-      var id = e.unit.id;
-      return e.unit.kind === 'quiz' ? !passed(id) : !s.done[id];
-    });
-    at = resume > -1 && unitOpen(resume) ? resume : 0;
-    render();
+    if (!user) {
+      gate.hidden = false;
+    } else if (!A.isEnrolled(C.id)) {
+      gate.hidden = false;
+      document.getElementById('cgateTitle').textContent = 'Enrol to open this course';
+      document.getElementById('cgateText').textContent =
+        'You are signed in as ' + user.name + ', but not enrolled in this course yet. It is free.';
+    } else {
+      shell.hidden = false;
+      document.getElementById('cbarWho').textContent = user.name;
+
+      // Resume where they stopped: first step not yet complete.
+      var s = S();
+      var resume = seq.findIndex(function (e) {
+        var id = e.unit.id;
+        return e.unit.kind === 'quiz' ? !passed(id) : !s.done[id];
+      });
+      at = resume > -1 && unitOpen(resume) ? resume : 0;
+      render();
+    }
   }
+
+  if (A.ready) { A.ready().then(boot, boot); } else { boot(); }
 }());
