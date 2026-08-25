@@ -36,7 +36,7 @@ P = {
 "about.html": (
  f"About {NAME} — A Decade in Climate & Environment",
  "From an eco-club in Ararat at eleven to the UNFCCC, WSL and COP17 — the biography, "
- f"timeline, education and 18 certifications of {NAME}.",
+ f"timeline, education and 22 certifications of {NAME}.",
  "Narek Ohanyan biography, climate scientist Armenia, environmental educator, "
  "American University of Armenia, climate certifications, UNFCCC youth",
  "default.jpg", "0.9", "monthly", "profile"),
