@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ambassador Quizz</title>
+<meta name="theme-color" content="#46178F">
+<meta name="description" content="Կենսաբազմազանության վիկտորինա։">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../Media/logo_white.png">
+<link rel="stylesheet" href="../styles.css?v=3c32ddbbcf">
+</head>
+<body class="qz" data-page="ambassador-quizz">
+
+<div class="qz-shapes" aria-hidden="true">
+  <span class="qz-shape qz-shape--tri"></span>
+  <span class="qz-shape qz-shape--dia"></span>
+  <span class="qz-shape qz-shape--cir"></span>
+  <span class="qz-shape qz-shape--sqr"></span>
+  <span class="qz-shape qz-shape--tri qz-shape--2"></span>
+  <span class="qz-shape qz-shape--cir qz-shape--2"></span>
+</div>
+
+<main id="main" class="qz-main">
+
+  <!-- ══ Join ══ -->
+  <section id="qzJoin" class="qz-panel">
+    <p class="qz-brand">Ambassador <span>Quizz</span></p>
+    <p class="qz-tag">Կենսաբազմազանության վիկտորինա <span class="qz-en">(Biodiversity Quiz)</span></p>
+
+    <div class="qz-card">
+      <label class="qz-label" for="qzFirstName">Անուն <span class="qz-en">(First Name)</span></label>
+      <input type="text" id="qzFirstName" class="qz-input" autocomplete="given-name">
+
+      <label class="qz-label" for="qzLastName">Ազգանուն <span class="qz-en">(Last Name)</span></label>
+      <input type="text" id="qzLastName" class="qz-input" autocomplete="family-name">
+
+      <p class="qz-label">Ընտրիր լեզուն <span class="qz-en">(Choose your language)</span></p>
+      <div class="qz-lang-btns" role="group" aria-label="Language">
+        <button type="button" class="qz-lang-btn" data-lang="hy">Հայերեն</button>
+        <button type="button" class="qz-lang-btn" data-lang="en">English</button>
+      </div>
+
+      <p class="qz-err" id="qzJoinErr" hidden></p>
+      <button type="button" class="qz-btn qz-btn--primary" id="qzJoinBtn">Միանալ խաղին <span class="qz-en">(Join)</span></button>
+    </div>
+  </section>
+
+  <!-- ══ Lobby ══ -->
+  <section id="qzLobby" class="qz-panel" hidden>
+    <div class="qz-spinner" aria-hidden="true"></div>
+    <p class="qz-lobby-hi">Բարի գալուստ, <span id="qzLobbyName"></span>! <span class="qz-en">(Welcome!)</span></p>
+    <p class="qz-lobby-sub">Սպասիր, մինչև հանդիսավարը կսկսի խաղը <span class="qz-en">(Waiting for the host to start the game)</span></p>
+  </section>
+
+  <!-- ══ Question ══ -->
+  <section id="qzQuestion" class="qz-panel qz-panel--q" hidden>
+    <div class="qz-qbar">
+      <span class="qz-qnum" id="qzQNum"></span>
+      <div class="qz-timer"><span id="qzTimerNum">40</span></div>
+      <span class="qz-score" id="qzLiveScore"></span>
+    </div>
+    <h2 class="qz-qtext" id="qzQText"></h2>
+    <div class="qz-options" id="qzOptions"></div>
+    <button type="button" class="qz-btn qz-btn--primary qz-submit-multi" id="qzSubmitMulti" hidden>
+      Հաստատել <span class="qz-en">(Submit)</span>
+    </button>
+  </section>
+
+  <!-- ══ Waiting for reveal ══ -->
+  <section id="qzWaiting" class="qz-panel" hidden>
+    <div class="qz-spinner" aria-hidden="true"></div>
+    <p class="qz-lobby-hi">Պատասխանդ ընդունված է! <span class="qz-en">(Answer locked in!)</span></p>
+    <p class="qz-lobby-sub">Սպասում ենք մյուսներին <span class="qz-en">(Waiting for the others)</span></p>
+  </section>
+
+  <!-- ══ Reveal ══ -->
+  <section id="qzReveal" class="qz-panel" hidden>
+    <div class="qz-reveal-icon" id="qzRevealIcon" aria-hidden="true"></div>
+    <h2 class="qz-reveal-title" id="qzRevealTitle"></h2>
+    <p class="qz-reveal-score" id="qzRevealScore"></p>
+    <p class="qz-reveal-note" id="qzRevealNote"></p>
+  </section>
+
+  <!-- ══ Podium ══ -->
+  <section id="qzPodium" class="qz-panel" hidden>
+    <p class="qz-brand qz-brand--sm">Խաղն ավարտված է! <span class="qz-en">(Game Over!)</span></p>
+    <div class="qz-podium" id="qzPodiumBlocks"></div>
+    <p class="qz-myrank" id="qzMyRank"></p>
+  </section>
+
+  <p class="qz-offline" id="qzOffline" hidden>Կապը տվյալների բազայի հետ ընդհատված է. թարմացրու էջը։</p>
+</main>
+
+<script src="../vendor/supabase.js"></script>
+<script src="../supabase-config.js?v=93687eb35b"></script>
+<script src="../supabase-client.js?v=7fecebbfe4"></script>
+<script src="../quiz.js?v=88cb627366"></script>
+</body>
+</html>

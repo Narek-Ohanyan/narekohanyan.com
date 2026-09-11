@@ -319,6 +319,73 @@ window.NO.db = (function () {
     return wrap(c.rpc('checkin_admin_open_checkout_now', { p_token: token }));
   }
 
+  /* ── Ambassador Quiz ──────────────────────────────────────────────────
+     Same capability-key pattern as Bingo/Check-In for players. The one
+     real difference: the question bank (including correct answers) lives
+     entirely server-side -- quiz_state and quiz_submit_answer are what
+     grade an answer and decide what a player is allowed to see, never the
+     client -- because a Kahoot-style game is exactly the case where a
+     client-trusting design would be trivially cheatable. */
+  function quizJoin(firstName, lastName, language) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_join', {
+      p_first_name: String(firstName || '').trim(),
+      p_last_name: String(lastName || '').trim(),
+      p_language: String(language || '')
+    }));
+  }
+
+  function quizState(accessKey) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_state', { p_key: accessKey }));
+  }
+
+  function quizSubmitAnswer(accessKey, questionIndex, optionIndices) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_submit_answer', {
+      p_key: accessKey, p_question_index: questionIndex, p_option_indices: optionIndices
+    }));
+  }
+
+  function quizLeaderboard() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_leaderboard'));
+  }
+
+  function quizAdminLogin(password) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_admin_login', { p_password: String(password || '') }));
+  }
+
+  function quizAdminState(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_admin_state', { p_token: token }));
+  }
+
+  function quizAdminStart(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_admin_start', { p_token: token }));
+  }
+
+  function quizAdminNext(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_admin_next', { p_token: token }));
+  }
+
+  function quizAdminReset(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('quiz_admin_reset', { p_token: token }));
+  }
+
   return {
     available: available,
     subscribe: subscribe,
@@ -343,6 +410,15 @@ window.NO.db = (function () {
     checkinAdminLogin: checkinAdminLogin,
     checkinAdminList: checkinAdminList,
     checkinAdminReset: checkinAdminReset,
-    checkinAdminOpenCheckoutNow: checkinAdminOpenCheckoutNow
+    checkinAdminOpenCheckoutNow: checkinAdminOpenCheckoutNow,
+    quizJoin: quizJoin,
+    quizState: quizState,
+    quizSubmitAnswer: quizSubmitAnswer,
+    quizLeaderboard: quizLeaderboard,
+    quizAdminLogin: quizAdminLogin,
+    quizAdminState: quizAdminState,
+    quizAdminStart: quizAdminStart,
+    quizAdminNext: quizAdminNext,
+    quizAdminReset: quizAdminReset
   };
 }());
