@@ -7177,6 +7177,11 @@ body[data-motion="reduced"] .hail::before { animation: none; }
 .ci-en { font-family: var(--ui); font-weight: 400; font-size: .85em; color: var(--fg-muted); }
 
 .ci-state { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+/* An explicit `display` on the same element as [hidden] beats the browser's
+   own `[hidden] { display: none }` default (author styles always win over
+   user-agent styles) -- without this, ciSearch and ciConfirm render
+   stacked on top of each other regardless of which one is "hidden". */
+.ci-state[hidden] { display: none; }
 
 .ci-label {
   align-self: flex-start;
@@ -7265,6 +7270,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   cursor: pointer;
   transition: transform .2s var(--ease), box-shadow .2s var(--ease), background-color .2s var(--ease);
 }
+.ci-btn[hidden] { display: none; }
 .ci-btn--sm { width: auto; min-height: 42px; padding: .6rem 1.2rem; font-size: .88rem; }
 .ci-btn--primary { background: var(--forest); color: #fff; box-shadow: 0 14px 28px -16px rgba(27, 62, 38, .55); }
 .ci-btn--primary:hover { transform: translateY(-2px); }
@@ -7307,8 +7313,10 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   text-align: center;
   gap: 1rem;
 }
+.cia-login[hidden] { display: none; }
 
 .cia-dash { display: flex; flex-direction: column; gap: 1.3rem; }
+.cia-dash[hidden] { display: none; }
 
 .cia-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; font-family: var(--ui); font-size: .95rem; }
 .cia-stat b { font-size: 1.3rem; font-variant-numeric: tabular-nums; color: var(--forest); margin-right: .35rem; }
