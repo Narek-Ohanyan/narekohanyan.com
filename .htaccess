@@ -118,6 +118,16 @@ ErrorDocument 404 /404.html
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
+# Without a Content-Disposition header at all, some browsers default to
+# downloading a PDF rather than opening it in the built-in viewer — the
+# Opening Ceremony agenda links hit exactly this. "inline" is an explicit
+# hint to render it in the tab instead.
+<IfModule mod_headers.c>
+  <FilesMatch "\.pdf$">
+    Header set Content-Disposition "inline"
+  </FilesMatch>
+</IfModule>
+
 # Do not serve the working files if they are ever uploaded by accident.
 <FilesMatch "^\.(env|gitignore)|\.(py|md|toml|lock)$">
   Require all denied
