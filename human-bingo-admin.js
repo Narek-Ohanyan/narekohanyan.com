@@ -16,7 +16,7 @@
   'use strict';
 
   var POLL_MS = 2000;
-  var RESET_CONFIRM_MS = 4000;
+  var CONFIRM_MS = 4000; // shared by both two-step confirms below: Reset and Disqualify
 
   // Same 16 prompts and colour coding as the player card in human-bingo.js
   // — static per-event content, not shared state, so it lives with each
@@ -51,6 +51,8 @@
   var resetLbl = document.getElementById('hbaResetLbl');
   var winnerAnswers = document.getElementById('hbaWinnerAnswers');
   var renderedWinnerFor = null; // avoids rebuilding the list every 2s poll
+  var disqualifyBtn = document.getElementById('hbaDisqualifyBtn');
+  var disqualifyLbl = document.getElementById('hbaDisqualifyLbl');
 
   function db() { return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db : null; }
 
@@ -173,7 +175,7 @@
       armed = true;
       resetLbl.textContent = 'Վստա՞հ ես: Սեղմիր կրկին';
       resetBtn.classList.add('is-armed');
-      armTimer = setTimeout(disarm, RESET_CONFIRM_MS);
+      armTimer = setTimeout(disarm, CONFIRM_MS);
       return;
     }
 
@@ -189,6 +191,43 @@
         // rebuilding — silently leaving the PREVIOUS round's answers on
         // screen for the new one.
         lastStatus = null;
+        renderedWinnerFor = null;
+        winnerAnswers.innerHTML = '';
+        render(res.data);
+      }
+    });
+  });
+
+  // Same two-step confirm as Reset, and the same reason: this rewrites a
+  // real game outcome (who won), so a single accidental tap shouldn't do it.
+  var dqArmed = false, dqArmTimer = null;
+
+  function disarmDisqualify() {
+    dqArmed = false;
+    clearTimeout(dqArmTimer);
+    disqualifyLbl.textContent = 'Խաբե՞լ է. հեռացնել հաղթողին';
+    disqualifyBtn.classList.remove('is-armed');
+  }
+
+  disqualifyBtn.addEventListener('click', function () {
+    if (!dqArmed) {
+      dqArmed = true;
+      disqualifyLbl.textContent = 'Վստա՞հ ես: Սեղմիր կրկին';
+      disqualifyBtn.classList.add('is-armed');
+      dqArmTimer = setTimeout(disarmDisqualify, CONFIRM_MS);
+      return;
+    }
+
+    disarmDisqualify();
+    var d = db();
+    if (!d) return;
+    setBusy(disqualifyBtn, true);
+    d.bingoAdminDisqualifyWinner().then(function (res) {
+      setBusy(disqualifyBtn, false);
+      if (res.ok) {
+        // The promoted winner (or a reopened round, if no one else had
+        // finished yet) always needs a fresh rebuild here, same reasoning
+        // as the reset handler above.
         renderedWinnerFor = null;
         winnerAnswers.innerHTML = '';
         render(res.data);

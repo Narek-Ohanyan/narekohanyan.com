@@ -259,6 +259,12 @@ window.NO.db = (function () {
     return wrap(c.rpc('bingo_admin_reset'));
   }
 
+  function bingoAdminDisqualifyWinner() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_admin_disqualify_winner'));
+  }
+
   return {
     available: available,
     subscribe: subscribe,
@@ -274,6 +280,7 @@ window.NO.db = (function () {
     bingoSaveSquare: bingoSaveSquare,
     bingoAdminState: bingoAdminState,
     bingoAdminStart: bingoAdminStart,
-    bingoAdminReset: bingoAdminReset
+    bingoAdminReset: bingoAdminReset,
+    bingoAdminDisqualifyWinner: bingoAdminDisqualifyWinner
   };
 }());
