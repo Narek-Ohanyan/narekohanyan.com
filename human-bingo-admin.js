@@ -3,8 +3,9 @@
    ───────────────────────────────────────────────────────────────────────
    Deliberately unauthenticated, matching this project's "no auth for now"
    posture everywhere else: whoever has this link runs the room. It shows
-   nothing sensitive — aggregate counts and the winner's name once there is
-   one — never any player's individual answers.
+   nothing sensitive — aggregate counts always, and once the round is
+   finished, the winner's own name and their 16 answers, so the host can
+   read the card out. Never any OTHER player's answers.
 
    A short poll (2s) is what makes the BINGO screen appear on its own the
    moment someone finishes, with no refresh, which is the whole point of
@@ -17,6 +18,28 @@
   var POLL_MS = 2000;
   var RESET_CONFIRM_MS = 4000;
 
+  // Same 16 prompts and colour coding as the player card in human-bingo.js
+  // — static per-event content, not shared state, so it lives with each
+  // page that displays it rather than round-tripping through the database.
+  var PROMPTS = [
+    { t: 'սիրում է արշավների գնալ',                             c: 'p' },
+    { t: 'ձախլիկ է',                                            c: 'r' },
+    { t: 'երբևէ ինքնաթիռով չի թռչել',                            c: 't' },
+    { t: 'ընտանի կենդանի ունի',                                  c: 'g' },
+    { t: 'տիրապետում է 3-ից ավելի լեզուների',                    c: 'c' },
+    { t: 'թեյ է սիրում',                                        c: 't' },
+    { t: 'կարող է հայկական ազգային ուտեստ պատրաստել',           c: 'p' },
+    { t: '«բու» է (ուշ է քնում)',                               c: 'r' },
+    { t: 'այս տարի 5-ից ավելի գիրք է կարդացել',                  c: 'r' },
+    { t: 'երաժշտական գործիք է նվագում',                          c: 'g' },
+    { t: 'ում սիրելի գույնը համընկնում է քոնին',                 c: 'c' },
+    { t: 'աշխատում կամ սովորում է ՏՏ ոլորտում',                  c: 't' },
+    { t: 'ծնվել է քեզ հետ նույն ամսին',                          c: 't' },
+    { t: 'ճամփորդել է Հայաստանից դուրս',                         c: 'p' },
+    { t: 'հանդիպել է հայտնի մարդու',                             c: 'g' },
+    { t: 'ապրել է այլ երկրում',                                  c: 'r' }
+  ];
+
   var states = {
     idle:     document.getElementById('hbaIdle'),
     active:   document.getElementById('hbaActive'),
@@ -26,6 +49,8 @@
   var startBtn = document.getElementById('hbaStartBtn');
   var resetBtn = document.getElementById('hbaResetBtn');
   var resetLbl = document.getElementById('hbaResetLbl');
+  var winnerAnswers = document.getElementById('hbaWinnerAnswers');
+  var renderedWinnerFor = null; // avoids rebuilding the list every 2s poll
 
   function db() { return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db : null; }
 
@@ -52,6 +77,13 @@
 
     if (state.status === 'finished' && state.winner_name) {
       document.getElementById('hbaWinnerName').textContent = state.winner_name;
+      // Rebuilding a 16-item list on every 2s poll tick would be wasteful
+      // and could flicker; a round has exactly one winner, so once this
+      // screen has been built for them there is nothing left to update.
+      if (renderedWinnerFor !== state.winner_name) {
+        renderWinnerAnswers(state.winner_answers || {});
+        renderedWinnerFor = state.winner_name;
+      }
       showOnly('finished');
     } else if (state.status === 'active') {
       showOnly('active');
@@ -72,6 +104,28 @@
       }
     }
     lastStatus = state.status;
+  }
+
+  /** Builds the "prompt → what they wrote" list for the winner's card. */
+  function renderWinnerAnswers(answers) {
+    winnerAnswers.innerHTML = '';
+    var frag = document.createDocumentFragment();
+    PROMPTS.forEach(function (p, i) {
+      var value = answers[String(i)];
+      if (!value || !String(value).trim()) return; // defensive: a winner has all 16, but never render a blank
+      var li = document.createElement('li');
+      li.className = 'hba-answer hba-a-' + p.c;
+      var prompt = document.createElement('p');
+      prompt.className = 'hba-answer__prompt';
+      prompt.textContent = p.t;
+      var name = document.createElement('p');
+      name.className = 'hba-answer__name';
+      name.textContent = value;
+      li.appendChild(prompt);
+      li.appendChild(name);
+      frag.appendChild(li);
+    });
+    winnerAnswers.appendChild(frag);
   }
 
   function poll() {
@@ -129,7 +183,16 @@
     setBusy(resetBtn, true);
     d.bingoAdminReset().then(function (res) {
       setBusy(resetBtn, false);
-      if (res.ok) { lastStatus = null; render(res.data); }
+      if (res.ok) {
+        // Without this, the same person winning two rounds in a row would
+        // find renderedWinnerFor already equal to their name and skip
+        // rebuilding — silently leaving the PREVIOUS round's answers on
+        // screen for the new one.
+        lastStatus = null;
+        renderedWinnerFor = null;
+        winnerAnswers.innerHTML = '';
+        render(res.data);
+      }
     });
   });
 }());
