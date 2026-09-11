@@ -30,6 +30,7 @@
     filter: document.getElementById('ciaFilter'),
     openCheckoutBtn: document.getElementById('ciaOpenCheckoutBtn'),
     openCheckoutLbl: document.getElementById('ciaOpenCheckoutLbl'),
+    exportBtn: document.getElementById('ciaExportBtn'),
     tbody: document.getElementById('ciaTbody'),
     offline: document.getElementById('ciaOffline')
   };
@@ -225,6 +226,50 @@
     var d = db();
     if (!d || !t) return;
     d.checkinAdminOpenCheckoutNow(t).then(function () { loadList(); });
+  });
+
+  /* ── export to Excel ─────────────────────────────────────────────────
+     Client-side, via the vendored SheetJS build -- there is no server
+     here to generate the file, and the admin already has the full list
+     loaded from the last poll. Excludes the Test row: that's never part
+     of the real attendance record. */
+  function fmtExportTime(iso) {
+    if (!iso) return '';
+    try {
+      var parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Yerevan',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', hour12: false
+      }).formatToParts(new Date(iso));
+      var get = function (t) { return parts.find(function (p) { return p.type === t; }).value; };
+      return get('year') + '-' + get('month') + '-' + get('day') + ' ' + get('hour') + ':' + get('minute');
+    } catch (e) { return iso; }
+  }
+
+  els.exportBtn.addEventListener('click', function () {
+    if (!window.XLSX || !currentRows.length) return;
+
+    var header = [
+      'Անուն / First Name', 'Ազգանուն / Last Name', "Հայրանուն / Father's Name",
+      'Համալսարան / University', 'Մուտքի ժամանակ / Check-in Time', 'Ելքի ժամանակ / Check-out Time'
+    ];
+    var rows = currentRows
+      .filter(function (r) { return !r.is_test; })
+      .map(function (r) {
+        return [
+          r.first_name, r.last_name, r.father_name, r.university,
+          fmtExportTime(r.checked_in_at), fmtExportTime(r.checked_out_at)
+        ];
+      });
+
+    var sheet = XLSX.utils.aoa_to_sheet([header].concat(rows));
+    sheet['!cols'] = [{ wch: 16 }, { wch: 18 }, { wch: 16 }, { wch: 46 }, { wch: 18 }, { wch: 18 }];
+
+    var book = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, sheet, 'Check-In');
+
+    var now = fmtExportTime(new Date().toISOString()).replace(' ', '_').replace(':', '');
+    XLSX.writeFile(book, 'Event-CheckIn-' + now + '.xlsx');
   });
 
   /* ── boot ─────────────────────────────────────────────────────────── */
