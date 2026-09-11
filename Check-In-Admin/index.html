@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Check-In — Admin</title>
+<meta name="theme-color" content="#1B3E26">
+<meta name="description" content="Միջոցառման գրանցման հանդիսավարի վահանակ։">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../Media/logo_white.png">
+<link rel="stylesheet" href="../styles.css?v=f3883f989e">
+</head>
+<body class="ci ci-admin" data-page="check-in-admin">
+
+<a class="skip-link" href="#main">Բաց թողնել նավարկությունը</a>
+
+<header id="nav" class="nav" data-scrim="solid">
+  <a class="nav__mark" href="../index.html" aria-label="Narek Ohanyan — գլխավոր էջ">
+    <span class="nav__mark-glyph" aria-hidden="true"><img src="../Media/logo_white.png" alt=""></span>
+    <span class="nav__mark-text">Narek&nbsp;Ohanyan</span>
+  </a>
+</header>
+
+<main id="main" class="content ci cia">
+  <div class="cia-shell">
+
+    <p class="ci-eyebrow">Biodiversity Ambassadors · Հանդիսավարի վահանակ</p>
+
+    <!-- ══ Login ══ -->
+    <section id="ciaLogin" class="cia-login">
+      <h1 class="ci-h">Մուտք <span class="ci-h-en">(Admin Log-in)</span></h1>
+      <label class="ci-label" for="ciaPassword">Գաղտնաբառ <span class="ci-en">(Password)</span></label>
+      <input type="password" id="ciaPassword" class="ci-input" autocomplete="current-password">
+      <p class="ci-err" id="ciaLoginErr" hidden>Սխալ գաղտնաբառ։ <span class="ci-en">(Wrong password.)</span></p>
+      <button type="button" class="ci-btn ci-btn--primary" id="ciaLoginBtn">Մուտք <span class="ci-en">(Log in)</span></button>
+    </section>
+
+    <!-- ══ Dashboard ══ -->
+    <section id="ciaDash" class="cia-dash" hidden>
+      <div class="cia-stats" role="status" aria-live="polite">
+        <div class="cia-stat"><b id="ciaTotal">0</b> ընդամենը <span class="ci-en">(total)</span></div>
+        <div class="cia-stat"><b id="ciaInCount">0</b> մուտք <span class="ci-en">(checked in)</span></div>
+        <div class="cia-stat"><b id="ciaOutCount">0</b> ելք <span class="ci-en">(checked out)</span></div>
+      </div>
+
+      <div class="cia-controls">
+        <input type="text" id="ciaFilter" class="ci-input" placeholder="Փնտրել ցուցակում... (Filter the list...)">
+        <button type="button" class="ci-btn ci-btn--ghost ci-btn--sm" id="ciaOpenCheckoutBtn">
+          <span id="ciaOpenCheckoutLbl">Բացել Ելքը հիմա <span class="ci-en">(Open check-out now)</span></span>
+        </button>
+      </div>
+
+      <div class="cia-tablewrap">
+        <table class="cia-table">
+          <thead>
+            <tr>
+              <th>Անուն <span class="ci-en">(Name)</span></th>
+              <th>Ազգանուն <span class="ci-en">(Surname)</span></th>
+              <th>Հայրանուն <span class="ci-en">(Father's Name)</span></th>
+              <th>Համալսարան <span class="ci-en">(University)</span></th>
+              <th>Մուտք <span class="ci-en">(In)</span></th>
+              <th>Ելք <span class="ci-en">(Out)</span></th>
+              <th><span class="ci-visually-hidden">Զրոյացնել (Reset)</span></th>
+            </tr>
+          </thead>
+          <tbody id="ciaTbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="ci-offline" id="ciaOffline" hidden>Կապը տվյալների բազայի հետ ընդհատված է. թարմացրու էջը։</p>
+  </div>
+</main>
+
+<script src="../vendor/supabase.js"></script>
+<script src="../supabase-config.js?v=93687eb35b"></script>
+<script src="../supabase-client.js?v=381197c366"></script>
+<script src="../check-in-admin.js?v=59971c40ec"></script>
+</body>
+</html>

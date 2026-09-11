@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Միջոցառման գրանցում — Event Check-In</title>
+<meta name="theme-color" content="#1B3E26">
+<meta name="description" content="Մասնակիցների մուտքի և ելքի գրանցում սեպտեմբերի 12-ի միջոցառման համար։">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../Media/logo_white.png">
+<link rel="stylesheet" href="../styles.css?v=f3883f989e">
+</head>
+<body class="ci" data-page="check-in">
+
+<a class="skip-link" href="#main">Բաց թողնել նավարկությունը</a>
+
+<header id="nav" class="nav" data-scrim="solid">
+  <a class="nav__mark" href="../index.html" aria-label="Narek Ohanyan — գլխավոր էջ">
+    <span class="nav__mark-glyph" aria-hidden="true"><img src="../Media/logo_white.png" alt=""></span>
+    <span class="nav__mark-text">Narek&nbsp;Ohanyan</span>
+  </a>
+</header>
+
+<main id="main" class="content ci">
+  <div class="ci-shell">
+
+    <p class="ci-eyebrow">Biodiversity Ambassadors · Սեպտեմբերի 12</p>
+    <h1 class="ci-h">Միջոցառման գրանցում <span class="ci-h-en">(Event Check-In)</span></h1>
+
+    <!-- ══ Search ══ -->
+    <section id="ciSearch" class="ci-state">
+      <label class="ci-label" for="ciNameInput">Գրիր քո անունը <span class="ci-en">(Type your name)</span></label>
+      <input type="text" id="ciNameInput" class="ci-input" autocomplete="off" spellcheck="false" placeholder="օր.՝ Անի Սարգսյան">
+      <p class="ci-hint" id="ciHint">Մուտքագրիր առնվազն 2 տառ <span class="ci-en">(type at least 2 characters)</span></p>
+      <ul id="ciResults" class="ci-results" role="list" aria-live="polite"></ul>
+    </section>
+
+    <!-- ══ Confirm / act ══ -->
+    <section id="ciConfirm" class="ci-state" hidden>
+      <button type="button" class="ci-back" id="ciBackBtn">&larr; Սա ես չեմ <span class="ci-en">(Not me)</span></button>
+
+      <div class="ci-card">
+        <p class="ci-card__label">Անուն <span class="ci-en">(Name)</span></p>
+        <p class="ci-card__value" id="ciFirstName">&nbsp;</p>
+        <p class="ci-card__label">Ազգանուն <span class="ci-en">(Surname)</span></p>
+        <p class="ci-card__value" id="ciLastName">&nbsp;</p>
+        <p class="ci-card__label">Հայրանուն <span class="ci-en">(Father's Name)</span></p>
+        <p class="ci-card__value" id="ciFatherName">&nbsp;</p>
+        <p class="ci-card__label">Համալսարան <span class="ci-en">(University)</span></p>
+        <p class="ci-card__value" id="ciUniversity">&nbsp;</p>
+      </div>
+
+      <button type="button" class="ci-btn ci-btn--primary" id="ciCheckInBtn">
+        Մուտք <span class="ci-en">(Check-in)</span>
+      </button>
+
+      <p class="ci-status" id="ciWaitNote" hidden>
+        Դուք գրանցված եք։ Ելքի կոճակը կհասանելի լինի ժամը 16:50-ին։
+        <span class="ci-en">(You're checked in. Check-out opens at 4:50 PM.)</span>
+      </p>
+
+      <button type="button" class="ci-btn ci-btn--accent" id="ciCheckOutBtn" hidden>
+        Ելք <span class="ci-en">(Check-out)</span>
+      </button>
+
+      <p class="ci-status ci-status--done" id="ciDoneNote" hidden>
+        Շնորհակալություն մասնակցության համար: <span class="ci-en">(Thank you for participating!)</span>
+      </p>
+    </section>
+
+    <p class="ci-offline" id="ciOffline" hidden>Կապը տվյալների բազայի հետ ընդհատված է. թարմացրու էջը։</p>
+  </div>
+</main>
+
+<script src="../vendor/supabase.js"></script>
+<script src="../supabase-config.js?v=93687eb35b"></script>
+<script src="../supabase-client.js?v=381197c366"></script>
+<script src="../check-in.js?v=aeb9e03dc7"></script>
+</body>
+</html>

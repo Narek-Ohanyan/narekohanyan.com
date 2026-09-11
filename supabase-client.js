@@ -265,6 +265,60 @@ window.NO.db = (function () {
     return wrap(c.rpc('bingo_admin_disqualify_winner'));
   }
 
+  /* ── Event Check-In ───────────────────────────────────────────────────
+     Same no-accounts, checked-RPC posture as Human Bingo: a guest finds
+     themself with checkinSearch, which hands back an access_key uuid for
+     the matched row(s) -- that key, not the bare integer id, is what
+     check-in/out require. The admin calls take a real login token instead,
+     since that side is real people's names and live status, not a game. */
+  function checkinSearch(query) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_search_attendees', { p_query: String(query || '') }));
+  }
+
+  function checkinStatus(accessKey) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_status', { p_key: accessKey }));
+  }
+
+  function checkinMarkIn(accessKey) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_mark_in', { p_key: accessKey }));
+  }
+
+  function checkinMarkOut(accessKey) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_mark_out', { p_key: accessKey }));
+  }
+
+  function checkinAdminLogin(password) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_admin_login', { p_password: String(password || '') }));
+  }
+
+  function checkinAdminList(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_admin_list', { p_token: token }));
+  }
+
+  function checkinAdminReset(token, attendeeId) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_admin_reset', { p_token: token, p_attendee_id: attendeeId }));
+  }
+
+  function checkinAdminOpenCheckoutNow(token) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('checkin_admin_open_checkout_now', { p_token: token }));
+  }
+
   return {
     available: available,
     subscribe: subscribe,
@@ -281,6 +335,14 @@ window.NO.db = (function () {
     bingoAdminState: bingoAdminState,
     bingoAdminStart: bingoAdminStart,
     bingoAdminReset: bingoAdminReset,
-    bingoAdminDisqualifyWinner: bingoAdminDisqualifyWinner
+    bingoAdminDisqualifyWinner: bingoAdminDisqualifyWinner,
+    checkinSearch: checkinSearch,
+    checkinStatus: checkinStatus,
+    checkinMarkIn: checkinMarkIn,
+    checkinMarkOut: checkinMarkOut,
+    checkinAdminLogin: checkinAdminLogin,
+    checkinAdminList: checkinAdminList,
+    checkinAdminReset: checkinAdminReset,
+    checkinAdminOpenCheckoutNow: checkinAdminOpenCheckoutNow
   };
 }());
