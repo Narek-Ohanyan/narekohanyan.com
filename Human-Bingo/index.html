@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Human Bingo</title>
+<meta name="theme-color" content="#F8EEDD">
+<meta name="description" content="Human Bingo — մարդկանց ճանաչելու խաղ։">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../Media/logo_white.png">
+<link rel="stylesheet" href="../styles.css?v=ffd5998434">
+</head>
+<body class="hb" data-page="human-bingo">
+
+<a class="skip-link" href="#main">Բաց թողնել նավարկությունը</a>
+
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <g id="hb-check"><path d="M5 12.5 9.5 17 19 6.5"/></g>
+    <g id="hb-flower">
+      <circle cx="12" cy="12" r="2.4"/>
+      <path d="M12 3.5c1.7 0 3 1.6 3 3.4s-1.3 3.4-3 3.4-3-1.6-3-3.4 1.3-3.4 3-3.4Z"/>
+      <path d="M12 20.5c-1.7 0-3-1.6-3-3.4s1.3-3.4 3-3.4 3 1.6 3 3.4-1.3 3.4-3 3.4Z"/>
+      <path d="M3.5 12c0-1.7 1.6-3 3.4-3s3.4 1.3 3.4 3-1.6 3-3.4 3-3.4-1.3-3.4-3Z"/>
+      <path d="M20.5 12c0 1.7-1.6 3-3.4 3s-3.4-1.3-3.4-3 1.6-3 3.4-3 3.4 1.3 3.4 3Z"/>
+    </g>
+    <g id="hb-spark">
+      <path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15l-4 4"/>
+    </g>
+    <g id="hb-trophy">
+      <path d="M7 4h10v5.5a5 5 0 0 1-10 0V4Z"/>
+      <path d="M7 5H4a3 3 0 0 0 3 3M17 5h3a3 3 0 0 1-3 3"/>
+      <path d="M12 14.5V18M8.5 20.5h7"/>
+    </g>
+    <g id="hb-arrow"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></g>
+    <g id="hb-user"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></g>
+  </defs>
+</svg>
+
+<!-- ══ NAV ══ Logo only, per the brief — this page stands apart from the
+     rest of the site and needed no way back into its sections. ══ -->
+<header id="nav" class="nav" data-scrim="solid">
+  <a class="nav__mark" href="../index.html" aria-label="Narek Ohanyan — գլխավոր էջ">
+    <span class="nav__mark-glyph" aria-hidden="true"><img src="../Media/logo_white.png" alt=""></span>
+    <span class="nav__mark-text">Narek&nbsp;Ohanyan</span>
+  </a>
+</header>
+
+<main id="main" class="content hb">
+
+  <div class="hb-doodles" aria-hidden="true">
+    <svg class="hb-doodle hb-doodle--1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#hb-flower"/></svg>
+    <svg class="hb-doodle hb-doodle--2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#hb-spark"/></svg>
+    <svg class="hb-doodle hb-doodle--3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><use href="#hb-flower"/></svg>
+  </div>
+
+  <div class="hb-shell">
+
+    <header class="hb-head">
+      <p class="hb-script">Human</p>
+      <p class="hb-word" aria-label="Bingo">
+        <span class="hb-word__l hb-c-g">B</span><span class="hb-word__l hb-c-p">I</span><span class="hb-word__l hb-c-c">N</span><span class="hb-word__l hb-c-r">G</span><span class="hb-word__l hb-c-t">O</span>
+      </p>
+    </header>
+
+    <!-- ══ Join ══ -->
+    <section id="hbJoin" class="hb-panel hb-panel--join">
+      <p class="hb-panel__eyebrow">Խաղին միանալու համար</p>
+      <h1 class="hb-panel__title">Ի՞նչ է քո անունը</h1>
+      <p class="hb-panel__text">Մուտքագրիր քո անունը եւ սպասիր, մինչեւ հանդիսավարը մեկնարկի խաղը։</p>
+
+      <form id="hbJoinForm" class="hb-form" novalidate>
+        <label class="hb-field">
+          <span class="hb-field__label">Անուն</span>
+          <input id="hbName" class="hb-field__input" type="text" name="name"
+                 autocomplete="given-name" maxlength="100" required
+                 aria-describedby="hbNameErr">
+        </label>
+        <p id="hbNameErr" class="hb-field__err" role="alert" hidden></p>
+        <button class="hb-btn hb-btn--gold hb-btn--block" type="submit" id="hbJoinGo">
+          Միանալ խաղին
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#hb-arrow"/></svg>
+        </button>
+      </form>
+    </section>
+
+    <!-- ══ Waiting room ══ -->
+    <section id="hbWait" class="hb-panel hb-panel--wait" hidden>
+      <span class="hb-pulse" aria-hidden="true"></span>
+      <p class="hb-panel__eyebrow">Բարի գալուստ, <span id="hbWaitName"></span></p>
+      <h1 class="hb-panel__title">Սպասում ենք մեկնարկին</h1>
+      <p class="hb-panel__text">Հանդիսավարը շուտով կսկսի խաղը։ Էջը ինքնաշխատ կթարմացվի։</p>
+    </section>
+
+    <!-- ══ Reset-mid-session notice ══ -->
+    <section id="hbGone" class="hb-panel hb-panel--wait" hidden>
+      <p class="hb-panel__eyebrow">Խաղը վերականգնվել է</p>
+      <h1 class="hb-panel__title">Հանդիսավարը սկսել է նոր փուլ</h1>
+      <p class="hb-panel__text">Խնդրում ենք նորից մուտքագրել քո անունը՝ նոր փուլին միանալու համար։</p>
+      <button class="hb-btn hb-btn--ghost hb-btn--block" type="button" id="hbGoneRejoin">Միանալ նորից</button>
+    </section>
+
+    <!-- ══ Winner (someone else) ══ -->
+    <section id="hbLost" class="hb-panel hb-panel--wait" hidden>
+      <p class="hb-panel__eyebrow">Ավարտեցիր քարտը</p>
+      <h1 class="hb-panel__title"><span id="hbWinnerName"></span>-ն արդեն հաղթել է</h1>
+      <p class="hb-panel__text">Հիանալի աշխատանք էր! Սպասիր հաջորդ փուլին։</p>
+    </section>
+
+    <!-- ══ You won ══ -->
+    <section id="hbWon" class="hb-panel hb-panel--won" hidden>
+      <svg class="hb-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#hb-trophy"/></svg>
+      <p class="hb-panel__eyebrow">Շնորհավորում ենք</p>
+      <h1 class="hb-panel__title hb-panel__title--big">BINGO!</h1>
+      <p class="hb-panel__text">Դու առաջինն ավարտեցիր քարտը։ Հայտնվիր հանդիսավարի մոտ, որ ստանաս մրցանակդ։</p>
+    </section>
+
+    <!-- ══ The card ══ -->
+    <section id="hbGrid" class="hb-game" hidden>
+      <div class="hb-game__bar">
+        <p class="hb-game__who">Խաղում ես որպես <b id="hbPlayerName"></b></p>
+        <div class="hb-progress" role="status" aria-live="polite">
+          <span class="hb-progress__track"><span id="hbProgressFill" class="hb-progress__fill"></span></span>
+          <span class="hb-progress__n"><span id="hbFilledN">0</span> / 16</span>
+        </div>
+      </div>
+
+      <p class="hb-banner">Գտի՛ր նրան, ով&hellip;</p>
+
+      <ul id="hbCells" class="hb-cells" role="list"></ul>
+    </section>
+
+  </div>
+
+</main>
+
+<script src="../vendor/supabase.js"></script>
+<script src="../supabase-config.js?v=93687eb35b"></script>
+<script src="../supabase-client.js?v=367d059d2f"></script>
+<script src="../human-bingo.js?v=c618ca3338"></script>
+</body>
+</html>

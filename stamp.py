@@ -41,16 +41,23 @@ def main() -> None:
     for name in assets():
         stamps[name] = short_hash(ROOT / name)
 
+    # Top-level pages reference an asset as "styles.css"; a page one folder
+    # down (Human-Bingo/index.html, Essay/index.html) reaches the same root
+    # asset as "../styles.css". Both are matched below, so a subfolder page
+    # gets stamped exactly like every other page instead of silently opting
+    # out of cache-busting because its glob or its regex didn't expect it.
     pages = sorted(p for p in ROOT.glob("*.html") if not p.name.startswith("_"))
+    pages += sorted(p for p in ROOT.glob("*/index.html") if not p.parent.name.startswith("_"))
     changed = 0
 
     for page in pages:
         text = original = page.read_text()
         for name, h in stamps.items():
-            # match the asset with or without an existing ?v= stamp
+            # match the asset with or without an existing ?v= stamp, with or
+            # without a leading "../"
             text = re.sub(
-                r'(["\'])' + re.escape(name) + r'(?:\?v=[a-f0-9]+)?\1',
-                r'\g<1>' + name + '?v=' + h + r'\g<1>',
+                r'(["\'])(\.\./)?' + re.escape(name) + r'(?:\?v=[a-f0-9]+)?\1',
+                lambda m, name=name, h=h: m.group(1) + (m.group(2) or '') + name + '?v=' + h + m.group(1),
                 text,
             )
         if text != original:

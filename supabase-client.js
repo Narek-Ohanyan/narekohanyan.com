@@ -215,6 +215,50 @@ window.NO.db = (function () {
     }, function (e) { return { ok: false, error: e, offline: true }; });
   }
 
+  /* ── Human Bingo ───────────────────────────────────────────────────────
+     No accounts here either — a player is identified by client_key, an
+     unguessable uuid the database hands back on join and the page keeps
+     in localStorage. Every one of these is a checked RPC call; the two
+     tables behind them have no policies and cannot be read or written any
+     other way. See api/../human_bingo migration for the server side. */
+  function bingoJoin(name) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_join', { p_name: String(name || '').trim() }));
+  }
+
+  function bingoPlayerState(clientKey) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_player_state', { p_key: clientKey }));
+  }
+
+  function bingoSaveSquare(clientKey, index, value) {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_save_square', {
+      p_key: clientKey, p_index: index, p_value: String(value || '').trim()
+    }));
+  }
+
+  function bingoAdminState() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_admin_state'));
+  }
+
+  function bingoAdminStart() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_admin_start'));
+  }
+
+  function bingoAdminReset() {
+    var c = init();
+    if (!c) return Promise.resolve({ ok: false, offline: true });
+    return wrap(c.rpc('bingo_admin_reset'));
+  }
+
   return {
     available: available,
     subscribe: subscribe,
@@ -224,6 +268,12 @@ window.NO.db = (function () {
     getSession: getSession, onAuthChange: onAuthChange,
     resetPassword: resetPassword,
     fetchProgress: fetchProgress,
-    saveProgress: saveProgress
+    saveProgress: saveProgress,
+    bingoJoin: bingoJoin,
+    bingoPlayerState: bingoPlayerState,
+    bingoSaveSquare: bingoSaveSquare,
+    bingoAdminState: bingoAdminState,
+    bingoAdminStart: bingoAdminStart,
+    bingoAdminReset: bingoAdminReset
   };
 }());

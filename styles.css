@@ -6828,3 +6828,272 @@ body[data-motion="reduced"] .hail::before { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .pj-card:hover { transform: none; box-shadow: none; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HUMAN BINGO — a self-contained sub-brand for one event page
+   ───────────────────────────────────────────────────────────────────────
+   Everything here is scoped under body.hb / .content.hb so none of it can
+   leak onto the rest of the site, and none of the site's forest-green
+   tokens leak in here. The palette is drawn from the source flyer
+   (marigold / blush pink / dusty teal / warm charcoal / terracotta) but
+   the shapes — the leaf corner-radius, the card and button geometry —
+   are the site's own, so this still reads as the same hand having made it.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.hb {
+  --hb-bg:        #F8EFE0;
+  --hb-ink:       #35291F;
+  --hb-ink-soft:  #6E6152;
+  --hb-card:      #FFFDF8;
+  --hb-line:      rgba(53, 41, 31, .16);
+
+  --hb-gold: #DE9F35; --hb-gold-soft: #FBEACB; --hb-gold-ink: #6B4A12;
+  --hb-pink: #D98BA2; --hb-pink-soft: #FADDE5; --hb-pink-ink: #85304A;
+  --hb-teal: #5E9C8F; --hb-teal-soft: #DFEEE9; --hb-teal-ink: #1E4F45;
+  --hb-char: #4B4038; --hb-char-soft: #E7DFD4; --hb-char-ink: #241D17;
+  --hb-rust: #C97845; --hb-rust-soft: #F4DECB; --hb-rust-ink: #7A3B14;
+}
+
+.content.hb {
+  --fg: var(--hb-ink); --fg-muted: var(--hb-ink-soft);
+  --bg: var(--hb-bg);  --accent: var(--hb-gold);
+  position: relative;
+  min-height: 100vh;
+  background: var(--hb-bg);
+  color: var(--hb-ink);
+  overflow: hidden; /* clips the decorative doodles at the edges */
+}
+
+/* ── decorative doodles — echo the flyer's floral accents, never carry
+      meaning, so they are aria-hidden and cost nothing to a reader ──── */
+.hb-doodles { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.hb-doodle { position: absolute; width: 56px; height: 56px; opacity: .3; }
+.hb-doodle--1 { top: 7%;  left: 4%;  color: var(--hb-pink); transform: rotate(-14deg); }
+.hb-doodle--2 { top: 11%; right: 6%; width: 38px; height: 38px; color: var(--hb-teal); transform: rotate(10deg); }
+.hb-doodle--3 { bottom: 6%; left: 7%; width: 46px; height: 46px; color: var(--hb-gold); transform: rotate(18deg); }
+@media (max-width: 700px) { .hb-doodle--2, .hb-doodle--3 { display: none; } }
+
+.hb-shell { position: relative; z-index: 1; max-width: 52rem; margin: 0 auto;
+  padding: clamp(6rem, 15vh, 8.5rem) var(--gut) clamp(4rem, 8vh, 6rem); }
+
+/* ── title lockup ─────────────────────────────────────────────────────
+   "Human" in the display italic, "BINGO" as five blocky letters each
+   carrying one of the five card colours — the same treatment the flyer
+   uses, redrawn in this site's own typeface pairing. */
+.hb-head { text-align: center; margin-bottom: clamp(2.25rem, 6vh, 3.5rem); }
+.hb-script {
+  margin: 0; font-family: var(--display); font-style: italic; font-weight: 700;
+  font-size: clamp(2.4rem, 7.5vw, 4rem); line-height: 1; color: var(--hb-ink);
+}
+.hb-word { margin: .05em 0 0; display: flex; justify-content: center; gap: .06em; }
+.hb-word__l {
+  font-family: var(--display); font-weight: 900; letter-spacing: -.01em;
+  font-size: clamp(2.1rem, 6.6vw, 3.6rem); line-height: 1;
+}
+
+.hb-c-g { color: var(--hb-gold); } .hb-c-p { color: var(--hb-pink); } .hb-c-c { color: var(--hb-char); }
+.hb-c-r { color: var(--hb-rust); } .hb-c-t { color: var(--hb-teal); }
+
+/* ── single-message panels (join / waiting / reset / lost / won) ────── */
+.hb-panel {
+  position: relative; z-index: 1;
+  max-width: 30rem; margin: 0 auto; text-align: center;
+  background: var(--hb-card); border: 1.5px solid var(--hb-line);
+  border-radius: 1.7rem .4rem 1.7rem .4rem;
+  padding: clamp(2rem, 5vw, 3rem);
+  box-shadow: 0 30px 64px -46px rgba(53, 41, 31, .5);
+}
+.hb-panel__eyebrow {
+  margin: 0 0 .6rem; font-family: var(--ui); font-size: .76rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--hb-rust-ink);
+}
+.hb-panel__title { margin: 0 0 .85rem; font-family: var(--display); font-weight: 700;
+  font-size: clamp(1.55rem, 4vw, 2.15rem); line-height: 1.18; }
+.hb-panel__title--big { font-size: clamp(2.5rem, 7vw, 3.5rem); color: var(--hb-gold-ink); }
+.hb-panel__text { margin: 0; color: var(--hb-ink-soft); line-height: 1.65; }
+
+.hb-panel--won { border-color: var(--hb-gold); }
+.hb-trophy { width: 54px; height: 54px; color: var(--hb-gold); margin: 0 auto 1rem; display: block; }
+
+.hb-pulse {
+  display: inline-block; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--hb-teal); margin-bottom: 1.1rem;
+  animation: hbPulse 1.7s ease-in-out infinite;
+}
+@keyframes hbPulse {
+  0%, 100% { transform: scale(1);    opacity: .65; }
+  50%      { transform: scale(1.55); opacity: 1;   }
+}
+@media (prefers-reduced-motion: reduce) { .hb-pulse { animation: none; opacity: .85; } }
+
+/* ── join form ────────────────────────────────────────────────────── */
+.hb-form { margin-top: 1.6rem; text-align: left; display: flex; flex-direction: column; gap: 1rem; }
+.hb-field { display: flex; flex-direction: column; gap: .4rem; }
+.hb-field__label { font-family: var(--ui); font-size: .82rem; font-weight: 600; color: var(--hb-ink-soft); }
+.hb-field__input {
+  min-height: 52px; padding: .8rem 1rem; border-radius: .9rem;
+  border: 1.5px solid var(--hb-line); background: #fff;
+  font-family: var(--ui); font-size: 1rem; color: var(--hb-ink);
+}
+.hb-field__input:focus-visible { outline: 3px solid var(--hb-gold); outline-offset: 2px; border-color: var(--hb-gold); }
+.hb-field__err { margin: -.35rem 0 0; color: #9C3B2E; font-size: .85rem; font-weight: 600; }
+
+/* ── buttons — this page's own, so the palette stays self-consistent
+      rather than importing the site's forest-green leaf button ───────── */
+.hb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  min-height: 52px; padding: .9rem 1.8rem;
+  border-radius: 1.1rem .35rem 1.1rem .35rem;
+  font-family: var(--ui); font-weight: 700; font-size: .95rem; letter-spacing: .02em;
+  border: 0; cursor: pointer; text-decoration: none;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease),
+              background-color .25s var(--ease), color .25s var(--ease);
+}
+.hb-btn .ico { width: 19px; height: 19px; flex-shrink: 0; }
+.hb-btn--block { width: 100%; }
+.hb-btn--lg { min-height: 60px; padding: 1.05rem 2.3rem; font-size: 1.05rem; }
+
+.hb-btn--gold { background: var(--hb-gold); color: #3A2504; box-shadow: 0 16px 32px -18px rgba(222, 159, 53, .7); }
+.hb-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 22px 40px -18px rgba(222, 159, 53, .82); }
+
+.hb-btn--ghost { background: transparent; color: var(--hb-ink); border: 1.5px solid var(--hb-line); }
+.hb-btn--ghost:hover { border-color: var(--hb-ink); }
+
+.hb-btn--rust { background: var(--hb-rust-soft); color: var(--hb-rust-ink); }
+.hb-btn--rust:hover { background: var(--hb-rust); color: #fff; }
+.hb-btn--rust.is-armed { background: #A82E1B; color: #fff; }
+
+.hb-btn[disabled], .hb-btn[aria-busy="true"] { opacity: .6; cursor: not-allowed; transform: none; }
+.hb-btn:focus-visible { outline: 3px solid var(--hb-teal); outline-offset: 2px; }
+
+/* ── the game bar + progress ──────────────────────────────────────── */
+.hb-game { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; }
+.hb-game__bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.4rem;
+}
+.hb-game__who { margin: 0; font-family: var(--ui); font-size: .92rem; color: var(--hb-ink-soft); }
+.hb-progress { display: flex; align-items: center; gap: .7rem; }
+.hb-progress__track { width: 120px; height: 8px; border-radius: 99px; background: var(--hb-char-soft); overflow: hidden; }
+.hb-progress__fill { display: block; height: 100%; width: 0%; background: var(--hb-gold); border-radius: 99px;
+  transition: width .4s var(--ease); }
+.hb-progress__n { font-family: var(--ui); font-size: .82rem; font-weight: 700; color: var(--hb-ink-soft);
+  font-variant-numeric: tabular-nums; }
+
+.hb-banner {
+  margin: 0 0 1.4rem; text-align: center; background: var(--hb-char); color: #F6EFE4;
+  font-family: var(--display); font-style: italic; font-weight: 700;
+  font-size: clamp(1.05rem, 3vw, 1.45rem);
+  padding: .9rem 1rem; border-radius: .9rem .3rem .9rem .3rem;
+}
+
+/* ── the card itself ──────────────────────────────────────────────── */
+.hb-cells { list-style: none; margin: 0 0 2rem; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(.6rem, 1.8vw, 1rem); }
+@media (max-width: 640px) { .hb-cells { grid-template-columns: repeat(2, 1fr); } }
+
+.hb-cell {
+  background: var(--hb-card); border: 2px solid var(--hb-line);
+  border-radius: 1.1rem .3rem 1.1rem .3rem;
+  padding: 1rem .9rem 1.05rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 9.25rem;
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.hb-cell.is-filled { transform: translateY(-2px); box-shadow: 0 16px 30px -22px rgba(53, 41, 31, .4); }
+.hb-cell__text { margin: 0 0 .8rem; font-family: var(--ui); font-weight: 600;
+  font-size: clamp(.78rem, 1.6vw, .86rem); line-height: 1.4; }
+
+.hb-cell__inputwrap { position: relative; margin-top: auto; }
+.hb-cell__input {
+  width: 100%; min-height: 44px; border: 0; border-bottom: 2px solid var(--hb-line);
+  background: transparent; padding: .3rem 1.8rem .35rem .1rem;
+  font-family: var(--ui); font-size: .86rem; color: var(--hb-ink);
+}
+.hb-cell__input::placeholder { color: var(--hb-ink-soft); opacity: .55; }
+.hb-cell__input:focus-visible { outline: none; border-bottom-color: var(--hb-ink); }
+.hb-cell__check {
+  position: absolute; right: 0; bottom: .4rem; width: 18px; height: 18px;
+  fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
+  opacity: 0; transform: scale(.5);
+  transition: opacity .25s var(--ease), transform .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+.hb-cell.is-filled .hb-cell__check { opacity: 1; transform: scale(1); }
+@media (prefers-reduced-motion: reduce) { .hb-cell, .hb-cell__check { transition: none; } }
+
+/* per-cell colour families, matching the flyer's own distribution rather
+   than a mechanical round-robin */
+.hb-c-g-card { border-color: var(--hb-gold); } .hb-c-g-card .hb-cell__check { color: var(--hb-gold-ink); }
+.hb-c-p-card { border-color: var(--hb-pink); } .hb-c-p-card .hb-cell__check { color: var(--hb-pink-ink); }
+.hb-c-t-card { border-color: var(--hb-teal); } .hb-c-t-card .hb-cell__check { color: var(--hb-teal-ink); }
+.hb-c-c-card { border-color: var(--hb-char); } .hb-c-c-card .hb-cell__check { color: var(--hb-char-ink); }
+.hb-c-r-card { border-color: var(--hb-rust); } .hb-c-r-card .hb-cell__check { color: var(--hb-rust-ink); }
+
+@media (max-width: 480px) {
+  .hb-script { font-size: 2.1rem; }
+  .hb-word__l { font-size: 1.9rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ADMIN / DISPLAY SCREEN — dark, built to be read from across a room on
+   a projector, not to match the player page's warm daylight card.
+   ═══════════════════════════════════════════════════════════════════════ */
+.content.hb.hba {
+  --fg: #F6EFE4; --fg-muted: rgba(246, 239, 228, .68); --bg: var(--hb-char-ink); --accent: var(--hb-gold);
+  /* --hb-gold reads 4.5:1+ everywhere it is used on the light player page,
+     but measured against this dark gradient's lightest region (where the
+     eyebrow label always sits, near the top) it only clears 4.0:1 — short
+     of the AA minimum for normal text. This is a brighter admin-only
+     variant for gold TEXT on this dark background specifically; the icons
+     and every other admin accent keep using --hb-gold unchanged. */
+  --hb-gold-bright: #ECB962;
+  background: radial-gradient(130% 150% at 50% -15%, #5C4B3C 0%, var(--hb-char) 52%, var(--hb-char-ink) 100%);
+  color: #F6EFE4;
+}
+.hba-shell {
+  position: relative; z-index: 1; min-height: 100vh; max-width: 42rem; margin: 0 auto;
+  padding: clamp(6rem, 15vh, 8rem) var(--gut) 4rem;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: clamp(2.5rem, 6vh, 3.5rem);
+}
+.hba-eyebrow {
+  margin: 0; font-family: var(--ui); font-size: .82rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--hb-gold-bright);
+}
+.hba-stage { display: flex; align-items: center; justify-content: center; min-height: 14rem; }
+.hba-state { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+/* An explicit `display` on the same element as [hidden] beats the browser's
+   own `[hidden] { display: none }` default, because author styles always win
+   over user-agent styles regardless of selector specificity — so without
+   this, human-bingo-admin.js setting .hidden = true left the state visible
+   anyway, and idle/active/finished rendered stacked on top of each other. */
+.hba-state[hidden] { display: none; }
+.hba-h { margin: 0; font-family: var(--display); font-weight: 700;
+  font-size: clamp(2.3rem, 6.5vw, 3.8rem); line-height: 1.08; }
+.hba-sub { margin: 0; font-size: 1.05rem; color: rgba(246, 239, 228, .72); }
+
+.hba-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: .3rem 0; }
+.hba-stat { display: flex; align-items: center; gap: .6rem; font-family: var(--ui); font-size: 1.08rem; font-weight: 600; }
+.hba-stat .ico { width: 23px; height: 23px; color: var(--hb-teal); }
+.hba-stat b { font-variant-numeric: tabular-nums; font-size: 1.3rem; }
+
+.hba-trophy { width: 82px; height: 82px; color: var(--hb-gold); margin: 0 auto; display: block;
+  filter: drop-shadow(0 14px 28px rgba(222, 159, 53, .45)); }
+.hba-eyebrow--on-won { color: var(--hb-gold-bright); }
+.hba-h--won { color: #FFF6E0; }
+.hba-sub--on-won { color: rgba(246, 239, 228, .88); font-size: 1.2rem; }
+
+.hba-flash { animation: hbaFlash .9s var(--ease); }
+@keyframes hbaFlash {
+  0%   { transform: scale(.85); opacity: 0; }
+  55%  { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .hba-flash { animation: none; } }
+
+.hba-offline { margin: 0; color: #E8A98E; font-size: .9rem; font-weight: 600; }
+
+@media (max-width: 480px) {
+  .hba-stats { gap: 1.2rem 1.6rem; }
+}

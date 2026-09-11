@@ -71,6 +71,13 @@ RewriteRule ^Essay/?$ /Essay/index.html [L]
 # the front end needed no change at all.
 RewriteRule ^api/gemini/?$ api/gemini.php [L]
 
+# Human Bingo — same pretty-URL pattern as /Essay. The requested URLs use
+# capital letters throughout, and Apache is case sensitive, so the folder
+# names on disk match exactly rather than relying on a case-insensitive
+# rewrite.
+RewriteRule ^Human-Bingo/?$       /Human-Bingo/index.html       [L]
+RewriteRule ^Human-Bingo-Admin/?$ /Human-Bingo-Admin/index.html [L]
+
 # ── 3. Error page ─────────────────────────────────────────────────────
 ErrorDocument 404 /404.html
 

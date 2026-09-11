@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="hy">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Human Bingo — Admin</title>
+<meta name="theme-color" content="#332C25">
+<meta name="description" content="Human Bingo — հանդիսավարի էկրան։">
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../Media/logo_white.png">
+<link rel="stylesheet" href="../styles.css?v=ffd5998434">
+</head>
+<body class="hb hb-admin" data-page="human-bingo-admin">
+
+<a class="skip-link" href="#main">Բաց թողնել նավարկությունը</a>
+
+<svg class="sprite" aria-hidden="true" focusable="false" width="0" height="0">
+  <defs>
+    <g id="hba-trophy">
+      <path d="M7 4h10v5.5a5 5 0 0 1-10 0V4Z"/>
+      <path d="M7 5H4a3 3 0 0 0 3 3M17 5h3a3 3 0 0 1-3 3"/>
+      <path d="M12 14.5V18M8.5 20.5h7"/>
+    </g>
+    <g id="hba-play"><path d="M7 4.5 19 12 7 19.5v-15Z"/></g>
+    <g id="hba-reset"><path d="M4 12a8 8 0 1 1 2.6 5.9"/><path d="M4 20v-5h5"/></g>
+    <g id="hba-users"><circle cx="9" cy="8" r="3"/><path d="M2.5 19a6.5 6.5 0 0 1 13 0"/><path d="M16 5.5a3 3 0 0 1 0 5.9"/><path d="M18.5 13a5.5 5.5 0 0 1 3 4.9"/></g>
+    <g id="hba-check"><circle cx="9" cy="8" r="3"/><path d="M2.5 19a6.5 6.5 0 0 1 13 0"/><path d="m16 8 2 2 3.5-4"/></g>
+  </defs>
+</svg>
+
+<header id="nav" class="nav" data-scrim="solid">
+  <a class="nav__mark" href="../index.html" aria-label="Narek Ohanyan — գլխավոր էջ">
+    <span class="nav__mark-glyph" aria-hidden="true"><img src="../Media/logo_white.png" alt=""></span>
+    <span class="nav__mark-text">Narek&nbsp;Ohanyan</span>
+  </a>
+</header>
+
+<main id="main" class="content hb hba">
+  <div class="hba-shell">
+
+    <p class="hba-eyebrow">Human Bingo · Հանդիսավարի էկրան</p>
+
+    <div class="hba-stage">
+
+      <!-- ══ Idle ══ -->
+      <section id="hbaIdle" class="hba-state">
+        <h1 class="hba-h">Պատրա՞ստ ես</h1>
+        <p class="hba-sub" id="hbaIdleCount">Սպասում ենք խաղացողների&hellip;</p>
+        <button class="hb-btn hb-btn--gold hb-btn--lg" type="button" id="hbaStartBtn">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#hba-play"/></svg>
+          Սկսել խաղը
+        </button>
+      </section>
+
+      <!-- ══ Active ══ -->
+      <section id="hbaActive" class="hba-state" hidden>
+        <h1 class="hba-h">Խաղը ընթացքի մեջ է</h1>
+        <div class="hba-stats" role="status" aria-live="polite">
+          <div class="hba-stat">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#hba-users"/></svg>
+            <span><b id="hbaPlayerCount">0</b> խաղացող</span>
+          </div>
+          <div class="hba-stat">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#hba-check"/></svg>
+            <span><b id="hbaCompletedCount">0</b> ավարտել է</span>
+          </div>
+        </div>
+        <p class="hba-sub">Առաջին ավարտողը ինքնաշխատ կերեւա այստեղ։</p>
+      </section>
+
+      <!-- ══ Finished ══ -->
+      <section id="hbaFinished" class="hba-state hba-state--won" hidden>
+        <svg class="hba-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#hba-trophy"/></svg>
+        <p class="hba-eyebrow hba-eyebrow--on-won">BINGO</p>
+        <h1 class="hba-h hba-h--won" id="hbaWinnerName">&nbsp;</h1>
+        <p class="hba-sub hba-sub--on-won">Առաջինն ավարտեց քարտը</p>
+      </section>
+
+    </div>
+
+    <div class="hba-controls">
+      <button class="hb-btn hb-btn--rust" type="button" id="hbaResetBtn">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#hba-reset"/></svg>
+        <span id="hbaResetLbl">Զրոյացնել խաղը</span>
+      </button>
+    </div>
+
+    <p class="hba-offline" id="hbaOffline" hidden>Կապը տվյալների բազայի հետ ընդհատված է. թարմացրու էջը։</p>
+  </div>
+</main>
+
+<script src="../vendor/supabase.js"></script>
+<script src="../supabase-config.js?v=93687eb35b"></script>
+<script src="../supabase-client.js?v=367d059d2f"></script>
+<script src="../human-bingo-admin.js?v=34be8f149b"></script>
+</body>
+</html>
