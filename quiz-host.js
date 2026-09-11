@@ -36,6 +36,7 @@
     qTextHy: document.getElementById('qhQTextHy'),
     qTextEn: document.getElementById('qhQTextEn'),
     options: document.getElementById('qhOptions'),
+    skipBtn: document.getElementById('qhSkipBtn'),
 
     reveal: document.getElementById('qhReveal'),
     revealQNum: document.getElementById('qhRevealQNum'),
@@ -255,6 +256,19 @@
     setBusy(els.nextBtn, true);
     d.quizAdminNext(t).then(function (res) {
       setBusy(els.nextBtn, false);
+      if (res.ok) applyState(res.data);
+    });
+  });
+
+  // Same call as Next, just reachable while the question is still live
+  // (quiz_admin_next has no server-side time gate) -- an escape hatch for
+  // a question the host wants to move past without waiting out the clock.
+  els.skipBtn.addEventListener('click', function () {
+    var t = token(); var d = db();
+    if (!d || !t) return;
+    setBusy(els.skipBtn, true);
+    d.quizAdminNext(t).then(function (res) {
+      setBusy(els.skipBtn, false);
       if (res.ok) applyState(res.data);
     });
   });
