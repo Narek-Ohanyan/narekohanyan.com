@@ -83,6 +83,7 @@ RewriteRule ^Human-Bingo-Admin/?$ /Human-Bingo-Admin/index.html [L]
 # sensitive Apache behaviour.
 RewriteRule ^check-in/?$        /Check-In/index.html       [L]
 RewriteRule ^check-in/admin/?$  /Check-In-Admin/index.html [L]
+RewriteRule ^Opening-Ceremony/?$ /Opening-Ceremony/index.html [L]
 
 # ── 3. Error page ─────────────────────────────────────────────────────
 ErrorDocument 404 /404.html
