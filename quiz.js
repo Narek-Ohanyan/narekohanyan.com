@@ -74,6 +74,7 @@
 
   function storedKey() { try { return localStorage.getItem(KEY_STORE) || null; } catch (e) { return null; } }
   function storeKey(k) { try { localStorage.setItem(KEY_STORE, k); } catch (e) {} }
+  function clearKey() { try { localStorage.removeItem(KEY_STORE); } catch (e) {} }
 
   var clientKey = storedKey();
   var pollTimer = null, tickTimer = null;
@@ -232,7 +233,22 @@
 
   /* ── state application ───────────────────────────────────────────── */
   function applyState(s) {
-    if (!s || !s.exists) return;
+    if (!s || !s.exists) {
+      // A stale client_key from a previous round -- the game was reset
+      // server-side (quiz_admin_reset wipes every player) since this
+      // browser last joined, so the id it's holding no longer matches
+      // anyone. Without this, the page would sit frozen on whatever panel
+      // was last visible forever, since every poll keeps coming back
+      // "doesn't exist" and there would be nothing here to recover from
+      // it -- back to the join form so they can enter their name again.
+      clearKey();
+      clientKey = null;
+      stopPolling();
+      stopTick();
+      lastPanel = null;
+      showOnly('join');
+      return;
+    }
 
     els.offline.hidden = true;
     var myFullName = s.player.first_name + ' ' + s.player.last_name;
