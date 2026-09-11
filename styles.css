@@ -7353,6 +7353,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   color: var(--fg-muted); cursor: pointer;
 }
 .cia-reset-btn:hover { border-color: #A82E1B; color: #A82E1B; }
+.cia-reset-btn.is-armed { background: #A82E1B; border-color: #A82E1B; color: #fff; }
 
 @media (max-width: 640px) {
   .ci-shell { padding-left: 1.1rem; padding-right: 1.1rem; }

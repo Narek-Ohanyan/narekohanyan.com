@@ -148,11 +148,23 @@
         resetBtn.type = 'button';
         resetBtn.className = 'cia-reset-btn';
         resetBtn.textContent = 'Զրոյացնել';
+        // Two-step confirm, same idiom as the "open check-out now" button
+        // below -- not window.confirm(), which does not fire reliably in
+        // every mobile browser this could be run from at the door.
+        var rowArmed = false, rowArmTimer = null;
         resetBtn.addEventListener('click', function () {
-          if (!window.confirm(
-            'Զրոյացնե՞լ ' + r.first_name + ' ' + r.last_name + '-ի կարգավիճակը։\n' +
-            "(Reset this person's check-in/out status?)"
-          )) return;
+          if (!rowArmed) {
+            rowArmed = true;
+            resetBtn.textContent = 'Հաստատե՞լ';
+            resetBtn.classList.add('is-armed');
+            rowArmTimer = setTimeout(function () {
+              rowArmed = false;
+              resetBtn.textContent = 'Զրոյացնել';
+              resetBtn.classList.remove('is-armed');
+            }, CONFIRM_MS);
+            return;
+          }
+          clearTimeout(rowArmTimer);
           resetAttendee(r.id);
         });
         actionTd.appendChild(resetBtn);
