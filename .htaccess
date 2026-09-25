@@ -78,14 +78,7 @@ RewriteRule ^api/gemini/?$ api/gemini.php [L]
 RewriteRule ^Human-Bingo/?$       /Human-Bingo/index.html       [L]
 RewriteRule ^Human-Bingo-Admin/?$ /Human-Bingo-Admin/index.html [L]
 
-# check-in is requested lowercase (unlike the rules above), so the pattern
-# here is written lowercase to match it exactly under the same case-
-# sensitive Apache behaviour.
-RewriteRule ^check-in/?$        /Check-In/index.html       [L]
-RewriteRule ^check-in/admin/?$  /Check-In-Admin/index.html [L]
 RewriteRule ^Opening-Ceremony/?$ /Opening-Ceremony/index.html [L]
-RewriteRule ^Ambassador-Quizz/?$      /Ambassador-Quizz/index.html      [L]
-RewriteRule ^Ambassador-Quizz-Host/?$ /Ambassador-Quizz-Host/index.html [L]
 
 # ── 3. Error page ─────────────────────────────────────────────────────
 ErrorDocument 404 /404.html
