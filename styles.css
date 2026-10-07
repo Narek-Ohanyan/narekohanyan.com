@@ -5080,6 +5080,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
 }
 .shot__frame img,
 .shot__frame video { display: block; width: 100%; height: auto; background: #fff; }
+.antar__video { pointer-events: none; }   /* no controls, no right-click menu */
 a.shot__url { text-decoration: none; }
 a.shot__url:hover, a.shot__url:focus-visible { text-decoration: underline; }
 .shot figcaption a { color: inherit; text-decoration: underline; text-underline-offset: .18em; }

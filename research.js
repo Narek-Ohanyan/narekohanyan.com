@@ -125,20 +125,27 @@
      The autoplay attribute starts it on load. This restarts it from the
      first frame the first time it is actually on screen, so it is never
      missed further down the page. After that the browser manages it, and
-     the visitor's own pause is respected. Reduced motion keeps the poster
-     until the visitor presses play. */
+     there are no controls. Reduced motion keeps the still poster. */
   (function film() {
     var v = document.querySelector('.antar__video');
     if (!v) return;
     if (still) { v.removeAttribute('autoplay'); v.pause(); return; }
     if (!hasIO) return;
 
+    var wanted = false;
+    function start() {
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    }
+    // If it was scrolled to before the file had buffered, start once it can.
+    v.addEventListener('canplay', function () { if (wanted && v.paused) start(); });
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
         io.unobserve(en.target);
-        v.currentTime = 0;
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        wanted = true;
+        if (v.readyState >= 2) v.currentTime = 0;
+        start();
       });
     }, { threshold: 0.35 });
     io.observe(v);
