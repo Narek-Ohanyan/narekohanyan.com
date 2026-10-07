@@ -4595,7 +4595,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
 }
 
 /* Anchors land below the fixed bar rather than under it. */
-.research :where(#focus, #experience, #arpf, #stack, #goals) { scroll-margin-top: 96px; }
+.research :where(#focus, #experience, #antar, #stack, #goals) { scroll-margin-top: 96px; }
 
 /* ── section rail ────────────────────────────────────────────────────
    A chapter index for a long page. Fixed, centred, and only where there
@@ -4973,7 +4973,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
 }
 
 /* ── ARPF ────────────────────────────────────────────────────────────── */
-.arpf {
+.antar {
   padding: var(--s-xl) var(--gut);
   background: var(--forest);
   /* A faint grid, the way a projection is drawn onto a chart ground. */
@@ -4982,16 +4982,16 @@ body[data-motion="reduced"] .hail::before { animation: none; }
     linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
   background-size: 64px 64px, 64px 64px;
 }
-.arpf__inner { max-width: 1180px; margin-inline: auto; }
-.arpf__head { max-width: 74ch; }
-.arpf__sub {
+.antar__inner { max-width: 1180px; margin-inline: auto; }
+.antar__head { max-width: 74ch; }
+.antar__sub {
   margin: 1.1rem 0 0;
   font-family: var(--ui);
   font-size: clamp(1rem, 1.9vmin, 1.15rem);
   font-weight: 600;
   color: #fff;
 }
-.arpf__ver {
+.antar__ver {
   display: inline-block;
   margin-inline-start: .6rem;
   padding: .22rem .6rem;
@@ -5004,7 +5004,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   border-radius: .55rem;
   vertical-align: middle;
 }
-.arpf__lede {
+.antar__lede {
   margin: 1.15rem 0 0;
   font-family: var(--body);
   font-size: clamp(1rem, 1.85vmin, 1.12rem);
@@ -5012,8 +5012,37 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   color: rgba(255,255,255,.82);            /* 9.4:1 on forest */
   max-width: 64ch;
 }
-.arpf__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
-.arpf__note {
+.antar__actions { display: flex; flex-wrap: wrap; gap: 1rem; }
+/* Citation block */
+.antar-cite {
+  margin: clamp(2rem, 5vh, 3rem) 0 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-inline-start: 3px solid var(--lemon);
+  border-radius: .4rem;
+  background: rgba(255,255,255,.05);
+}
+.antar-cite__h {
+  margin: 0 0 .5rem;
+  font-family: var(--ui);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--lemon);
+}
+.antar-cite__ref {
+  margin: 0;
+  font-family: var(--body);
+  font-size: .95rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,.88);
+  overflow-wrap: anywhere;
+}
+.antar-cite__ref a { color: #fff; text-decoration: underline; text-underline-offset: .18em; }
+.antar-cite__ref a:hover { color: var(--lemon); }
+
+.antar__note {
   margin: clamp(1.75rem, 4vh, 2.5rem) 0 0;
   font-family: var(--ui);
   font-size: .84rem;
@@ -5049,7 +5078,12 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   color: #55595E;                          /* 6.7:1 on the bar */
   overflow-wrap: anywhere;
 }
-.shot__frame img { display: block; width: 100%; height: auto; }
+.shot__frame img,
+.shot__frame video { display: block; width: 100%; height: auto; background: #fff; }
+a.shot__url { text-decoration: none; }
+a.shot__url:hover, a.shot__url:focus-visible { text-decoration: underline; }
+.shot figcaption a { color: inherit; text-decoration: underline; text-underline-offset: .18em; }
+.shot figcaption a:hover { color: var(--lemon); }
 .shot figcaption {
   margin: 1rem 0 0;
   font-family: var(--ui);
@@ -5059,15 +5093,15 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   text-align: center;
 }
 
-.arpf-pillars {
+.antar-pillars {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
   gap: clamp(.9rem, 2vw, 1.35rem);
   margin: clamp(2.5rem, 6vh, 4rem) 0 0;
   padding: 0;
   list-style: none;
 }
-.arpf-pillar {
+.antar-pillar {
   padding: clamp(1.35rem, 2.6vw, 1.85rem);
   background: rgba(255,255,255,.055);
   /* The tinted surface is only 1.18:1 against the forest ground, so the
@@ -5078,12 +5112,12 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   transition: background-color .45s var(--ease), border-color .45s var(--ease),
               transform .45s var(--ease);
 }
-.arpf-pillar:hover {
+.antar-pillar:hover {
   transform: translateY(-4px);
   background: rgba(255,255,255,.09);
   border-color: rgba(245,236,154,.45);
 }
-.arpf-pillar h3 {
+.antar-pillar h3 {
   margin: 1rem 0 0;
   font-family: var(--ui);
   font-size: 1.02rem;
@@ -5091,7 +5125,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   letter-spacing: -.005em;
   color: #fff;
 }
-.arpf-pillar p {
+.antar-pillar p {
   margin: .7rem 0 0;
   font-family: var(--body);
   font-size: .94rem;
@@ -5182,7 +5216,7 @@ body[data-motion="reduced"] .hail::before { animation: none; }
   .rhero__cue-line { animation: none; opacity: .8; }
   .shot[data-tilt="on"] .shot__frame,
   .shot__frame { transform: none; transition: none; }
-  .stratum:hover, .arpf-pillar:hover, .kit:hover { transform: none; }
+  .stratum:hover, .antar-pillar:hover, .kit:hover { transform: none; }
 }
 
 

@@ -85,7 +85,7 @@
       if (!current) return;
 
       if (byId[current.id]) byId[current.id].setAttribute('aria-current', 'true');
-      var dark = (current.id === 'arpf' || current.id === 'goals');
+      var dark = (current.id === 'antar' || current.id === 'goals');
       bar.setAttribute('data-on-dark', dark ? 'true' : 'false');
     }
 

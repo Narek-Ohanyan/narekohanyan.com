@@ -30,7 +30,7 @@ whose English source has since changed. Those need re-checking.
 The build does not enforce this; it is on whoever writes the JSON.
 
 Proper nouns and technical identifiers must survive untouched:
-ARPF, CHELSA, CMIP6, GEDI, SHAP, NetCDF, Pangeo, xarray, rioxarray, rasterio,
+ANTAR, CHELSA, CMIP6, GEDI, SHAP, NetCDF, Pangeo, xarray, rioxarray, rasterio,
 Sentinel-2, WSL, FORACCA, AUA, UNICEF, UNFCCC, CBD, COP17, LCOY, SUSI,
 "Narek Ohanyan", and the book title *The Overshoot: Life After the 1.5°C Limit*.
 
