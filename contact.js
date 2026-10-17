@@ -840,6 +840,45 @@
     }, 380);
   });
 
+  /* ── arriving from another page with a topic preset ──────────────────
+     /cop17/ links here as contact.html?topic=cop17#write so the form opens
+     already filled in for a COP17 speaking request. Only a fixed set of
+     presets is understood — the URL never supplies free text. */
+  (function preset() {
+    var q = new URLSearchParams(location.search);
+    var topic = q.get('topic');
+    var hy = q.get('lang') === 'hy';
+    var presets = {
+      cop17: {
+        kind: 'Speaking invitation',
+        subject: hy ? 'Ելույթ COP17-ում (Երևան, 2026 թ. հոկտեմբերի 19–30)' : 'Speaking at COP17 Yerevan (19–30 October 2026)',
+        message: hy
+          ? 'Բարև Նարեկ,\n\nՈւզում ենք Ձեզ հրավիրել ելույթի COP17-ի շրջանակում։\n\nՄիջոցառում / կազմակերպություն՝\nՕր և ժամ՝\nՎայր (գոտի / տաղավար / սենյակ)՝\nԼսարան և մասնակիցների թիվ՝\nՁևաչափ (ելույթ, քննարկում, մոդերացիա)՝\nԹեմա՝'
+          : 'Hello Narek,\n\nWe would like to invite you to speak around COP17.\n\nEvent / organisation:\nDate and time:\nVenue (zone / pavilion / room):\nAudience and size:\nFormat (talk, panel, moderation):\nTopic:'
+      },
+      presskit: {
+        kind: 'Media or press',
+        subject: 'Press Kit request (COP17)',
+        message: 'Please send over your full Press Kit.\n\nOutlet / organisation:\nWhat it is for:\nDeadline:'
+      }
+    };
+    var p = presets[topic];
+    if (!p) return;
+    var kind = document.getElementById('fKind');
+    var subj = document.getElementById('fSubj');
+    var msg  = document.getElementById('fMsg');
+    if (!subj || !msg) return;
+    if (kind) kind.value = p.kind;
+    if (!subj.value) subj.value = p.subject;
+    if (!msg.value.trim()) msg.value = p.message;
+    window.addEventListener('load', function () {
+      var form = document.getElementById('contactForm');
+      if (form) form.scrollIntoView({ block: 'center' });
+      var name = document.getElementById('fName');
+      if (name) name.focus({ preventScroll: true });
+    });
+  }());
+
   /* ── FAQ ─────────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('.qa__btn');
