@@ -7275,6 +7275,40 @@ a.shot__url:hover, a.shot__url:focus-visible { text-decoration: underline; }
 .oc-agenda__btns .ci-btn { width: auto; min-width: 11rem; }
 
 
+/* ═══ Butterfly bullets ═══════════════════════════════════════════════
+   Every bullet in written pieces (blog posts, newsroom entries) and on the
+   COP17 page is the COP17 butterfly. It flaps slowly at rest, staggered so a
+   list never moves in unison, and tilts when you reach for an item. */
+.art ul, .post ul {
+  list-style: none; margin: 1.4rem 0 0; padding-inline-start: 0;
+}
+.art ul li, .post ul li {
+  position: relative; margin-top: .6rem; padding-inline-start: 2rem;
+}
+.art ul li::before, .post ul li::before {
+  content: ""; position: absolute; inset-inline-start: 0; top: .34em;
+  width: 1.3rem; height: 1.15rem;
+  background: url("Media/web/cop17/butterfly-bullet.png") center / contain no-repeat;
+}
+.art ul li::before, .post ul li::before, .c17-list li::before {
+  transform-origin: 50% 60%;
+  animation: bf-flap 4s ease-in-out infinite;
+  animation-delay: calc(var(--bf, 0) * -.7s);
+}
+:is(.art ul, .post ul, .c17-list) li:nth-child(2n)::before { --bf: 1; }
+:is(.art ul, .post ul, .c17-list) li:nth-child(3n)::before { --bf: 2; }
+:is(.art ul, .post ul, .c17-list) li:nth-child(5n)::before { --bf: 3; }
+:is(.art ul, .post ul, .c17-list) li:hover::before { animation-duration: 1s; transform: rotate(-14deg) scale(1.18); }
+@keyframes bf-flap {
+  0%, 62%, 100% { transform: scaleX(1) rotate(0); }
+  70%           { transform: scaleX(.7) rotate(-7deg); }
+  80%           { transform: scaleX(1) rotate(5deg); }
+  88%           { transform: scaleX(.8) rotate(-3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .art ul li::before, .post ul li::before, .c17-list li::before { animation: none; }
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    COP17 page  (/cop17/)
    Palette comes from the conference identity's 23-colour butterfly; the
