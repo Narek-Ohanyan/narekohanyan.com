@@ -172,6 +172,10 @@ def render_section(s):
     return "".join(out)
 
 
+def day_label(day):
+    return "Closing" if str(day).lower() == "closing" else f"Day {int(day)}"
+
+
 def human_date(iso):
     y, m, d = map(int, iso.split("-"))
     return f"{d} {['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][m]} {y}"
@@ -218,7 +222,7 @@ def build(d):
     main = f'''<main id="main" class="content article-pg article-pg--wide">
 
   <header class="art__head">
-    <p class="crumb"><a href="blog.html">Blog</a> <span aria-hidden="true">/</span> COP17 &middot; Day {int(d["day"])}</p>
+    <p class="crumb"><a href="blog.html">Blog</a> <span aria-hidden="true">/</span> COP17 &middot; {day_label(d["day"])}</p>
     <h1 class="art__title">{esc(plain_title)}</h1>
     <p class="art__meta">
       <time datetime="{d["date"]}">{human_date(d["date"])}</time>
@@ -354,7 +358,7 @@ def card(day, date, lines, out):
             except OSError: continue
         return ImageFont.load_default()
     dr = ImageDraw.Draw(bg)
-    dr.text((90, 120), f"COP17 · DAY {int(day)}", font=font(34), fill=(245, 236, 154, 255))
+    dr.text((90, 120), "COP17 · " + day_label(day).upper(), font=font(34), fill=(245, 236, 154, 255))
     dr.text((90, 180), human_date(date), font=font(64), fill=(255, 255, 255, 255))
     y = 360
     for ln in lines[:4]:
