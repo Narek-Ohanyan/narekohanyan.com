@@ -7454,7 +7454,7 @@ html[lang="hy"] .c17-title { font-size: clamp(2.5rem, 7vw, 5.8rem); line-height:
 
 /* ── about ───────────────────────────────────────────────────────────── */
 .c17-about { background: var(--alabaster); padding-block: var(--s-xl); }
-.c17-cols { display: grid; gap: clamp(1rem, 2.2vw, 1.6rem); grid-template-columns: 1fr 1fr 1.35fr; align-items: stretch; }
+.c17-cols { display: grid; gap: clamp(1rem, 2.2vw, 1.6rem); grid-template-columns: 1.4fr 1fr; align-items: stretch; }
 .c17-card {
   padding: clamp(1.4rem, 2.6vw, 2rem); background: #fff; color: var(--charcoal);
   border: 1px solid rgba(26,29,32,.1); border-radius: 1.7rem .3rem 1.7rem .3rem;
@@ -7463,9 +7463,16 @@ html[lang="hy"] .c17-title { font-size: clamp(2.5rem, 7vw, 5.8rem); line-height:
 .c17-card:hover { border-radius: 1rem; transform: translateY(-4px); box-shadow: 0 26px 50px -30px rgba(26,29,32,.45); }
 .c17-card h3 { margin: 0 0 .7rem; font-family: var(--display); font-size: 1.45rem; letter-spacing: -.01em; }
 .c17-card p { margin: 0; line-height: 1.7; }
-.c17-card--role { background: var(--forest); color: #fff; border-color: transparent; }
-.c17-card--role .c17-list li { color: rgba(255,255,255,.92); }
-.c17-card--role b { color: var(--lemon); }
+.c17-rolesh { margin: clamp(2.2rem, 5vw, 3.4rem) 0 1.2rem; font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem); letter-spacing: -.01em; color: var(--charcoal); }
+.c17-roles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.2vw, 1.6rem); align-items: stretch; }
+.c17-role-card { border-top: 6px solid var(--c-green); }
+.c17-role-card--unicef { border-top-color: var(--c-sky); }
+.c17-role-card--aua { border-top-color: var(--c-amber); }
+.c17-role-card--atp { background: var(--forest); color: #fff; border-color: transparent; }
+.c17-role-card--atp .c17-list li { color: rgba(255,255,255,.92); }
+.c17-role-card__tag { display: inline-block; margin: 0 0 .8rem; padding: .25rem .75rem; border-radius: 999px; background: var(--alabaster); font-family: var(--ui); font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--charcoal); }
+.c17-role-card--atp .c17-role-card__tag { background: var(--lemon); color: var(--forest); }
+.c17-role-card h3 { font-size: 1.35rem; line-height: 1.2; }
 
 /* ── calendar ────────────────────────────────────────────────────────── */
 .c17-cal {
@@ -7635,8 +7642,7 @@ html[lang="hy"] .c17-title { font-size: clamp(2.5rem, 7vw, 5.8rem); line-height:
 
 /* ── responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 1000px) {
-  .c17-cols { grid-template-columns: 1fr 1fr; }
-  .c17-card--role { grid-column: 1 / -1; }
+  .c17-roles { grid-template-columns: 1fr; }
   .c17-calbox { grid-template-columns: 1fr; }
   .c17-day { position: static; max-height: none; }
   .c17-follow, .c17-film__grid, .c17-book__inner { grid-template-columns: 1fr; }
@@ -7654,7 +7660,7 @@ html[lang="hy"] .c17-title { font-size: clamp(2.5rem, 7vw, 5.8rem); line-height:
   .c17-lang__b { min-width: 34px; min-height: 34px; padding: 0 .5rem; font-size: .7rem; }
 }
 @media (max-width: 640px) {
-  .c17-cols { grid-template-columns: 1fr; }
+  .c17-cols, .c17-roles { grid-template-columns: 1fr; }
   .c17-kit__photos { grid-template-columns: 1fr; }
   .c17-f { grid-template-columns: 1fr; gap: .15rem; }
   .c17-d { font-size: .88rem; border-radius: .6rem; }

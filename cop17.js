@@ -50,7 +50,7 @@
     heroEyebrow: 'ՄԱԿ Կենսաբազմազանության համաժողով · CBD COP17',
     heroWhen: 'Երևան, Հայաստան · 2026 թ. հոկտեմբերի 19–30',
     heroH1a: 'Գործելով', heroH1b: 'հանուն բնության,', heroH1c: 'տանը։',
-    heroLede: 'Ես Նարեկ Օհանյանն եմ։ COP17-ի ընթացքում ելույթ եմ ունենում, վարում եմ քննարկումներ և համակարգում եմ Կապույտ գոտու Armenia Tree Project-ի տաղավարը։ Այս էջում կարող եք տեսնել, թե որ օրը որտեղ եմ, և ինչպես հրավիրել ինձ։',
+    heroLede: 'Ես Նարեկ Օհանյանն եմ։ COP17-ում ես UNICEF-ի գլոբալ պատվիրակության և AUA Ակոպյան կենտրոնի պատվիրակության անդամ եմ և համակարգում եմ Կապույտ գոտու Armenia Tree Project-ի տաղավարը։ Այս էջում կարող եք տեսնել, թե որ օրը որտեղ եմ, և ինչպես հրավիրել ինձ։',
     ctaCal: 'Որտեղ կլինեմ', ctaBook: 'Հրավիրել ելույթի', ctaKit: 'Խոսնակի փաթեթ',
     heroAlt: 'Նարեկ Օհանյանը՝ կռթնած ծառի բնին, նկարը կտրված է COP17-ի թիթեռի տեսքով',
     aboutKicker: 'Պարզ բառերով',
@@ -60,8 +60,17 @@
     zonesH: 'Երկու գոտի',
     zBlue: 'Կապույտ գոտի', zBlueP: 'պաշտոնական քննարկումներ և միջոցառումներ՝ գրանցված մասնակիցների համար։',
     zGreen: 'Կանաչ գոտի', zGreenP: 'բաց է հանրության համար. ցուցահանդեսներ, ելույթներ և կողմնակի միջոցառումներ։',
-    roleH: 'Իմ դերը',
-    roleLead: 'Ես Armenia Tree Project-ի (ATP) <b>COP17 Կապույտ գոտու տաղավարի համակարգողն եմ</b>՝ Հայաստանի անտառների և բնության աշխատանքի մշտական տաղավարի։ Իմ խնդիրներն են՝',
+    rolesH: 'Իմ դերերը COP17-ում',
+    r1Tag: 'UNICEF', r1H: 'UNICEF-ի գլոբալ պատվիրակության անդամ',
+    r1P: 'Ես ներկայացնում եմ UNICEF-ի պատվիրակությունը Կապույտ գոտու բարձր մակարդակի միջոցառումներում։ Իմ ուշադրության կենտրոնում են՝',
+    r1a: 'երեխաների և երիտասարդների ներառումը որոշումների կայացման մեջ։',
+    r1b: 'կենսաբազմազանության պաշտպանությունը երեխաների և երիտասարդների տեսանկյունից՝ CBD-ի բանակցություններում։',
+    r2Tag: 'AUA', r2H: 'AUA Ակոպյան կենտրոնի պատվիրակություն',
+    r2P: 'Ես Հայաստանի ամերիկյան համալսարանի (AUA) Ակոպյան կենտրոնի պատվիրակության մաս եմ և մասնակցում եմ համաժողովի տարբեր միջոցառումների՝',
+    r2a: 'նիստեր Հայաստանի անտառների և կլիմայական ծառայությունների մասին։',
+    r2b: 'Կենսաբազմազանության դեսպանների եզրափակիչ արարողություն՝ բուհերի կոալիցիայի հետ։',
+    r3Tag: 'Armenia Tree Project', r3H: 'Կապույտ գոտու տաղավարի համակարգող',
+    r3P: 'Ես համակարգում եմ Armenia Tree Project-ի (ATP) մշտական տաղավարը՝ Հայաստանի անտառների և բնության ներկայացուցչությունը։ Իմ խնդիրներն են՝',
     role1: 'ողջունել պատվիրակություններին, դոնորներին և քաղաքականություն մշակողներին և ներկայացնել ATP-ի անտառվերականգնման և բնության վրա հիմնված լուծումների ծրագրերը։',
     role2: 'լսել, թե ինչն է հետաքրքրում այցելուներին, և կապել նրանց ճիշտ փորձագետի կամ ATP-ի ղեկավարության հետ։',
     role3: 'վարել տաղավարի պլանավորված միջոցառումները, ներկայացումները և պատվիրակությունների շրջայցերը։',
@@ -118,11 +127,11 @@
 
   var BIO = {
     en: {
-      short: 'Narek Ohanyan is a climate and environmental researcher at the AUA Acopian Center for the Environment, a guest scientist with the Swiss research institute WSL, and a global youth climate leader. A former UN Youth & Children High-Level Climate Champion and lead organiser of LCOY Armenia, he works where science, policy and young people meet. At COP17 he is the Blue Zone booth coordinator for the Armenia Tree Project, and speaks and moderates at several official events.',
+      short: 'Narek Ohanyan is a climate and environmental researcher at the AUA Acopian Center for the Environment, a guest scientist with the Swiss research institute WSL, and a global youth climate leader. A former UN Youth & Children High-Level Climate Champion and lead organiser of LCOY Armenia, he works where science, policy and young people meet. At COP17 he is a member of the UNICEF Global Delegation, advocating for the inclusion of children and youth in the biodiversity talks; part of the AUA Acopian Center delegation; and the Blue Zone booth coordinator for the Armenia Tree Project. He also speaks and moderates at several official events.',
       one: 'Climate and environmental researcher, educator and youth climate leader from Armenia.'
     },
     hy: {
-      short: 'Նարեկ Օհանյանը կլիմայի և շրջակա միջավայրի հետազոտող է Հայաստանի ամերիկյան համալսարանի (AUA) Ակոպյան կենտրոնում, շվեյցարական WSL ինստիտուտի հյուր գիտնական և երիտասարդ կլիմայական առաջնորդ համաշխարհային մակարդակով։ Նախկինում՝ ՄԱԿ-ի երիտասարդների և երեխաների բարձր մակարդակի կլիմայական չեմպիոն և LCOY Հայաստանի գլխավոր կազմակերպիչ։ Նա աշխատում է այնտեղ, որտեղ հանդիպում են գիտությունը, քաղաքականությունը և երիտասարդները։ COP17-ում նա Armenia Tree Project-ի Կապույտ գոտու տաղավարի համակարգողն է և ելույթ է ունենում ու վարում քննարկումներ մի քանի պաշտոնական միջոցառումներում։',
+      short: 'Նարեկ Օհանյանը կլիմայի և շրջակա միջավայրի հետազոտող է Հայաստանի ամերիկյան համալսարանի (AUA) Ակոպյան կենտրոնում, շվեյցարական WSL ինստիտուտի հյուր գիտնական և երիտասարդ կլիմայական առաջնորդ համաշխարհային մակարդակով։ Նախկինում՝ ՄԱԿ-ի երիտասարդների և երեխաների բարձր մակարդակի կլիմայական չեմպիոն և LCOY Հայաստանի գլխավոր կազմակերպիչ։ Նա աշխատում է այնտեղ, որտեղ հանդիպում են գիտությունը, քաղաքականությունը և երիտասարդները։ COP17-ում նա UNICEF-ի գլոբալ պատվիրակության անդամ է և պաշտպանում է երեխաների և երիտասարդների ներառումը կենսաբազմազանության բանակցություններում, AUA Ակոպյան կենտրոնի պատվիրակության մաս է և Armenia Tree Project-ի Կապույտ գոտու տաղավարի համակարգողը։ Նա նաև ելույթ է ունենում և վարում քննարկումներ մի քանի պաշտոնական միջոցառումներում։',
       one: 'Կլիմայի և շրջակա միջավայրի հետազոտող, կրթող և երիտասարդ կլիմայական առաջնորդ Հայաստանից։'
     }
   };
