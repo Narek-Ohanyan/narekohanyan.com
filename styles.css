@@ -7744,3 +7744,59 @@ html[lang="hy"] .c17-title { font-size: clamp(2.5rem, 7vw, 5.8rem); line-height:
   .c17-card:hover, .c17-d:hover, .c17-chip:hover { transform: none; }
   .c17-portrait, .c17-halo { transform: none; transition: none; }
 }
+
+/* ═══ Homepage invitation to /cop17/ (cop17-popup.js) ═══════════════════ */
+html.c17-pop-lock { overflow: hidden; }
+.c17-pop {
+  position: fixed; inset: 0; margin: auto;
+  width: min(46rem, calc(100vw - 1.5rem)); max-height: calc(100svh - 1.5rem);
+  padding: 0; border: 0; overflow: hidden; color: #fff;
+  border-radius: 2.4rem .5rem 2.4rem .5rem;
+  background:
+    radial-gradient(28rem 22rem at 90% 10%, rgba(10,181,204,.28), transparent 62%),
+    radial-gradient(24rem 20rem at 60% 100%, rgba(120,166,26,.26), transparent 62%),
+    radial-gradient(20rem 16rem at 0% 0%, rgba(240,117,69,.2), transparent 60%),
+    var(--forest);
+  box-shadow: 0 60px 120px -40px rgba(0,0,0,.85), 0 0 0 1px rgba(255,255,255,.12);
+}
+.c17-pop[open] { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: stretch; animation: c17pop-in .6s var(--ease); }
+.c17-pop::backdrop { background: rgba(8,18,12,.72); backdrop-filter: blur(5px); }
+@keyframes c17pop-in { from { opacity: 0; transform: translateY(18px) scale(.97); } }
+.c17-pop__x {
+  position: absolute; z-index: 3; top: .9rem; inset-inline-end: .9rem;
+  display: grid; place-items: center; width: 44px; height: 44px; cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,.4); border-radius: 50%; background: rgba(27,62,38,.6); color: #fff;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease);
+}
+.c17-pop__x:hover, .c17-pop__x:focus-visible { background: rgba(255,255,255,.18); border-color: #fff; }
+.c17-pop__x svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.c17-pop__art { position: relative; display: flex; align-items: flex-end; justify-content: center; min-height: 20rem; overflow: hidden; }
+.c17-pop__art img { position: relative; z-index: 1; display: block; width: 116%; max-width: none; height: auto; margin-inline-start: -3%; filter: drop-shadow(0 20px 30px rgba(0,0,0,.35)); }
+.c17-pop__halo {
+  position: absolute; inset: 12% -10% 6% 6%; border-radius: 50%; filter: blur(46px); opacity: .5;
+  background: conic-gradient(from 200deg, #F07545, #F5A829, #78A61A, #03B091, #0AB5CC, #00597D, #F07545);
+  animation: c17-spin 36s linear infinite;
+}
+.c17-pop__body { position: relative; z-index: 2; padding: clamp(1.8rem, 4vw, 2.8rem) clamp(1.5rem, 3.4vw, 2.5rem) clamp(1.8rem, 4vw, 2.6rem) 0; align-self: center; }
+.c17-pop__eyebrow { margin: 0 0 1rem; padding-inline-end: 2.8rem; font-family: var(--ui); font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; line-height: 1.8; color: rgba(255,255,255,.78); }
+.c17-pop__eyebrow b { color: var(--lemon); font-weight: 700; }
+.c17-pop__h { margin: 0; font-family: var(--display); font-weight: 900; line-height: 1.04; letter-spacing: -.025em; font-size: clamp(1.9rem, 4.6vw, 2.8rem); text-wrap: balance; }
+.c17-pop__p { margin: 1rem 0 0; font-size: 1.02rem; line-height: 1.65; color: rgba(255,255,255,.9); }
+.c17-pop__btns { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.5rem; }
+.c17-pop .btn { margin-top: 0; }
+.c17-pop .btn .ico { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
+  --display: "Noto Serif Armenian", "Playfair Display", Georgia, serif;
+  --body: "Noto Sans Armenian", "IBM Plex Sans", sans-serif;
+  --ui: "Noto Sans Armenian", "Inter", sans-serif;
+}
+@media (max-width: 640px) {
+  .c17-pop[open] { grid-template-columns: 1fr; }
+  .c17-pop__art { position: absolute; inset: 0; min-height: 0; z-index: 0; }
+  .c17-pop__art img { position: absolute; right: -18%; bottom: 0; width: 95%; margin: 0; opacity: .5; }
+  .c17-pop__halo { display: none; }
+  .c17-pop::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(27,62,38,.9), rgba(27,62,38,.78) 55%, rgba(27,62,38,.62)); }
+  .c17-pop__body { padding: 2.6rem 1.5rem 1.8rem; text-shadow: 0 1px 12px rgba(10,30,18,.5); }
+  .c17-pop__btns .btn { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) { .c17-pop[open], .c17-pop__halo { animation: none; } }
