@@ -33,21 +33,26 @@
   if ('IntersectionObserver' in window) {
     var inView = false;
     new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }, { threshold: 0.25 }).observe(sec);
-    var auto = function () {
-      window.setTimeout(auto, 2500 + Math.random() * 2800);
+    var one = function () {
       if (!inView || document.visibilityState !== 'visible') return;
-      if (sec.querySelectorAll('.c17-spawn').length >= 4) return;
+      if (sec.querySelectorAll('.c17-spawn').length >= 18) return;
       var r = sec.getBoundingClientRect();
       var b = document.createElement('img');
       b.src = 'Media/web/cop17/butterfly.png'; b.alt = ''; b.className = 'c17-spawn'; b.setAttribute('aria-hidden', 'true');
-      b.style.left = (r.width * (0.08 + Math.random() * 0.84)).toFixed(0) + 'px';
-      b.style.top  = (r.height * (0.55 + Math.random() * 0.35)).toFixed(0) + 'px';
-      b.style.setProperty('--dx', (Math.random() * 180 - 60).toFixed(0) + 'px');
-      b.style.setProperty('--rot', (Math.random() * 50 - 25).toFixed(0) + 'deg');
+      b.style.left = (r.width * (0.05 + Math.random() * 0.9)).toFixed(0) + 'px';
+      b.style.top  = (r.height * (0.5 + Math.random() * 0.42)).toFixed(0) + 'px';
+      b.style.width = (1.6 + Math.random() * 1.6).toFixed(2) + 'rem';
+      b.style.setProperty('--dx', (Math.random() * 220 - 80).toFixed(0) + 'px');
+      b.style.setProperty('--rot', (Math.random() * 60 - 30).toFixed(0) + 'deg');
       sec.appendChild(b);
       b.addEventListener('animationend', function () { b.remove(); });
     };
-    window.setTimeout(auto, 2000);
+    var auto = function () {
+      window.setTimeout(auto, 1500 + Math.random() * 1500);
+      var n = 4 + Math.floor(Math.random() * 5);
+      for (var i = 0; i < n; i++) window.setTimeout(one, i * (90 + Math.random() * 200));
+    };
+    window.setTimeout(auto, 1200);
   }
 
   sec.addEventListener('click', function (e) {
