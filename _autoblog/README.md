@@ -86,17 +86,31 @@ Order of preference:
    images; an optional `credits.txt` with one line per file: `filename | caption | credit`).
    Copy them to `Media/web/blog/` (resize to at most 1600 px wide, JPEG quality 85,
    under 2.5 MB) and use them first.
-2. **Openly licensed images** — Wikimedia Commons (public domain, CC0, CC BY, CC BY-SA),
+2. **The official COP17 photo gallery on Flickr** — the owner has asked for these to be
+   used. Account "CBD COP17 Yerevan Armenia | Official Photo Gallery",
+   https://www.flickr.com/photos/cop17armenia/ (account id `205035723@N07`).
+   The newest 20 uploads are in the public feed
+   `https://www.flickr.com/services/feeds/photos_public.gne?id=205035723@N07&format=atom`;
+   photo titles start with the date (`2026.10.17_GYBN_Youth_Summit_Opening_Photo-81`), so
+   pick the photos for the day being covered. In the feed, `..._m.jpg` is the small size:
+   try the same URL with `_k.jpg`, then `_h.jpg`, then `_b.jpg` (largest that works).
+   Their Flickr licence is "All rights reserved", so: use at most 3 photos per post,
+   never alter them beyond resizing/cropping, always credit exactly
+   `Photo: CBD COP17 Yerevan Armenia | Official Photo Gallery, via Flickr`, and put the
+   photo page URL in the sources list. Prefer photos that show people and moments over
+   close-ups of individuals unless the post is about them. Do not use a photo if the page
+   shows it is private, or if you cannot download it.
+3. **Openly licensed images** — Wikimedia Commons (public domain, CC0, CC BY, CC BY-SA),
    or Flickr/other images explicitly under CC BY / CC BY-SA, ideally of COP17 or the
    topic. Record author, licence and source URL in the `credit`
    (e.g. `Photo: Jane Doe, CC BY 4.0, via Wikimedia Commons`). Never hot-link; download,
    resize and store under `Media/web/blog/cop17-YYYY-MM-DD-*.jpg`.
-3. **The fallback card** — `python3 _autoblog/cop17_blog.py card --day N --date YYYY-MM-DD
+4. **The fallback card** — `python3 _autoblog/cop17_blog.py card --day N --date YYYY-MM-DD
    --out Media/web/blog/cop17-YYYY-MM-DD-card.jpg --line "..." --line "..."` draws an
    original cover from the site palette and the COP17 butterfly. Credit:
    `Illustration: Narek Ohanyan, using the COP17 butterfly symbol.`
 
-Never use an image whose licence you cannot confirm. Never use news-agency or UN press
+Apart from the official gallery above, never use an image whose licence you cannot confirm. Never use news-agency or UN press
 photos unless the page states a licence that allows reuse. Never use the COP17 logo
 lock-ups; the butterfly symbol is used only through the card.
 

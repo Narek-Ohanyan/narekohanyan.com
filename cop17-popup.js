@@ -3,7 +3,8 @@
    ───────────────────────────────────────────────────────────────────────
    Shown on the homepage from 17 October 2026 until the end of the
    conference (31 October, to cover the closing day), once per visitor per
-   day. Dates are read in Yerevan time, so it switches on and off at local
+   day, after the visitor has scrolled through the opening and the hero is
+   fully open. Dates are read in Yerevan time, so it switches on and off at local
    midnight whatever the visitor's own clock says.
 
    Change SHOW_FROM / SHOW_UNTIL to move the window. It builds its own
@@ -100,6 +101,31 @@
     d.remove();
   });
 
-  // Let the homepage paint first, so the invitation never hides the opening shot.
-  window.setTimeout(open, 1600);
+  // Wait until the visitor has scrolled through the opening and the hero is fully open
+  // (main.js marks the stage data-state="arrived"). Visitors who prefer reduced motion
+  // get a single static screen, so they see it after a short pause instead.
+  var stage = document.getElementById('stage');
+  var shown = false;
+  function arm(delay) {
+    if (shown) return;
+    shown = true;
+    if (observer) observer.disconnect();
+    window.setTimeout(open, delay);
+  }
+  var observer = null;
+
+  if (!stage) {
+    arm(2500);
+  } else if (document.body.getAttribute('data-motion') === 'reduced') {
+    arm(3000);
+  } else if (stage.getAttribute('data-state') === 'arrived') {
+    arm(1200);
+  } else if ('MutationObserver' in window) {
+    observer = new MutationObserver(function () {
+      if (stage.getAttribute('data-state') === 'arrived') arm(900);
+    });
+    observer.observe(stage, { attributes: true, attributeFilter: ['data-state'] });
+  } else {
+    arm(6000);
+  }
 }());
