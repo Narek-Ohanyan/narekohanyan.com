@@ -14,6 +14,16 @@ the posts are written; no change to the routine itself is needed.
   - fewer than 3 usable sources could be read, from at least 2 different sites
   - the date is outside 19–31 October 2026
 
+## Notifications and network problems
+
+- Always finish with a push notification (PushNotification tool): on success, the
+  post title and live URL; on any skip or failure, the one-line reason.
+- The cloud sandbox may block outbound requests (WebFetch DNS errors, or `403` on
+  curl CONNECT). If you cannot read full articles from at least 3 usable sources on at
+  least 2 sites, **do not publish** on search snippets alone. Notify the owner that the
+  environment's network access must be opened (claude.ai/code → environment settings →
+  network access: Full, or allow the news domains and Wikimedia), then stop.
+
 ## What goes in the post
 
 Voice: Narek Ohanyan's blog. Plain language a non-specialist can follow (short
