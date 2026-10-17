@@ -79,6 +79,8 @@ RewriteRule ^Human-Bingo/?$       /Human-Bingo/index.html       [L]
 RewriteRule ^Human-Bingo-Admin/?$ /Human-Bingo-Admin/index.html [L]
 RewriteRule ^Human-Bingo-COP17/?$       /Human-Bingo-COP17/index.html       [L]
 RewriteRule ^Human-Bingo-COP17-Admin/?$ /Human-Bingo-COP17-Admin/index.html [L]
+# Working files for the daily COP17 recap routine are not for visitors.
+RewriteRule ^_autoblog/.*\.(py|md|json|txt)$ - [F,L]
 RewriteRule ^cop17/?$                   /cop17/index.html                   [L]
 
 RewriteRule ^Opening-Ceremony/?$ /Opening-Ceremony/index.html [L]
