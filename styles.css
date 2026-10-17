@@ -7801,20 +7801,32 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
 }
 @media (prefers-reduced-motion: reduce) { .c17-pop[open], .c17-pop__halo { animation: none; } }
 
-/* ═══ Homepage COP17 section ═════════════════════════════════════════════ */
+/* ═══ Homepage COP17 section ═════════════════════════════════════════════
+   Same motion language as the /cop17/ hero: drifting colour, floating
+   butterflies, a slow halo behind the portrait that follows the pointer,
+   and a butterfly released wherever you click. The portrait's cropped edge
+   sits flush against the right edge of the screen. */
 .home-c17 {
-  position: relative; overflow: hidden; color: #fff;
+  position: relative; isolation: isolate; overflow: hidden; color: #fff;
+  --px: 0; --py: 0;
+  --c-coral: #F07545; --c-amber: #F5A829; --c-grass: #78A61A; --c-teal: #03B091; --c-sky: #0AB5CC;
   background:
     radial-gradient(34rem 24rem at 88% 20%, rgba(10,181,204,.24), transparent 62%),
     radial-gradient(30rem 22rem at 60% 100%, rgba(120,166,26,.22), transparent 62%),
     radial-gradient(24rem 18rem at 0% 0%, rgba(240,117,69,.16), transparent 60%),
     var(--forest);
 }
-.home-c17__inner {
-  max-width: 1180px; margin-inline: auto; padding-inline: var(--gut);
-  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); align-items: end; gap: clamp(1rem, 4vw, 3rem);
-}
-.home-c17__copy { padding-block: var(--s-lg); align-self: center; }
+.home-c17__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.home-c17__bg i { position: absolute; border-radius: 50%; filter: blur(70px); animation: c17-drift 22s ease-in-out infinite alternate; }
+.home-c17__bg i:nth-child(1) { width: 20rem; height: 20rem; left: -5rem; top: 25%; background: var(--c-amber, #F5A829); opacity: .16; }
+.home-c17__bg i:nth-child(2) { width: 24rem; height: 24rem; right: 18%; top: -8rem; background: var(--c-sky, #0AB5CC); opacity: .2; animation-delay: -7s; }
+.home-c17__bg i:nth-child(3) { width: 18rem; height: 18rem; left: 40%; bottom: -7rem; background: var(--c-grass, #78A61A); opacity: .2; animation-delay: -13s; }
+.home-c17 .c17-fly--1 { left: 56%; top: 16%; width: 2.6rem; }
+.home-c17 .c17-fly--2 { left: 48%; bottom: 12%; width: 2rem; animation-delay: -5s; animation-duration: 18s; opacity: .6; }
+.home-c17 .c17-fly--3 { right: 34%; top: 10%; width: 3.2rem; animation-delay: -9s; animation-duration: 16s; }
+
+.home-c17__inner { position: relative; z-index: 2; display: flex; align-items: center; min-height: clamp(30rem, 40vw, 38rem); max-width: 1180px; margin-inline: auto; padding-inline: var(--gut); }
+.home-c17__copy { max-width: 40rem; padding-block: var(--s-lg); }
 .home-c17__eyebrow { margin: 0 0 1rem; font-family: var(--ui); font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; line-height: 1.9; color: rgba(255,255,255,.78); }
 .home-c17__eyebrow b { color: var(--lemon); font-weight: 700; }
 .home-c17__h { margin: 0; font-family: var(--display); font-weight: 900; line-height: 1.02; letter-spacing: -.03em; font-size: clamp(2.3rem, 6vw, 4.2rem); text-wrap: balance; }
@@ -7822,12 +7834,24 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
 .home-c17__btns { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.7rem; }
 .home-c17 .btn { margin-top: 0; }
 .home-c17 .btn .ico { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.home-c17__art { align-self: end; display: flex; justify-content: flex-end; }
-.home-c17__art img { display: block; width: min(100%, 24rem); height: auto; margin-bottom: -1px; filter: drop-shadow(0 24px 40px rgba(0,0,0,.35)); }
-@media (max-width: 760px) {
-  .home-c17__inner { grid-template-columns: 1fr; }
-  .home-c17__copy { padding-bottom: 0; }
-  .home-c17__art { justify-content: center; }
-  .home-c17__art img { width: min(80%, 18rem); }
+
+.home-c17__art { position: absolute; z-index: 1; right: 0; bottom: 0; height: 100%; pointer-events: none; display: flex; align-items: flex-end; }
+.home-c17__art .c17-halo { inset: 8% 8% 6% 6%; }
+.home-c17__art img {
+  position: relative; display: block; height: min(100%, 34rem); width: auto; max-width: none;
+  filter: drop-shadow(0 24px 40px rgba(0,0,0,.35));
+  transform: translate3d(calc(var(--px) * -14px), calc(var(--py) * -8px), 0);
+  transition: transform .5s var(--ease);
+}
+@media (max-width: 900px) {
+  .home-c17__inner { min-height: 0; }
+  .home-c17__copy { max-width: none; padding-bottom: 0; }
+  .home-c17__art { position: relative; height: auto; justify-content: flex-end; margin-top: 1.5rem; }
+  .home-c17__art img { height: auto; width: min(78%, 20rem); }
+  .home-c17 .c17-fly--1, .home-c17 .c17-fly--3 { display: none; }
   .home-c17__btns .btn { flex: 1 1 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-c17__bg i, .home-c17 .c17-fly, .home-c17 .c17-halo { animation: none; }
+  .home-c17__art img { transform: none; transition: none; }
 }

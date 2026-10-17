@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="Media/logo_white.png">
 
 <link rel="preload" as="image" href="Media/window_guy.png">
-<link rel="stylesheet" href="styles.css?v=9412f2f1d7">
+<link rel="stylesheet" href="styles.css?v=3dba522cec">
 
 <!--seo-->
 <meta name="description" content="Climate and environmental researcher, policy advocate and certified trainer. Author of The Overshoot and contributor to Armenia's Law on Climate.">
@@ -205,7 +205,12 @@
 <main id="main" class="content content--portal">
 
   <!-- ── COP17 · always here, so the pop-up is never the only way in ── Forest ── -->
-  <section class="home-c17" aria-labelledby="home-c17-h">
+  <section class="home-c17" id="homeC17" aria-labelledby="home-c17-h">
+    <div class="home-c17__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+    <img class="c17-fly c17-fly--1" src="Media/web/cop17/butterfly.png" alt="" width="640" height="545" aria-hidden="true" loading="lazy">
+    <img class="c17-fly c17-fly--2" src="Media/web/cop17/butterfly.png" alt="" width="640" height="545" aria-hidden="true" loading="lazy">
+    <img class="c17-fly c17-fly--3" src="Media/web/cop17/butterfly.png" alt="" width="640" height="545" aria-hidden="true" loading="lazy">
+
     <div class="home-c17__inner">
       <div class="home-c17__copy" data-reveal>
         <p class="home-c17__eyebrow">UN Biodiversity Conference &middot; Yerevan<br><b>19&ndash;30 October 2026</b></p>
@@ -217,9 +222,11 @@
           <a class="btn btn--wire" href="blog.html">Daily recaps</a>
         </div>
       </div>
-      <div class="home-c17__art" aria-hidden="true">
-        <img src="Media/web/cop17/narek-butterfly.webp" alt="" width="1000" height="1442" loading="lazy" decoding="async">
-      </div>
+    </div>
+
+    <div class="home-c17__art" aria-hidden="true">
+      <span class="c17-halo"></span>
+      <img src="Media/web/cop17/narek-butterfly.webp" alt="" width="1000" height="1442" loading="lazy" decoding="async">
     </div>
   </section>
 
@@ -482,6 +489,7 @@
 
 <script src="site.js?v=50a8e17fca"></script>
 <script src="main.js?v=89aa977687"></script>
+<script src="home-c17.js?v=c71855da1b"></script>
 <script src="cop17-popup.js?v=5410ac686e"></script>
 </body>
 </html>
