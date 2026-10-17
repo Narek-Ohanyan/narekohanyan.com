@@ -543,6 +543,29 @@
     });
   }
 
+  // Butterflies also drift up on their own, every few seconds, while the hero is on
+  // screen and the tab is visible — no click needed.
+  if (hero && !still && 'IntersectionObserver' in window) {
+    var inView = true, autoTimer = 0;
+    new IntersectionObserver(function (en) { inView = en[0].isIntersecting; }, { threshold: 0.15 }).observe(hero);
+
+    var releaseAuto = function () {
+      autoTimer = window.setTimeout(releaseAuto, 2500 + Math.random() * 2800);
+      if (!inView || document.visibilityState !== 'visible') return;
+      if (hero.querySelectorAll('.c17-spawn').length >= 4) return;
+      var r = hero.getBoundingClientRect();
+      var b = document.createElement('img');
+      b.src = '../Media/web/cop17/butterfly.png'; b.alt = ''; b.className = 'c17-spawn'; b.setAttribute('aria-hidden', 'true');
+      b.style.left = (r.width * (0.08 + Math.random() * 0.84)).toFixed(0) + 'px';
+      b.style.top  = (r.height * (0.6 + Math.random() * 0.32)).toFixed(0) + 'px';
+      b.style.setProperty('--dx', (Math.random() * 180 - 60).toFixed(0) + 'px');
+      b.style.setProperty('--rot', (Math.random() * 50 - 25).toFixed(0) + 'deg');
+      hero.appendChild(b);
+      b.addEventListener('animationend', function () { b.remove(); });
+    };
+    autoTimer = window.setTimeout(releaseAuto, 1800);
+  }
+
   /* ── boot ────────────────────────────────────────────────────────── */
   var q = new URLSearchParams(location.search);
   var startLang = q.get('lang');
