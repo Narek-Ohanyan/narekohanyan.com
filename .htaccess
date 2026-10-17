@@ -77,6 +77,8 @@ RewriteRule ^api/gemini/?$ api/gemini.php [L]
 # rewrite.
 RewriteRule ^Human-Bingo/?$       /Human-Bingo/index.html       [L]
 RewriteRule ^Human-Bingo-Admin/?$ /Human-Bingo-Admin/index.html [L]
+RewriteRule ^Human-Bingo-COP17/?$       /Human-Bingo-COP17/index.html       [L]
+RewriteRule ^Human-Bingo-COP17-Admin/?$ /Human-Bingo-COP17-Admin/index.html [L]
 
 RewriteRule ^Opening-Ceremony/?$ /Opening-Ceremony/index.html [L]
 

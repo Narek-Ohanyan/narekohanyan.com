@@ -221,48 +221,25 @@ window.NO.db = (function () {
      in localStorage. Every one of these is a checked RPC call; the two
      tables behind them have no policies and cannot be read or written any
      other way. See api/../human_bingo migration for the server side. */
-  function bingoJoin(name) {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_join', { p_name: String(name || '').trim() }));
-  }
-
-  function bingoPlayerState(clientKey) {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_player_state', { p_key: clientKey }));
-  }
-
-  function bingoSaveSquare(clientKey, index, value) {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_save_square', {
-      p_key: clientKey, p_index: index, p_value: String(value || '').trim()
-    }));
-  }
-
-  function bingoAdminState() {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_admin_state'));
-  }
-
-  function bingoAdminStart() {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_admin_start'));
-  }
-
-  function bingoAdminReset() {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_admin_reset'));
-  }
-
-  function bingoAdminDisqualifyWinner() {
-    var c = init();
-    if (!c) return Promise.resolve({ ok: false, offline: true });
-    return wrap(c.rpc('bingo_admin_disqualify_winner'));
+  /** Every Human Bingo game is the same seven checked RPC calls under a
+      different name prefix: 'bingo' (the original) or 'bingo_cop17'. */
+  function bingoGame(prefix) {
+    function rpc(fn, args) {
+      var c = init();
+      if (!c) return Promise.resolve({ ok: false, offline: true });
+      return wrap(c.rpc(prefix + '_' + fn, args));
+    }
+    return {
+      join: function (name) { return rpc('join', { p_name: String(name || '').trim() }); },
+      playerState: function (clientKey) { return rpc('player_state', { p_key: clientKey }); },
+      saveSquare: function (clientKey, index, value) {
+        return rpc('save_square', { p_key: clientKey, p_index: index, p_value: String(value || '').trim() });
+      },
+      adminState: function () { return rpc('admin_state'); },
+      adminStart: function () { return rpc('admin_start'); },
+      adminReset: function () { return rpc('admin_reset'); },
+      adminDisqualifyWinner: function () { return rpc('admin_disqualify_winner'); }
+    };
   }
 
   return {
@@ -275,12 +252,6 @@ window.NO.db = (function () {
     resetPassword: resetPassword,
     fetchProgress: fetchProgress,
     saveProgress: saveProgress,
-    bingoJoin: bingoJoin,
-    bingoPlayerState: bingoPlayerState,
-    bingoSaveSquare: bingoSaveSquare,
-    bingoAdminState: bingoAdminState,
-    bingoAdminStart: bingoAdminStart,
-    bingoAdminReset: bingoAdminReset,
-    bingoAdminDisqualifyWinner: bingoAdminDisqualifyWinner
+    bingoGame: bingoGame
   };
 }());

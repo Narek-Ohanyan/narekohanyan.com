@@ -22,7 +22,10 @@
 (function () {
   'use strict';
 
-  var KEY_STORE = 'no.bingo.clientKey';
+  // Which game this page runs: the original ('bingo') or 'bingo_cop17'.
+  // Each has its own database tables and its own saved player key.
+  var GAME = document.body.getAttribute('data-bingo') || 'bingo';
+  var KEY_STORE = GAME === 'bingo' ? 'no.bingo.clientKey' : 'no.' + GAME.replace('_', '.') + '.clientKey';
   var POLL_MS = 2500;
 
   var PROMPTS = [
@@ -44,6 +47,16 @@
     { t: 'ապրել է այլ երկրում (lived in another country)',                             c: 'r' }
   ];
 
+  // Human Bingo COP17 plays the same card plus two COP17-specific squares.
+  var EXTRA_PROMPTS = {
+    bingo_cop17: [
+      { t: 'մուտք ունի միայն Կանաչ գոտի (has access only to the Green Zone)',          c: 'g' },
+      { t: 'նույն մարզից է, ինչ դու (is from the same region/marz as you)',      c: 'c' }
+    ]
+  };
+  PROMPTS = PROMPTS.concat(EXTRA_PROMPTS[GAME] || []);
+  var TOTAL = PROMPTS.length;
+
   var panels = {
     join: document.getElementById('hbJoin'),
     wait: document.getElementById('hbWait'),
@@ -53,7 +66,9 @@
     grid: document.getElementById('hbGrid')
   };
 
-  function db() { return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db : null; }
+  function db() {
+    return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db.bingoGame(GAME) : null;
+  }
 
   function storedKey() {
     try { return localStorage.getItem(KEY_STORE) || null; } catch (e) { return null; }
@@ -147,13 +162,13 @@
       if (has) filled++;
     });
     document.getElementById('hbFilledN').textContent = filled;
-    document.getElementById('hbProgressFill').style.width = (filled / 16 * 100) + '%';
+    document.getElementById('hbProgressFill').style.width = (filled / TOTAL * 100) + '%';
   }
 
   function saveCell(index, value) {
     var d = db();
     if (!d || !clientKey) return;
-    d.bingoSaveSquare(clientKey, index, value).then(function (res) {
+    d.saveSquare(clientKey, index, value).then(function (res) {
       if (!res.ok || !res.data) return;
       applyState(res.data);
     });
@@ -198,7 +213,7 @@
   function poll() {
     var d = db();
     if (!d || !clientKey) return;
-    d.bingoPlayerState(clientKey).then(function (res) {
+    d.playerState(clientKey).then(function (res) {
       if (res.ok) applyState(res.data);
     });
   }
@@ -227,7 +242,7 @@
     var d = db();
     if (!d) { nameErr.textContent = 'Հասանելի չէ խաղի հետ կապ հաստատելը. թարմացրու էջը։'; nameErr.hidden = false; return; }
     setJoinBusy(true);
-    d.bingoJoin(name).then(function (res) {
+    d.join(name).then(function (res) {
       setJoinBusy(false);
       if (!res.ok || !res.data || !res.data.client_key) {
         nameErr.textContent = 'Չհաջողվեց միանալ։ Փորձիր կրկին։';

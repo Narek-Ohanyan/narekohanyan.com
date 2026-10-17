@@ -6927,6 +6927,15 @@ a.shot__url:hover, a.shot__url:focus-visible { text-decoration: underline; }
   font-size: clamp(2.1rem, 6.6vw, 3.6rem); line-height: 1;
 }
 
+/* Human Bingo COP17: a small tag under the title, and an 18-square card
+   laid out 3 across so the last row is never short. */
+.hb-cop {
+  margin: .55rem 0 0; font-family: var(--ui); font-weight: 700;
+  font-size: clamp(.8rem, 2.4vw, 1rem); letter-spacing: .32em; text-indent: .32em;
+  color: var(--hb-ink);
+}
+@media (min-width: 641px) { .hb-cells.hb-cells--18 { grid-template-columns: repeat(3, 1fr); } }
+
 .hb-c-g { color: var(--hb-gold); } .hb-c-p { color: var(--hb-pink); } .hb-c-c { color: var(--hb-char); }
 .hb-c-r { color: var(--hb-rust); } .hb-c-t { color: var(--hb-teal); }
 

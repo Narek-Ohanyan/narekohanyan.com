@@ -4,7 +4,7 @@
    Deliberately unauthenticated, matching this project's "no auth for now"
    posture everywhere else: whoever has this link runs the room. It shows
    nothing sensitive — aggregate counts always, and once the round is
-   finished, the winner's own name and their 16 answers, so the host can
+   finished, the winner's own name and their answers, so the host can
    read the card out. Never any OTHER player's answers.
 
    A short poll (2s) is what makes the BINGO screen appear on its own the
@@ -15,10 +15,11 @@
 (function () {
   'use strict';
 
+  var GAME = document.body.getAttribute('data-bingo') || 'bingo';
   var POLL_MS = 2000;
   var CONFIRM_MS = 4000; // shared by both two-step confirms below: Reset and Disqualify
 
-  // Same 16 prompts and colour coding as the player card in human-bingo.js
+  // Same prompts and colour coding as the player card in human-bingo.js
   // — static per-event content, not shared state, so it lives with each
   // page that displays it rather than round-tripping through the database.
   var PROMPTS = [
@@ -40,6 +41,15 @@
     { t: 'ապրել է այլ երկրում (lived in another country)',                             c: 'r' }
   ];
 
+  // Human Bingo COP17 plays the same card plus two COP17-specific squares.
+  var EXTRA_PROMPTS = {
+    bingo_cop17: [
+      { t: 'մուտք ունի միայն Կանաչ գոտի (has access only to the Green Zone)',          c: 'g' },
+      { t: 'նույն մարզից է, ինչ դու (is from the same region/marz as you)',      c: 'c' }
+    ]
+  };
+  PROMPTS = PROMPTS.concat(EXTRA_PROMPTS[GAME] || []);
+
   var states = {
     idle:     document.getElementById('hbaIdle'),
     active:   document.getElementById('hbaActive'),
@@ -54,7 +64,9 @@
   var disqualifyBtn = document.getElementById('hbaDisqualifyBtn');
   var disqualifyLbl = document.getElementById('hbaDisqualifyLbl');
 
-  function db() { return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db : null; }
+  function db() {
+    return (window.NO && window.NO.db && window.NO.db.available()) ? window.NO.db.bingoGame(GAME) : null;
+  }
 
   function showOnly(name) {
     Object.keys(states).forEach(function (k) {
@@ -79,7 +91,7 @@
 
     if (state.status === 'finished' && state.winner_name) {
       document.getElementById('hbaWinnerName').textContent = state.winner_name;
-      // Rebuilding a 16-item list on every 2s poll tick would be wasteful
+      // Rebuilding the answer list on every 2s poll tick would be wasteful
       // and could flicker; a round has exactly one winner, so once this
       // screen has been built for them there is nothing left to update.
       if (renderedWinnerFor !== state.winner_name) {
@@ -114,7 +126,7 @@
     var frag = document.createDocumentFragment();
     PROMPTS.forEach(function (p, i) {
       var value = answers[String(i)];
-      if (!value || !String(value).trim()) return; // defensive: a winner has all 16, but never render a blank
+      if (!value || !String(value).trim()) return; // defensive: a winner has every square, but never render a blank
       var li = document.createElement('li');
       li.className = 'hba-answer hba-a-' + p.c;
       var prompt = document.createElement('p');
@@ -133,7 +145,7 @@
   function poll() {
     var d = db();
     if (!d) { offlineNote.hidden = false; return; }
-    d.bingoAdminState().then(function (res) {
+    d.adminState().then(function (res) {
       if (res.ok) render(res.data);
       else offlineNote.hidden = false;
     });
@@ -152,7 +164,7 @@
     var d = db();
     if (!d) return;
     setBusy(startBtn, true);
-    d.bingoAdminStart().then(function (res) {
+    d.adminStart().then(function (res) {
       setBusy(startBtn, false);
       if (res.ok) render(res.data);
     });
@@ -183,7 +195,7 @@
     var d = db();
     if (!d) return;
     setBusy(resetBtn, true);
-    d.bingoAdminReset().then(function (res) {
+    d.adminReset().then(function (res) {
       setBusy(resetBtn, false);
       if (res.ok) {
         // Without this, the same person winning two rounds in a row would
@@ -222,7 +234,7 @@
     var d = db();
     if (!d) return;
     setBusy(disqualifyBtn, true);
-    d.bingoAdminDisqualifyWinner().then(function (res) {
+    d.adminDisqualifyWinner().then(function (res) {
       setBusy(disqualifyBtn, false);
       if (res.ok) {
         // The promoted winner (or a reopened round, if no one else had
