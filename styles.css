@@ -3608,6 +3608,16 @@ body[data-motion="reduced"] .onair__dot   { animation: none; }
 .art__dot { opacity: .45; }
 .art__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 0; }
 
+/* Photos that sit beside the text on wide screens, stack on phones. */
+.article-pg--wide .art__h2 { clear: both; }
+.article-pg--wide .fig--side {
+  float: right; width: min(40%, 26rem);
+  margin: .4rem 0 1.2rem clamp(1.5rem, 3vw, 2.5rem);
+}
+@media (max-width: 760px) {
+  .article-pg--wide .fig--side { float: none; width: 100%; margin: 2rem 0 0; }
+}
+
 /* Wide article: title, text and the "More posts" row share the cover's width,
    so every left edge lines up with the picture. Opt in with .article-pg--wide. */
 .article-pg--wide .art__head,
