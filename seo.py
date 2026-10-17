@@ -142,6 +142,15 @@ P = {
  "climate blog, environmental essays, climate science writing, climate communication",
  "default.jpg", "0.7", "weekly", "website"),
 
+"blog-leaders-summit.html": (
+ "Day Zero in Yerevan: What the COP17 Leaders' Summit Delivered — Blog",
+ "A plain-language recap of the COP17 Leaders' Summit on 16 October 2026: who was in the room, "
+ "the numbers behind the call to act, the Yerevan Declaration, and what it means for the two "
+ "weeks of negotiations ahead.",
+ "COP17 Leaders Summit, Yerevan Declaration, biodiversity summit recap, CBD COP17, "
+ "Kunming-Montreal Global Biodiversity Framework, Taking Action for Nature",
+ "default.jpg", "0.7", "monthly", "article"),
+
 "blog-small-talk.html": (
  "The End of Small Talk — Blog",
  "Why the weather stopped being small talk, and what it means when the safest conversational "
@@ -170,6 +179,7 @@ P = {
 # block — the essay platform ships its own head and its own design.
 SITEMAP_EXTRA = [
     ("Essay/index.html", "Essay", "0.7", "monthly"),
+    ("cop17/index.html", "cop17/", "0.9", "daily"),
 ]
 
 PERSON = {
