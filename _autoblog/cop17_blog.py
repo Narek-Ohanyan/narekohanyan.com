@@ -241,7 +241,7 @@ def build(d):
     <p class="art__lead">{d["lead"]}</p>
 
 ''' + "\n".join(render_section(s) for s in d["sections"]) + f'''
-    <p>Follow where I am each day on the <a href="cop17/">COP17 page</a>, and the daily news in the <a href="newsroom.html">Newsroom</a>.</p>
+    <p>Follow where I am each day on <a href="cop17/">my COP17 schedule</a>, and the daily news in the <a href="newsroom.html">Newsroom</a>.</p>
 
     <section class="refs" aria-labelledby="refs-h">
       <h2 id="refs-h" class="refs__h">Sources</h2>

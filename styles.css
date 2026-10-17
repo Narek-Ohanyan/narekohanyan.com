@@ -7855,3 +7855,6 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
   .home-c17__bg i, .home-c17 .c17-fly, .home-c17 .c17-halo { animation: none; }
   .home-c17__art img { transform: none; transition: none; }
 }
+
+.c17-pop__note, .home-c17__note { margin: 1.1rem 0 0; font-family: var(--ui); font-size: .78rem; line-height: 1.5; color: rgba(255,255,255,.7); }
+.home-c17__note { max-width: 44ch; }

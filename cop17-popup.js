@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════
-   Homepage invitation to the COP17 page
+   Homepage invitation to my COP17 schedule page
    ───────────────────────────────────────────────────────────────────────
    Shown on the homepage from 17 October 2026 until the end of the
    conference (31 October, to cover the closing day), once per visitor per
@@ -25,7 +25,8 @@
       when: '19–30 October 2026',
       h: 'COP17 is in Yerevan. Come and find me.',
       p: 'See where I’ll be each day, read the daily recaps, and book me to speak. It is all on one page.',
-      go: 'Open the COP17 page',
+      go: 'See my COP17 schedule',
+      note: 'My personal page, not the official COP17 website.',
       later: 'Maybe later',
       close: 'Close',
       alt: 'Narek Ohanyan, his portrait cut into the COP17 butterfly shape'
@@ -35,7 +36,8 @@
       when: '2026 թ. հոկտեմբերի 19–30',
       h: 'COP17-ը Երևանում է։ Գտեք ինձ։',
       p: 'Տեսեք, թե որ օրը որտեղ եմ, կարդացեք օրվա ամփոփումները և հրավիրեք ինձ ելույթի։ Ամեն ինչ՝ մեկ էջում։',
-      go: 'Բացել COP17 էջը',
+      go: 'Տեսնել իմ COP17 ժամանակացույցը',
+      note: 'Սա իմ անձնական էջն է, ոչ թե COP17-ի պաշտոնական կայքը։',
       later: 'Հետո',
       close: 'Փակել',
       alt: 'Նարեկ Օհանյանի դիմանկարը՝ COP17-ի թիթեռի տեսքով'
@@ -81,6 +83,7 @@
           ' <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15"/><path d="m13 6 6 6-6 6"/></svg></a>' +
         '<button class="btn btn--wire" type="button" data-pop-close>' + s.later + '</button>' +
       '</div>' +
+      '<p class="c17-pop__note">' + s.note + '</p>' +
     '</div>';
 
   function open() {

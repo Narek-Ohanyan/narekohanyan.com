@@ -50,7 +50,7 @@ Required sections (use these headings or close variants, at least 4 in total):
    Phrase as *scheduled*; never claim what was said or achieved there.
 6. **What to watch tomorrow** — 2–4 items.
 
-Always end the body with the pointer line the builder adds (COP17 page + Newsroom).
+Always end the body with the pointer line the builder adds (my COP17 schedule + Newsroom).
 
 Length: 650–1,700 words. Title pattern: `Day N in Yerevan: <specific headline>`.
 Tags: always `COP17`, `Biodiversity`, `Children & youth`; add `Policy`, `Finance`,
