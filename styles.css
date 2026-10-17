@@ -7275,6 +7275,9 @@ a.shot__url:hover, a.shot__url:focus-visible { text-decoration: underline; }
 .oc-agenda__btns .ci-btn { width: auto; min-width: 11rem; }
 
 
+/* A pull quote needs air above it, whatever precedes it (paragraph or list). */
+.art .pull { margin-top: clamp(2rem, 4.5vh, 3rem); }
+
 /* ═══ Butterfly bullets ═══════════════════════════════════════════════
    Every bullet in written pieces (blog posts, newsroom entries) and on the
    COP17 page is the COP17 butterfly. It flaps slowly at rest, staggered so a
