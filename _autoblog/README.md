@@ -46,7 +46,9 @@ Required sections (use these headings or close variants, at least 4 in total):
    section from that standpoint. If nothing child- or youth-specific happened, say so
    plainly and explain which decisions matter for them and what to watch.
 5. **On my calendar today** (only if `cop17-data.js` lists events for that date) — list
-   the scheduled engagements in plain words (title, time, place or "to be confirmed").
+   the scheduled engagements in plain words (title, time, place or "to be confirmed"),
+   and mention the Armenia Tree Project booth hours from `booth.slots` for that date.
+   Note that booth co-hosting does not block the calendar: Narek is open to speaking requests.
    Phrase as *scheduled*; never claim what was said or achieved there.
 6. **What to watch tomorrow** — 2–4 items.
 

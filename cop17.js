@@ -25,6 +25,9 @@
   var EN = {
     roleSpeaker: 'Speaker', roleModerator: 'Moderator', roleOrganiser: 'Organiser',
     roleFacilitator: 'Facilitator', roleAttending: 'Attending', roleCoordinator: 'Booth coordinator',
+    roleProgramlead: 'Program lead', rolePanelist: 'Panelist', roleParticipant: 'Participant', roleCohost: 'Co-host',
+    boothHours: 'Booth hours', confDay: 'COP17 day',
+    boothAvail: 'Booth hours do not block my calendar. I am open to speaking requests, so just ask.',
     dtTime: 'Time', dtWhere: 'Where', dtOrg: 'Organiser', dtZone: 'Zone', dtRole: 'My role',
     tbc: 'To be confirmed', tbcTime: 'Time to be confirmed', tbcDate: 'Date to be confirmed',
     allDay: 'All day', addCal: 'Add to my calendar', official: 'Official page',
@@ -75,6 +78,8 @@
     role2: 'լսել, թե ինչն է հետաքրքրում այցելուներին, և կապել նրանց ճիշտ փորձագետի կամ ATP-ի ղեկավարության հետ։',
     role3: 'վարել տաղավարի պլանավորված միջոցառումները, ներկայացումները և պատվիրակությունների շրջայցերը։',
     calKicker: 'Ինտերակտիվ օրացույց', calH: 'Որտեղ ինձ գտնել',
+    availH: 'Բաց եմ ելույթների համար',
+    availP: 'ATP-ի տաղավարի վարումը չի արգելափակում իմ օրացույցը։ COP17-ի ողջ ընթացքում հասանելի եմ ելույթների և խորհրդատվության առաջարկների համար։',
     calSub: 'Ընտրեք օր՝ տեսնելու, թե ինչ եմ անելու, որտեղ է դա, ով է կազմակերպիչը և որ գոտում է։ Զտիչներով կարող եք տեսնել միայն մեկ գոտին։',
     filterLabel: 'Զտել ըստ գոտու', fAll: 'Բոլորը', zOther: 'Երիտասարդական ֆորում և այլ վայրեր', zOtherShort: 'Այլ վայր',
     monthName: 'Հոկտեմբեր 2026', monthHint: 'COP17՝ հոկտեմբերի 19–30',
@@ -90,7 +95,7 @@
     filmYt: 'Դիտել YouTube-ում', filmMore: 'Այլ հարցազրույցներ և հեռարձակումներ',
     bookKicker: 'Ելույթներ և մամուլ',
     bookH: 'Ուզո՞ւմ եք ինձ ձեր բեմում, քննարկման կամ ծրագրում',
-    bookP: 'Գրեք ամսաթիվը, լսարանը և ձևաչափը։ Ձևաթուղթը բացվում է արդեն լրացված՝ COP17-ի համար, այնպես որ մեկ րոպե է պահանջվում։',
+    bookP: 'Գրեք ամսաթիվը, լսարանը և ձևաչափը։ Ձևաթուղթը բացվում է արդեն լրացված՝ COP17-ի համար, այնպես որ մեկ րոպե է պահանջվում։ Հասանելի եմ COP17-ի ողջ ընթացքում, նաև տաղավարի օրերին։',
     footNote: 'Սա Նարեկ Օհանյանի անձնական էջն է։ Այն ոչ COP17-ի, ոչ CBD-ի պաշտոնական կայք չէ։ Միջոցառումների տվյալները վերցված են հրապարակված ծրագրերից և կարող են փոխվել. խնդրում ենք օրվա ընթացքում ստուգել պաշտոնական ժամանակացույցը։',
     kitH: 'Խոսնակի փաթեթ', close: 'Փակել',
     kitLede: 'Այն ամենը, ինչ պետք է ինձ հետ նիստը գովազդելու կամ իմ մասին գրելու համար։',
@@ -108,6 +113,9 @@
 
     roleSpeaker: 'Բանախոս', roleModerator: 'Մոդերատոր', roleOrganiser: 'Կազմակերպիչ',
     roleFacilitator: 'Ֆասիլիտատոր', roleAttending: 'Մասնակից', roleCoordinator: 'Տաղավարի համակարգող',
+    roleProgramlead: 'Ծրագրի ղեկավար', rolePanelist: 'Քննարկման մասնակից', roleParticipant: 'Մասնակից', roleCohost: 'Համահյուրընկալող',
+    boothHours: 'Տաղավարի ժամերը',
+    boothAvail: 'Տաղավարի ժամերը չեն արգելափակում իմ օրացույցը։ Բաց եմ ելույթի առաջարկների համար, պարզապես գրեք։',
     dtTime: 'Ժամ', dtWhere: 'Որտեղ', dtOrg: 'Կազմակերպիչ', dtZone: 'Գոտի', dtRole: 'Իմ դերը',
     tbc: 'Կճշտվի', tbcTime: 'Ժամը կճշտվի', tbcDate: 'Ամսաթիվը կճշտվի',
     allDay: 'Ամբողջ օրը', addCal: 'Ավելացնել իմ օրացույցում', official: 'Պաշտոնական էջ',
@@ -187,7 +195,7 @@
     return list;
   }
   function boothOn(iso) {
-    return DATA.booth.days.indexOf(iso) !== -1 && zoneOk(DATA.booth.zone);
+    return !!DATA.booth.slots[iso] && zoneOk(DATA.booth.zone);
   }
 
   /* ── language ────────────────────────────────────────────────────── */
@@ -257,7 +265,7 @@
       b.className = 'c17-d' + (inConf ? ' is-conf' : '') + (total ? ' has-ev' : '') + (iso === now ? ' is-today' : '') + (iso === selected ? ' is-sel' : '');
       b.setAttribute('data-iso', iso);
       b.setAttribute('aria-pressed', iso === selected ? 'true' : 'false');
-      b.setAttribute('aria-label', t('dowLong')[dowIndex(iso)] + ' ' + dayLabel(iso) + ', ' + countText(total));
+      b.setAttribute('aria-label', t('dowLong')[dowIndex(iso)] + ' ' + dayLabel(iso) + ', ' + (inConf ? t('confDay') + ', ' : '') + countText(total + (booth ? 1 : 0)));
       b.tabIndex = (iso === (selected || '')) ? 0 : -1;
 
       var num = document.createElement('span');
@@ -269,10 +277,6 @@
         dots.className = 'c17-d__dots'; dots.setAttribute('aria-hidden', 'true');
         evs.slice(0, 4).forEach(function (e) { var i2 = document.createElement('i'); i2.className = 'kdot kdot--' + e.zone; dots.appendChild(i2); });
         b.appendChild(dots);
-      } else if (booth) {
-        var bf = document.createElement('span');
-        bf.className = 'c17-d__bf'; bf.setAttribute('aria-hidden', 'true');
-        b.appendChild(bf);
       }
       grid.appendChild(b);
     }
@@ -339,7 +343,9 @@
   function zoneName(z) { return t(z === 'blue' ? 'zoneBlue' : z === 'green' ? 'zoneGreen' : 'zoneOther'); }
   function roleName(r) {
     return t({ speaker: 'roleSpeaker', moderator: 'roleModerator', organiser: 'roleOrganiser',
-               facilitator: 'roleFacilitator', attending: 'roleAttending', coordinator: 'roleCoordinator' }[r]);
+               facilitator: 'roleFacilitator', attending: 'roleAttending', coordinator: 'roleCoordinator',
+               programlead: 'roleProgramlead', panelist: 'rolePanelist', participant: 'roleParticipant',
+               cohost: 'roleCohost' }[r]);
   }
   function timeText(e) {
     if (!e.start) return t('tbcTime');
@@ -363,7 +369,7 @@
 
     var head = el('div', 'c17-ev__head');
     head.appendChild(el('span', 'c17-badge c17-badge--' + z, zoneName(z)));
-    head.appendChild(el('span', 'c17-role', roleName(isBooth ? 'coordinator' : item.role)));
+    head.appendChild(el('span', 'c17-role', isBooth ? roleName('cohost') : (item.roleText ? L(item.roleText) : roleName(item.role))));
     c.appendChild(head);
 
     c.appendChild(el('h4', 'c17-ev__title', isBooth ? t('boothTitle') : L(item.title)));
@@ -375,16 +381,25 @@
     var dl = el('dl', 'c17-fs');
     var timeNode;
     if (isBooth) {
-      timeNode = document.createTextNode(t('allDay'));
+      timeNode = document.createTextNode((DATA.booth.slots[selected] || []).map(function (sl) { return sl[0] + '–' + sl[1]; }).join('  ·  '));
     } else {
       timeNode = el('span', null, timeText(item));
       if (item.start && tbc.indexOf('time') !== -1) { timeNode.appendChild(document.createTextNode(' ')); timeNode.appendChild(el('span', 'c17-tbc', t('tbc'))); }
       if (!item.start) timeNode = el('span', 'c17-tbc', t('tbcTime'));
     }
-    dl.appendChild(row(t('dtTime'), 'c-clock', timeNode));
+    dl.appendChild(row(isBooth ? t('boothHours') : t('dtTime'), 'c-clock', timeNode));
     dl.appendChild(row(t('dtWhere'), 'c-pin', valueOrTbc(L(item.place))));
     dl.appendChild(row(t('dtOrg'), 'c-org', valueOrTbc(L(item.org))));
     c.appendChild(dl);
+
+    if (isBooth) {
+      var av = el('p', 'c17-ev__avail');
+      av.appendChild(document.createTextNode(t('boothAvail') + ' '));
+      var ba = el('a', 'c17-link'); ba.href = '../contact.html?topic=cop17&lang=' + lang + '#write';
+      ba.appendChild(iconUse('c-mic')); ba.appendChild(el('span', null, t('ctaBook')));
+      av.appendChild(ba);
+      c.appendChild(av);
+    }
 
     var acts = el('div', 'c17-ev__acts');
     if (!isBooth && item.start) {
@@ -414,7 +429,7 @@
     evs.forEach(function (e) { box.appendChild(card(e, false)); });
     if (booth) box.appendChild(card(DATA.booth, true));
     if (!box.children.length) {
-      var anyThatDay = DATA.events.some(function (e) { return e.date === selected; }) || DATA.booth.days.indexOf(selected) !== -1;
+      var anyThatDay = DATA.events.some(function (e) { return e.date === selected; }) || !!DATA.booth.slots[selected];
       box.appendChild(el('p', 'c17-empty', t(anyThatDay ? 'emptyFilter' : 'emptyDay')));
     }
   }
@@ -583,7 +598,7 @@
   // The day to open on: today if it has something, otherwise the next day that does.
   (function pickDay() {
     var now = today();
-    var dates = DATA.events.map(function (e) { return e.date; }).concat(DATA.booth.days).sort();
+    var dates = DATA.events.map(function (e) { return e.date; }).concat(Object.keys(DATA.booth.slots)).sort();
     var pick = dates.filter(function (d) { return d >= now; })[0] || dates[0];
     selected = q.get('day') && /^2026-10-\d\d$/.test(q.get('day')) ? q.get('day') : pick;
   }());
