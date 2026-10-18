@@ -7861,13 +7861,14 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
 
 /* COP17 calendar: a butterfly on every conference day, availability callout */
 .c17-d.is-conf::before {
-  content: ""; position: absolute; top: .3rem; inset-inline-end: .3rem; width: .95rem; height: .82rem; pointer-events: none;
+  content: ""; position: absolute; bottom: .28rem; left: 50%; margin-left: -.55rem; width: 1.1rem; height: .95rem; pointer-events: none;
   background: var(--bf-bullet) center / contain no-repeat;
   transform-origin: 50% 60%; animation: bf-flap 5s ease-in-out infinite;
   animation-delay: calc(var(--bf, 0) * -.9s);
 }
 .c17-d.is-conf:nth-child(3n)::before { --bf: 1; } .c17-d.is-conf:nth-child(4n)::before { --bf: 2; } .c17-d.is-conf:nth-child(5n)::before { --bf: 3; }
 .c17-d.is-sel.is-conf::before { filter: brightness(1.25) saturate(1.1); }
+.c17-d.is-conf { padding-bottom: 1.05rem; }
 .c17-avail {
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem 1.4rem;
   margin: 0 0 1.4rem; padding: 1.1rem 1.4rem; color: var(--forest);
