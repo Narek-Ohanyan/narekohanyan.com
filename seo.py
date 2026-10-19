@@ -166,6 +166,12 @@ P = {
  "climate science explained",
  "default.jpg", "0.6", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-19.html": (
+  "Day 1 in Yerevan: A New President, a Global Review and Familiar Divides on Money — Blog",
+  "Recap of the COP17 opening plenary in Yerevan on 19 October 2026: the new President, the agenda, the global review, and the positions of the regional groups on finance, digital sequence information and participation.",
+  "COP17 opening plenary, COP17 Yerevan day 1, global review biodiversity framework, Hambardzum Matevosyan COP17 President, biodiversity finance Article 20, digital sequence information Cali Fund",
+  "default.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
