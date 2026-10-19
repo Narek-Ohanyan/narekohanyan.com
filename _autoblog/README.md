@@ -150,6 +150,9 @@ butterflies automatically. Never use `ol` or hand-made bullets in the body.
 - Wikimedia rate-limits shared cloud IPs (HTTP 429). Send a descriptive User-Agent
   (`narekohanyan-autoblog/1.0 (nar.ohanyan.eco@gmail.com)`), wait and retry once, and if it still
   fails use the official Flickr gallery or the fallback card. Do not loop on 429s.
-- If `python3 -c "import PIL"` fails, run `python3 -m pip install --ignore-installed pillow`.
+- FIRST STEP of every run: `python3 -m pip install --quiet --ignore-installed pillow` (the cloud image's
+  system Pillow is broken for its Python; the reinstall lasts only for that run).
+- enb.iisd.org answers 403 to automated reads; use the UN Transcripts record, CBD/COP17 pages and news
+  agencies instead. en.armradio.am may show a bot-check page; use WebSearch snippets only as a pointer.
 - Flickr photo files: `https://live.staticflickr.com/65535/<id>_<secret>_b.jpg` (1024 px) works;
   the larger sizes (`_k`, `_h`) return 410.

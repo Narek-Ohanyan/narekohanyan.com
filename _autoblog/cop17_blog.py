@@ -336,6 +336,8 @@ def card(day, date, lines, out):
         subprocess = __import__("subprocess")
         subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "--ignore-installed", "pillow"], check=True)
         import importlib
+        for name in [m for m in sys.modules if m == 'PIL' or m.startswith('PIL.')]:
+            del sys.modules[name]          # drop the half-imported broken copy
         importlib.invalidate_caches()
         from PIL import Image, ImageDraw, ImageFilter, ImageFont
     W, H = 1600, 900
