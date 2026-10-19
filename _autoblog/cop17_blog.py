@@ -331,9 +331,12 @@ def build(d):
 def card(day, date, lines, out):
     try:
         from PIL import Image, ImageDraw, ImageFilter, ImageFont
-    except ImportError:
+    except Exception:
+        # A system Pillow built for another Python can import-fail; reinstall for THIS interpreter.
         subprocess = __import__("subprocess")
-        subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "pillow"], check=True)
+        subprocess.run([sys.executable, "-m", "pip", "install", "--quiet", "--ignore-installed", "pillow"], check=True)
+        import importlib
+        importlib.invalidate_caches()
         from PIL import Image, ImageDraw, ImageFilter, ImageFont
     W, H = 1600, 900
     bg = Image.new("RGB", (W, H)); px = bg.load()
