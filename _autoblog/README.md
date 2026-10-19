@@ -29,14 +29,25 @@ the posts are written; no change to the routine itself is needed.
 Voice: Narek Ohanyan's blog. Plain language a non-specialist can follow (short
 sentences; explain every acronym on first use). Warm, precise, never promotional.
 
+**Focus: the high-level negotiations.** The core of every post is what happened in the
+plenary and the working groups: openings and elections, agenda and organisation of work,
+statements by the President, the Executive Secretary and the regional and interest groups
+(Africa Group, GRULAC, Asia-Pacific, EU, JUSCANZ, ASEAN, Arab Group, SIDS, LMMC, Indigenous
+peoples, women, youth, business, NGOs), their positions, where they agree and clash, what
+was decided, blocked or postponed, and how the negotiations are going. Side events, pavilions
+and photo-ops get at most a short paragraph. Name each group and what it asked for.
+Use the UN Transcripts record of plenaries (https://transcripts.un.org, unofficial automatic
+transcript: say so, and treat numbers and names with care) and the Earth Negotiations
+Bulletin as the main sources for this.
+
 Required sections (use these headings or close variants, at least 4 in total):
 
 1. **The day in negotiations** — what the plenary, contact groups and subsidiary bodies
    did; which agenda items moved (global review of progress, resource mobilisation,
    digital sequence information, etc.); what was agreed, blocked or postponed.
-2. **Beyond the negotiating rooms** — announcements, pledges, side events, partnerships,
-   Indigenous Peoples, business, science, Armenian host-country moments. Anything
-   worth marking.
+2. **Positions and stakeholders** — group-by-group positions (a butterfly-bullet list works
+   well) and the statements of Indigenous peoples, women, youth, business and NGOs; then,
+   briefly, other developments worth marking (announcements, pledges, notable side events).
 3. **Numbers to know** (when there are figures) — a butterfly-bullet list.
 4. **Through a child and youth lens** (always, heading must contain "child" and "youth")
    — what today means for children and young people: youth and child participation in
