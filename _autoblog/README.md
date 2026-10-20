@@ -24,6 +24,22 @@ the posts are written; no change to the routine itself is needed.
   environment's network access must be opened (claude.ai/code → environment settings →
   network access: Full, or allow the news domains and Wikimedia), then stop.
 
+## Research checklist (do not give up early)
+
+Before concluding there are not enough sources, you must have tried ALL of these (at least 12 searches/fetches):
+
+1. `https://transcripts.un.org/en` — the home page lists today's COP 17 sessions (plenary, Working
+   Group I, Working Group II, contact groups, press conferences) as `/en/asset/...` links. Open the
+   transcripts of today's working groups and plenary: they are the best source of positions.
+   (The page's "Load more" and long transcripts: re-fetch with an `offset` to read the rest.)
+2. WebSearch for each of: "COP17 Yerevan" + today's date in words; "working group" "digital sequence
+   information" "contact group"; "COP17" "forest"; "COP17" "resource mobilization"; "COP17" youth;
+   "COP17" UNICEF; "COP17" GYBN; Armenpress / Public Radio of Armenia / Xinhua / UN News COP17.
+3. Fetch the most relevant news articles found, plus cbd.int and cop17yerevan.am news pages.
+
+Only if all of that yields fewer than 3 readable sources from 2 sites, skip and notify the owner.
+A day with working-group transcripts counts as well covered even if few news articles exist.
+
 ## What goes in the post
 
 Voice: Narek Ohanyan's blog. Plain language a non-specialist can follow (short

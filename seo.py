@@ -172,6 +172,12 @@ P = {
   "COP17 opening plenary, COP17 Yerevan day 1, global review biodiversity framework, Hambardzum Matevosyan COP17 President, biodiversity finance Article 20, digital sequence information Cali Fund",
   "default.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-20.html": (
+  "Day 2 in Yerevan: Working Groups Open, Genetic-Data Money Gets a Contact Group and a Forest Text Is Fought Word by Word — Blog",
+  "Recap of COP17 working groups on 20 October 2026 in Yerevan: digital sequence information and the Cali Fund, Nagoya and Cartagena protocol items, and the bracket-by-bracket negotiation of the forest biodiversity decision.",
+  "COP17 working group, digital sequence information Cali Fund, forest biodiversity decision COP17, Nagoya Protocol COP-MOP, biosafety Cartagena COP17 day 2",
+  "default.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
