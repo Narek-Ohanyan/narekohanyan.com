@@ -178,6 +178,12 @@ P = {
   "COP17 working group, digital sequence information Cali Fund, forest biodiversity decision COP17, Nagoya Protocol COP-MOP, biosafety Cartagena COP17 day 2",
   "default.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-21.html": (
+  "Day 3 in Yerevan: Ten Contact Groups Work the Jigsaw While the Forest Decision Stalls on Wording — Blog",
+  "Recap of COP17 negotiations on 21 October 2026 in Yerevan: forest biodiversity and invasive species in Working Group II, ten contact groups from the financial mechanism to digital sequence information, and what young people asked of negotiators.",
+  "COP17 day 3, contact groups COP17, financial mechanism GEF COP17, forest biodiversity decision, Cali Fund certificates, youth justice gap biodiversity",
+  "default.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
