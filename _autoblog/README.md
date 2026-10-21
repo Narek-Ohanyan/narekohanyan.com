@@ -24,6 +24,20 @@ the posts are written; no change to the routine itself is needed.
   environment's network access must be opened (claude.ai/code → environment settings →
   network access: Full, or allow the news domains and Wikimedia), then stop.
 
+## BEST SOURCE: the Earth Negotiations Bulletin daily PDFs
+
+ENB's web page returns 403, but its daily issues are plain PDFs that download fine with curl, and each is the
+authoritative day-by-day record (plenary, working groups, every contact group, "In the Corridors").
+Issue number for the day being covered: `09884 + (day_of_month - 19)` (Monday 19 Oct = 09884, 20 Oct = 09885,
+21 Oct = 09886, ... ). The issue for day N is dated N+1 but is usually online by the evening of day N.
+
+    curl -sL -A "Mozilla/5.0" -o /tmp/enb.pdf "https://enb.iisd.org/sites/default/files/2026-10/enb09886e.pdf"
+    pdftotext -layout /tmp/enb.pdf /tmp/enb.txt      # or: python3 -m pip install pypdf and read the text
+
+If the PDF is not there yet (404), fall back to the UN Transcripts record. Cite the ENB issue (volume, number,
+date, URL); it permits non-commercial excerpts with citation, so paraphrase and attribute. Read it BEFORE
+searching the news.
+
 ## Research checklist (do not give up early)
 
 Before concluding there are not enough sources, you must have tried ALL of these (at least 12 searches/fetches):
