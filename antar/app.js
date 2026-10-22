@@ -319,8 +319,8 @@ async function renderDecision() {
   if (ae.units_file) {
     view().innerHTML = `<div class="wrap"><div class="loading">Loading\u2026</div></div>`;
     try {
-      [A, U] = await Promise.all([loadMapAssets(), fetch("data/" + ae.units_file + "?v=" + (window.ANTAR_BUILD || "dev")).then((r) => { if (!r.ok) throw new Error("the portfolio cells could not be loaded (HTTP " + r.status + ")"); return r.json(); })]);
-    } catch (e) { view().innerHTML = `<div class="wrap"><h1>Decision</h1><div class="callout bad"><strong>The portfolio map could not be loaded.</strong> ${esc(e.message)}</div></div>`; return; }
+      [A, U] = await Promise.all([ensureLeaflet().then(loadMapAssets), fetch("data/" + ae.units_file + "?v=" + (window.ANTAR_BUILD || "dev")).then((r) => { if (!r.ok) throw new Error("the portfolio cells could not be loaded (HTTP " + r.status + ")"); return r.json(); })]);
+    } catch (e) { showMapError("The portfolio map could not be loaded.", e, "<h1>Decision</h1>"); return; }
     if (!location.hash.startsWith("#/decision")) return;
   }
   const sw = ae.budget_sweep, fr = ae.frontier;

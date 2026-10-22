@@ -9,7 +9,7 @@ async function renderSite(p) {
   const M = state.M;
   view().innerHTML = `<div class="wrap"><div class="loading">Loading…</div></div>`;
   let A;
-  try { A = await loadMapAssets(); } catch (e) { view().innerHTML = `<div class="wrap"><div class="callout bad"><strong>Map layers could not be loaded.</strong> ${esc(e.message)}</div></div>`; return; }
+  try { await ensureLeaflet(); A = await loadMapAssets(); } catch (e) { showMapError("Map layers could not be loaded.", e); return; }
   if (!location.hash.startsWith("#/site")) return;
 
   const G = A.grid, groups = Object.keys(M.groups), Q = mapQuantities(), plan = M.map_plan || [];

@@ -27,10 +27,42 @@ async function loadRgb(url) {
   catch (e) { if (e.missing) return null; throw e; }       // elevation is optional when the file is absent (the surface is then plain IDW); an altered file is an error
 }
 
+/* The map library comes from a CDN. If the page's own copy did not load (a flaky mobile connection, a network that blocks one CDN), try a second CDN before giving up, and say so plainly. */
+let leafletReady = null;
+function ensureLeaflet() {
+  if (typeof L !== "undefined") return Promise.resolve();
+  if (leafletReady) return leafletReady;
+  leafletReady = new Promise((resolve, reject) => {
+    const css = document.createElement("link"); css.rel = "stylesheet"; css.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"; document.head.appendChild(css);
+    const s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js";
+    const t = setTimeout(() => reject(new Error("the map library (Leaflet) did not load: no answer from the CDNs")), 15000);
+    s.onload = () => { clearTimeout(t); if (typeof L !== "undefined") resolve(); else reject(new Error("the map library (Leaflet) loaded but cannot be used")); };
+    s.onerror = () => { clearTimeout(t); reject(new Error("the map library (Leaflet) could not be downloaded from cdnjs.cloudflare.com or cdn.jsdelivr.net")); };
+    document.head.appendChild(s);
+  }).catch((e) => { leafletReady = null; throw e; });
+  return leafletReady;
+}
+
+async function getJson(url) {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error("could not load " + url + " (HTTP " + r.status + ")");
+  return r.json();
+}
+
+/* One message for every page that needs the map layers: what happened in plain words, a way to try again, and the technical detail (with the browser's name) that the reader can copy into a report. */
+function showMapError(title, e, lead) {
+  const detail = (e && e.message ? e.message : String(e)) + "\n" + navigator.userAgent;
+  view().innerHTML = `<div class="wrap">${lead || ""}<div class="callout bad"><strong>${esc(title)}</strong> The map data did not load on this device.
+    <p style="margin-top:10px"><button type="button" class="btn secondary small-btn" data-reload>Reload the page</button></p>
+    <details style="margin-top:10px"><summary>Technical details, to send to the author if the problem stays</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem;margin-top:6px">${esc(detail)}</pre></details></div></div>`;
+  const b = view().querySelector("[data-reload]");
+  if (b) b.addEventListener("click", () => location.reload());
+}
+
 async function loadMapAssets() {
   if (state.mapAssets) return state.mapAssets;
   const [grid, borders, elev, ...rasters] = await Promise.all([
-    fetch("assets/map/grid.json").then((r) => r.json()), fetch("assets/map/borders.geojson").then((r) => r.json()),
+    getJson("assets/map/grid.json?v=" + (window.ANTAR_BUILD || "dev")), getJson("assets/map/borders.geojson?v=" + (window.ANTAR_BUILD || "dev")),
     loadRgb("assets/map/elevation.bin"), ...MAP_FILES.map((f) => loadPng(`assets/map/${f}.bin`)),
   ]);
   const A = { grid, borders, w: grid.width, h: grid.height };
@@ -226,7 +258,7 @@ async function renderMap(p) {
   const M = state.M;
   view().innerHTML = `<div class="wrap"><div class="loading">Loading the map…</div></div>`;
   let A;
-  try { A = await loadMapAssets(); } catch (e) { view().innerHTML = `<div class="wrap"><div class="callout bad"><strong>Map layers could not be loaded.</strong> ${esc(e.message)}. Run <code>python3 scripts/build_map_assets.py</code> and serve the <code>ui/</code> folder over http.</div></div>`; return; }
+  try { await ensureLeaflet(); A = await loadMapAssets(); } catch (e) { showMapError("Map layers could not be loaded.", e); return; }
   if (!location.hash.startsWith("#/map")) return;                       // user navigated away while loading
 
   const Q = mapQuantities(), gcms = [...new Set((Object.values(state.G).find((g) => g.scenarios && g.scenarios.members) || { scenarios: { members: [] } }).scenarios.members.map((m) => m.gcm))].sort();
