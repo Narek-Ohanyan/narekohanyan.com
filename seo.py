@@ -184,6 +184,12 @@ P = {
   "COP17 day 3, contact groups COP17, financial mechanism GEF COP17, forest biodiversity decision, Cali Fund certificates, youth justice gap biodiversity",
   "default.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-22.html": (
+  "Day 4 in Yerevan: Biosafety Texts Close While Resource Mobilization Reopens the Question of Who Counts as a Donor — Blog",
+  "Recap of COP17 negotiations on 22 October 2026 in Yerevan: biosafety and invasive species texts in Working Group II, education and knowledge drafts in Working Group I, contact groups on resource mobilization, climate and health, and what it meant for children and young people.",
+  "COP17 day 4, resource mobilization contributor base, biosafety Cartagena Protocol, invasive alien species, communication education public awareness, coral reefs Red List, youth biodiversity",
+  "default.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
