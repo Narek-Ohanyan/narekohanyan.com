@@ -190,6 +190,12 @@ P = {
   "COP17 day 4, resource mobilization contributor base, biosafety Cartagena Protocol, invasive alien species, communication education public awareness, coral reefs Red List, youth biodiversity",
   "default.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-23.html": (
+  "Day 5 in Yerevan: A Stocktaking Plenary Adopts Biosafety, Gender and Education Decisions, and Youth Are Added to the Text — Blog",
+  "Recap of COP17 negotiations on 23 October 2026 in Yerevan: Nagoya Protocol texts, soil biodiversity, contact groups on finance and Article 8(j), the evening stocktaking plenary, and what it meant for children and young people.",
+  "COP17 day 5, stocktaking plenary, soil biodiversity, Nagoya Protocol, Article 8(j), GBF Fund, gender plan of action, communication education public awareness, youth biodiversity",
+  "default.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
