@@ -1,11 +1,12 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Homepage invitation to my COP17 schedule page
    ───────────────────────────────────────────────────────────────────────
-   Shown on the homepage from 17 October 2026 until the end of the
-   conference (31 October, to cover the closing day), once per visitor per
-   day, after the visitor has scrolled through the opening and the hero is
-   fully open. Dates are read in Yerevan time, so it switches on and off at local
-   midnight whatever the visitor's own clock says.
+   Shown ONLY on the homepage, from 17 October 2026 until the last day of
+   the conference (30 October, Yerevan time). From 31 October it is off on
+   every page. Once per visitor per day, after the visitor has scrolled
+   through the opening and the hero is fully open. Dates are read in Yerevan
+   time, so it switches on and off at local midnight whatever the visitor's
+   own clock says.
 
    Change SHOW_FROM / SHOW_UNTIL to move the window. It builds its own
    markup, so the only edit a page needs is loading this script.
@@ -15,7 +16,7 @@
   'use strict';
 
   var SHOW_FROM  = '2026-10-17';
-  var SHOW_UNTIL = '2026-10-31';
+  var SHOW_UNTIL = '2026-10-30';   // last conference day; off from 31 Oct
   var STORE      = 'no.c17pop.day';
   var TARGET     = 'cop17/';
 
@@ -48,6 +49,9 @@
     try { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Yerevan' }).format(new Date()); }
     catch (e) { return new Date().toISOString().slice(0, 10); }
   }
+
+  // homepage only, even if this script is ever included elsewhere
+  if (!/^\/(index\.html)?$/.test(location.pathname)) return;
 
   var today = yerevanDay();
   if (today < SHOW_FROM || today > SHOW_UNTIL) return;
