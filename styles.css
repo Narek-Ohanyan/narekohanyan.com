@@ -7909,3 +7909,60 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
 .ed-entry--wide .gal { max-width: min(40rem, calc(46svh * 1.7778)); }
 .projects .gal   { max-width: min(22rem, 46svh); }
 .pl-single, .ed-single { max-width: min(30rem, calc(46svh * 1.5)); }
+
+/* ── Portfolio entries: copy on the left, photographs always on the right ──
+   One rule for every entry that carries a carousel or a single photograph.
+   Everything that is not media stays in column 1; the media sits in column 2
+   and spans the first three rows, so no height is wasted under either.
+   Below 960px they stack, media last. */
+@media (min-width: 960px) {
+  .pl-entry:has(> .gal, > .pl-single) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(27rem, calc(46svh * 1.5));
+    column-gap: clamp(1.5rem, 3vw, 2.75rem);
+    row-gap: 0;
+    align-content: start;
+    align-items: start;
+  }
+  /* the first three blocks (title, intro, points or outcome box) sit beside
+     the media; anything after them (links) runs the full width underneath */
+  .pl-entry:has(> .gal, > .pl-single) > * { grid-column: 1 / -1; }
+  .pl-entry:has(> .gal, > .pl-single) > :nth-child(-n+3) { grid-column: 1; }
+  .pl-entry:has(> .gal, > .pl-single) > .gal,
+  .pl-entry:has(> .gal, > .pl-single) > .pl-single {
+    grid-column: 2; grid-row: 1 / span 3;
+    margin: 0; max-width: none;
+  }
+}
+
+/* ── Education: same arrangement as the policy page ──────────────────────
+   Copy left, photographs right, 3:2 frame; photographs of any other shape
+   are shown whole on a blurred copy of themselves (no cropped faces). The
+   webinars entry joins the two-column layout too. */
+.education .gal__slide img, .ed-single img { aspect-ratio: 3 / 2; }
+.ed-entry--wide .gal__slide img { aspect-ratio: 3 / 2; }
+.ed-single:has(> img.fit) {
+  position: relative; overflow: hidden; isolation: isolate;
+  border-radius: 1.25rem .28rem 1.25rem .28rem; background: var(--alabaster);
+}
+.ed-single:has(> img.fit)::before {
+  content: ""; position: absolute; inset: -12%; z-index: -1;
+  background: var(--bg) center / cover no-repeat;
+  filter: blur(22px) saturate(1.1) brightness(.9);
+}
+.ed-single img.fit { object-fit: contain; background: none; }
+
+.education .gal, .ed-entry--wide .gal, .ed-single { max-width: min(30rem, calc(46svh * 1.5)); }
+@media (min-width: 900px) {
+  .ed-entry--media, .ed-entry--wide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(27rem, calc(46svh * 1.5));
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+  .ed-entry--wide > .gal { margin: 0; max-width: none; }
+  .ed-entry--media > .gal, .ed-entry--media > .ed-single { margin-top: 0; max-width: none; }
+  /* a carousel with no copy beside it has the whole row and can be large */
+  .ed-entry:has(> .gal):not(:has(> .ed-entry__body)) { display: block; }
+  .ed-entry:has(> .gal):not(:has(> .ed-entry__body)) > .gal { max-width: min(54rem, calc(60svh * 1.5)); margin-inline: auto; }
+}
