@@ -76,16 +76,6 @@
       "h2": "What to watch tomorrow",
       "blocks": [
         {
-          "figure": {
-            "file": "Media/web/blog/cop17-2026-10-24-glance.jpg",
-            "width": 1600,
-            "height": 900,
-            "alt": "Illustrated card for COP17 day 6 with the COP17 butterfly and the lines Sunday contact groups return and plenary next on Wednesday 28 October",
-            "caption": "The week ahead: contact groups on Sunday, the next plenary on Wednesday evening.",
-            "credit": "Illustration: Narek Ohanyan, using the COP17 butterfly symbol."
-          }
-        },
-        {
           "ul": [
             "Whether Sunday's contact groups on climate, wildlife, protected areas and synthetic biology remove brackets.",
             "Whether the Friends of the Chair group settles soil, subsidies and pollution wording.",
