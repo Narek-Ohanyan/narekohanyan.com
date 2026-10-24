@@ -3427,7 +3427,7 @@ body[data-motion="reduced"] .onair__dot   { animation: none; }
 /* ── post grid ──────────────────────────────────────────────────────── */
 .post-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));   /* two across on a laptop: four posts make a 2x2 */
   gap: clamp(1.75rem, 3.5vw, 3rem);
   max-width: 1400px;
   margin: 0 auto;

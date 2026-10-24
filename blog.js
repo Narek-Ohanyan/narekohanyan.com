@@ -68,7 +68,7 @@
   var pager  = document.getElementById('pager');
   var pagerAt = document.getElementById('pagerAt');
 
-  var PER_PAGE = 9;          // the archive splits once it outgrows one page
+  var PER_PAGE = 4;          // posts per page; the pager appears past this
   var tag = '';
   var page = 0;
 
