@@ -7885,3 +7885,18 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
   .c17-avail .btn { justify-self: start; }
 }
 @media (prefers-reduced-motion: reduce) { .c17-d.is-conf::before { animation: none; } }
+
+/* ── Policy photographs: never crop a face ───────────────────────────────
+   Pictures that are not 3:2 are shown whole (contain) on a blurred copy of
+   themselves, instead of being cut to fill the frame. */
+.gal__slide:has(> img.fit), .pl-single:has(> img.fit) {
+  position: relative; overflow: hidden; isolation: isolate;
+  border-radius: 1.25rem .28rem 1.25rem .28rem;
+  background: var(--alabaster);
+}
+.gal__slide:has(> img.fit)::before, .pl-single:has(> img.fit)::before {
+  content: ""; position: absolute; inset: -12%; z-index: -1;
+  background: var(--bg) center / cover no-repeat;
+  filter: blur(22px) saturate(1.1) brightness(.9);
+}
+.gal__slide img.fit, .pl-single img.fit { object-fit: contain; background: none; }

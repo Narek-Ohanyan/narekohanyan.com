@@ -1,7 +1,9 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Homepage invitation to my COP17 schedule page
    ───────────────────────────────────────────────────────────────────────
-   Shown ONLY on the homepage, from 17 October 2026 until the last day of
+   NOT LOADED ON ANY PAGE at the moment (hidden from the homepage at the
+   owner's request). To bring it back, add this script tag to index.html.
+   When loaded it shows ONLY on the homepage, from 17 October 2026 until the last day of
    the conference (30 October, Yerevan time). From 31 October it is off on
    every page. Once per visitor per day, after the visitor has scrolled
    through the opening and the hero is fully open. Dates are read in Yerevan

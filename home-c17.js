@@ -8,6 +8,23 @@
   var sec = document.getElementById('homeC17');
   if (!sec) return;
 
+  /* From 31 October 2026 (Yerevan time, the day after COP17 closes) the
+     section becomes the COP17 recap and points to the policy portfolio. */
+  var RECAP_FROM = '2026-10-31';
+  var day = '';
+  try { day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Yerevan' }).format(new Date()); }
+  catch (e) { day = new Date().toISOString().slice(0, 10); }
+  if (day >= RECAP_FROM) {
+    var q = function (a) { return sec.querySelector(a); };
+    q('[data-c17-h]').textContent = 'COP17 recap';
+    q('[data-c17-p]').textContent = 'COP17 closed in Yerevan on 30 October. Read the daily recaps from the negotiating rooms, then see the policy and leadership work behind my time there.';
+    q('[data-c17-note]').textContent = 'My personal recaps, not the official COP17 website.';
+    var go = q('#homeC17Go');
+    go.setAttribute('href', 'policy.html');
+    go.firstChild.nodeValue = 'See my policy portfolio\u00a0';
+    q('#homeC17Alt').textContent = 'COP17 recaps';
+  }
+
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var fine  = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (still) return;
