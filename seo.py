@@ -196,6 +196,12 @@ P = {
   "COP17 day 5, stocktaking plenary, soil biodiversity, Nagoya Protocol, Article 8(j), GBF Fund, gender plan of action, communication education public awareness, youth biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-24.html": (
+  "Day 6 in Yerevan: A Saturday Without Plenary, With Cities and Scientists on Stage and Hard Choices Waiting for Sunday — Blog",
+  "Recap of COP17 in Yerevan on Saturday 24 October 2026: a day without formal plenary or working groups, the Summit for Subnational Governments and Cities, the Science Forum, what is still open after Friday, and what it means for children and young people.",
+  "COP17 day 6, Yerevan, Summit for Subnational Governments and Cities, Science Forum, Hrazdan Gorge, Article 8(j), contact groups, youth biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
