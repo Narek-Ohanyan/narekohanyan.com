@@ -86,6 +86,16 @@ window.COP17_DATA = {
                  hy: 'UNICEF-ի պատվիրակությունը հանդիպում է COP17-ում երեխաների և երիտասարդների համար իր աշխատանքը համակարգելու համար։ Նարեկը պատվիրակության անդամ է։' }
     },
     {
+      id: 'dialogue',
+      date: '2026-10-21', start: '17:00', end: '18:00',
+      zone: 'blue', role: 'moderator',
+      title:   { en: 'Child and Youth Dialogue with the COP17 President', hy: 'Երեխաների և երիտասարդների երկխոսություն COP17-ի նախագահի հետ' },
+      org:     { en: 'UNICEF', hy: 'UNICEF' },
+      place:   { en: 'Blue Zone, Armenia Pavilion', hy: 'Կապույտ գոտի, Հայաստանի տաղավար' },
+      plain:   { en: 'Children and young people put their questions directly to the person chairing the conference. Narek moderates.',
+                 hy: 'Երեխաներն ու երիտասարդները հարցեր են ուղղում անմիջապես համաժողովը ղեկավարողին։ Նարեկը վարում է։' }
+    },
+    {
       id: 'seeitbeit',
       date: '2026-10-22', start: '12:00', end: '13:00',
       zone: 'blue', role: 'speaker',
@@ -117,17 +127,6 @@ window.COP17_DATA = {
                  hy: 'Սևանա լիճ օրվա ընթացքի դաշտային այց՝ Շրջակա միջավայրի նախարարության կազմակերպմամբ՝ N&C գագաթնաժողովի շրջանակում։' }
     },
     {
-      id: 'dialogue26',
-      date: '2026-10-26', start: null, end: null,
-      zone: 'blue', role: 'moderator',
-      title:   { en: 'Child and Youth Dialogue with the COP17 President', hy: 'Երեխաների և երիտասարդների երկխոսություն COP17-ի նախագահի հետ' },
-      org:     { en: 'UNICEF', hy: 'UNICEF' },
-      place:   { en: 'Blue Zone, UN Pavilion', hy: 'Կապույտ գոտի, ՄԱԿ-ի տաղավար' },
-      plain:   { en: 'Children and young people put their questions directly to the person chairing the conference. Narek moderates.',
-                 hy: 'Երեխաներն ու երիտասարդները հարցեր են ուղղում անմիջապես համաժողովը ղեկավարողին։ Նարեկը վարում է։' },
-      tbc: ['time']
-    },
-    {
       id: 'foracca',
       date: '2026-10-27', start: '12:30', end: '13:30',
       zone: 'green', role: 'panelist',
@@ -156,17 +155,6 @@ window.COP17_DATA = {
       place:   { en: 'Green Zone', hy: 'Կանաչ գոտի' },
       plain:   { en: 'Young people from different countries say plainly what they want negotiators to prioritise for nature. Narek speaks.',
                  hy: 'Տարբեր երկրների երիտասարդները պարզ ասում են, թե ինչն է պետք բանակցողների համար առաջնային լինի։ Նարեկը ելույթ է ունենում։' }
-    },
-    {
-      id: 'dialogue30',
-      date: '2026-10-30', start: null, end: null,
-      zone: 'blue', role: 'moderator',
-      title:   { en: 'Child and Youth Dialogue with the COP17 President', hy: 'Երեխաների և երիտասարդների երկխոսություն COP17-ի նախագահի հետ' },
-      org:     { en: 'UNICEF', hy: 'UNICEF' },
-      place:   { en: 'Blue Zone, UN Pavilion', hy: 'Կապույտ գոտի, ՄԱԿ-ի տաղավար' },
-      plain:   { en: 'A second dialogue in which children and young people question the person chairing the conference. Narek moderates.',
-                 hy: 'Երկրորդ երկխոսությունը, որում երեխաներն ու երիտասարդները հարցեր են ուղղում համաժողովը ղեկավարողին։ Նարեկը վարում է։' },
-      tbc: ['time']
     },
     {
       id: 'pecha',
