@@ -7900,3 +7900,12 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
   filter: blur(22px) saturate(1.1) brightness(.9);
 }
 .gal__slide img.fit, .pl-single img.fit { object-fit: contain; background: none; }
+
+/* ── Carousels: compact, so a whole photograph fits on a laptop screen ───
+   Each cap is the smaller of a fixed width and the width that keeps the
+   photo under ~46% of the viewport height at its own aspect ratio. */
+.gal             { max-width: min(30rem, calc(46svh * 1.5)); }
+.education .gal  { max-width: min(34rem, calc(46svh * 1.7778)); }
+.ed-entry--wide .gal { max-width: min(40rem, calc(46svh * 1.7778)); }
+.projects .gal   { max-width: min(22rem, 46svh); }
+.pl-single, .ed-single { max-width: min(30rem, calc(46svh * 1.5)); }
