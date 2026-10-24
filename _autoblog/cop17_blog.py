@@ -201,7 +201,7 @@ def build(d):
     page = f"blog-cop17-day-{d['date']}.html"
     plain_title = html.unescape(d["title"])
     mins = max(3, round(sum(words(t) for t in all_text(d)) / 200))
-    seo.P[page] = (plain_title + " — Blog", d["description"], d["keywords"], "default.jpg", "0.7", "monthly", "article")
+    seo.P[page] = (plain_title + " — Blog", d["description"], d["keywords"], "headshot.jpg", "0.7", "monthly", "article")
 
     base = (ROOT / TEMPLATE).read_text(encoding="utf-8")
     head_a = base.index("<!--seo-->"); head_b = base.index("<!--/seo-->") + len("<!--/seo-->")
@@ -310,7 +310,7 @@ def build(d):
     entry = (f' "{page}": (\n  {json.dumps(plain_title + " — Blog", ensure_ascii=False)},\n'
              f'  {json.dumps(d["description"], ensure_ascii=False)},\n'
              f'  {json.dumps(d["keywords"], ensure_ascii=False)},\n'
-             f'  "default.jpg", "0.7", "monthly", "article"),\n\n')
+             f'  "headshot.jpg", "0.7", "monthly", "article"),\n\n')
     s = s.replace('"contact.html": (', entry.lstrip("\n") + '"contact.html": (', 1)
     sp.write_text(s, encoding="utf-8")
     xp = ROOT / "sitemap.xml"

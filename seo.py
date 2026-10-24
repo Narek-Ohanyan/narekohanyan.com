@@ -31,7 +31,7 @@ P = {
  "The Overshoot and contributor to Armenia's Law on Climate.",
  "Narek Ohanyan, climate researcher Armenia, environmental scientist, climate policy, "
  "climate education, biodiversity, COP17 Armenia, environmental researcher",
- "default.jpg", "1.0", "monthly", "website"),
+ "headshot.jpg", "1.0", "monthly", "website"),
 
 "about.html": (
  f"About {NAME} — A Decade in Climate & Environment",
@@ -39,7 +39,7 @@ P = {
  f"timeline, education and 22 certifications of {NAME}.",
  "Narek Ohanyan biography, climate scientist Armenia, environmental educator, "
  "American University of Armenia, climate certifications, UNFCCC youth",
- "default.jpg", "0.9", "monthly", "profile"),
+ "headshot.jpg", "0.9", "monthly", "profile"),
 
 "research.html": (
  "Research — Climate Science & Earth System Dynamics",
@@ -55,7 +55,7 @@ P = {
  "Climate Champion and COP27 delegate.",
  "climate policy Armenia, LCOY Armenia, UNFCCC COP27, YOUNGO, GYBN, climate diplomacy, "
  "intergenerational climate justice, National Youth Statement, climate governance",
- "default.jpg", "0.8", "monthly", "website"),
+ "headshot.jpg", "0.8", "monthly", "website"),
 
 "education.html": (
  "Environmental Education — Climate Curricula & Training",
@@ -71,7 +71,7 @@ P = {
  "field operations and education technology.",
  "environmental project management, climate project lead, COP17 biodiversity, micro-grant programme, "
  "citizen science operations, USAID CeLoG, Climapolis, project management Armenia",
- "default.jpg", "0.8", "monthly", "website"),
+ "headshot.jpg", "0.8", "monthly", "website"),
 
 "resources.html": (
  "Resource Hub — Free Climate Toolkits, Manuals & Games",
@@ -119,28 +119,28 @@ P = {
  "and youth leadership across Armenian and international outlets.",
  "Narek Ohanyan press, climate interviews, environmental media Armenia, climate news, "
  "youth climate spokesperson",
- "default.jpg", "0.7", "weekly", "website"),
+ "headshot.jpg", "0.7", "weekly", "website"),
 
 "newsroom.html": (
  "Newsroom — Field Notes & Dispatches",
  "First-person dispatches written from the room it happened in: summits, field expeditions and "
  "policy negotiations.",
  "climate newsroom, field notes, climate dispatches, COP reporting, environmental journalism",
- "default.jpg", "0.6", "weekly", "website"),
+ "headshot.jpg", "0.6", "weekly", "website"),
 
 "news-youth-day.html": (
  "International Youth Day — Newsroom",
  "A dispatch from International Youth Day: young people, climate policy and what changes when "
  "youth are treated as producers of policy rather than an audience for it.",
  "International Youth Day, youth climate action, youth policy Armenia, climate advocacy",
- "default.jpg", "0.5", "monthly", "article"),
+ "headshot.jpg", "0.5", "monthly", "article"),
 
 "blog.html": (
  "Blog — Essays on Climate, Science & Action",
  "Long-form essays on climate science, environmental policy and the distance between evidence "
  f"and action, written by {NAME}.",
  "climate blog, environmental essays, climate science writing, climate communication",
- "default.jpg", "0.7", "weekly", "website"),
+ "headshot.jpg", "0.7", "weekly", "website"),
 
 "blog-leaders-summit.html": (
  "Day Zero in Yerevan: What the COP17 Leaders' Summit Delivered — Blog",
@@ -149,14 +149,14 @@ P = {
  "weeks of negotiations ahead.",
  "COP17 Leaders Summit, Yerevan Declaration, biodiversity summit recap, CBD COP17, "
  "Kunming-Montreal Global Biodiversity Framework, Taking Action for Nature",
- "default.jpg", "0.7", "monthly", "article"),
+ "headshot.jpg", "0.7", "monthly", "article"),
 
 "blog-small-talk.html": (
  "The End of Small Talk — Blog",
  "Why the weather stopped being small talk, and what it means when the safest conversational "
  "filler becomes the most political subject in the room.",
  "climate conversation, weather small talk, climate communication, climate psychology",
- "default.jpg", "0.6", "monthly", "article"),
+ "headshot.jpg", "0.6", "monthly", "article"),
 
 "blog-four-proofs.html": (
  "Four Proofs the Climate Is Changing — Blog",
@@ -164,37 +164,37 @@ P = {
  "single model — and what each one rules out.",
  "climate evidence, proof of climate change, global warming evidence, climate data, "
  "climate science explained",
- "default.jpg", "0.6", "monthly", "article"),
+ "headshot.jpg", "0.6", "monthly", "article"),
 
  "blog-cop17-day-2026-10-19.html": (
   "Day 1 in Yerevan: A New President, a Global Review and Familiar Divides on Money — Blog",
   "Recap of the COP17 opening plenary in Yerevan on 19 October 2026: the new President, the agenda, the global review, and the positions of the regional groups on finance, digital sequence information and participation.",
   "COP17 opening plenary, COP17 Yerevan day 1, global review biodiversity framework, Hambardzum Matevosyan COP17 President, biodiversity finance Article 20, digital sequence information Cali Fund",
-  "default.jpg", "0.7", "monthly", "article"),
+  "headshot.jpg", "0.7", "monthly", "article"),
 
  "blog-cop17-day-2026-10-20.html": (
   "Day 2 in Yerevan: Working Groups Open, Genetic-Data Money Gets a Contact Group and a Forest Text Is Fought Word by Word — Blog",
   "Recap of COP17 working groups on 20 October 2026 in Yerevan: digital sequence information and the Cali Fund, Nagoya and Cartagena protocol items, and the bracket-by-bracket negotiation of the forest biodiversity decision.",
   "COP17 working group, digital sequence information Cali Fund, forest biodiversity decision COP17, Nagoya Protocol COP-MOP, biosafety Cartagena COP17 day 2",
-  "default.jpg", "0.7", "monthly", "article"),
+  "headshot.jpg", "0.7", "monthly", "article"),
 
  "blog-cop17-day-2026-10-21.html": (
   "Day 3 in Yerevan: Ten Contact Groups Work the Jigsaw While the Forest Decision Stalls on Wording — Blog",
   "Recap of COP17 negotiations on 21 October 2026 in Yerevan: forest biodiversity and invasive species in Working Group II, ten contact groups from the financial mechanism to digital sequence information, and what young people asked of negotiators.",
   "COP17 day 3, contact groups COP17, financial mechanism GEF COP17, forest biodiversity decision, Cali Fund certificates, youth justice gap biodiversity",
-  "default.jpg", "0.7", "monthly", "article"),
+  "headshot.jpg", "0.7", "monthly", "article"),
 
  "blog-cop17-day-2026-10-22.html": (
   "Day 4 in Yerevan: Biosafety Texts Close While Resource Mobilization Reopens the Question of Who Counts as a Donor — Blog",
   "Recap of COP17 negotiations on 22 October 2026 in Yerevan: biosafety and invasive species texts in Working Group II, education and knowledge drafts in Working Group I, contact groups on resource mobilization, climate and health, and what it meant for children and young people.",
   "COP17 day 4, resource mobilization contributor base, biosafety Cartagena Protocol, invasive alien species, communication education public awareness, coral reefs Red List, youth biodiversity",
-  "default.jpg", "0.7", "monthly", "article"),
+  "headshot.jpg", "0.7", "monthly", "article"),
 
  "blog-cop17-day-2026-10-23.html": (
   "Day 5 in Yerevan: A Stocktaking Plenary Adopts Biosafety, Gender and Education Decisions, and Youth Are Added to the Text — Blog",
   "Recap of COP17 negotiations on 23 October 2026 in Yerevan: Nagoya Protocol texts, soil biodiversity, contact groups on finance and Article 8(j), the evening stocktaking plenary, and what it meant for children and young people.",
   "COP17 day 5, stocktaking plenary, soil biodiversity, Nagoya Protocol, Article 8(j), GBF Fund, gender plan of action, communication education public awareness, youth biodiversity",
-  "default.jpg", "0.7", "monthly", "article"),
+  "headshot.jpg", "0.7", "monthly", "article"),
 
 "contact.html": (
  f"Contact — Work With {NAME}",
@@ -202,7 +202,7 @@ P = {
  "collaborations. Book a time directly or send a brief.",
  "contact Narek Ohanyan, climate consultant, environmental speaker, book a workshop, "
  "climate training collaboration, research partnership",
- "default.jpg", "0.7", "monthly", "website"),
+ "headshot.jpg", "0.7", "monthly", "website"),
 }
 
 # Pages that belong in the sitemap but are not stamped with the site's meta
@@ -215,7 +215,7 @@ SITEMAP_EXTRA = [
 PERSON = {
  "@context": "https://schema.org", "@type": "Person",
  "name": NAME, "url": SITE + "/",
- "image": SITE + "/Media/web/og/default.jpg",
+ "image": SITE + "/Media/web/og/headshot.jpg",
  "jobTitle": "Climate & Environmental Researcher",
  "description": ("Interdisciplinary environmental researcher and climate youth leader "
                  "working across computational ecological modelling and climate policy."),
