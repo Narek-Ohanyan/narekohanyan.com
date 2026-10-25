@@ -202,6 +202,12 @@ P = {
   "COP17 day 6, Yerevan, Summit for Subnational Governments and Cities, Science Forum, Hrazdan Gorge, Article 8(j), contact groups, youth biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-25.html": (
+  "Day 7 in Yerevan: A Quiet Sunday, 14 Decisions Done and the Hard Money Questions Still Open — Blog",
+  "Recap of COP17 in Yerevan on Sunday 25 October 2026: 14 decisions adopted in week one, the Science Forum, what remains bracketed, and what it means for children and young people.",
+  "COP17 day 7, Yerevan, Science Forum, 14 decisions, Article 8(j), financial mechanism, youth biodiversity, GYBN",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
