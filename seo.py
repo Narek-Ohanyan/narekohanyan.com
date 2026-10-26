@@ -208,6 +208,12 @@ P = {
   "COP17 day 7, Yerevan, Science Forum, 14 decisions, Article 8(j), financial mechanism, youth biodiversity, GYBN",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-26.html": (
+  "Day 8 in Yerevan: Finance Day Brings New Money Pledges and a Push to End Harmful Subsidies — Blog",
+  "Recap of COP17 in Yerevan on Monday 26 October 2026: Global Environment Facility pledges, the Yerevan Call on harmful subsidies, the Kunming Biodiversity Fund, and what it means for children and young people.",
+  "COP17 day 8, Yerevan, Finance Day, Global Environment Facility, Target 18, harmful subsidies, Kunming Biodiversity Fund, youth biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
