@@ -214,6 +214,12 @@ P = {
   "COP17 day 8, Yerevan, Finance Day, Global Environment Facility, Target 18, harmful subsidies, Kunming Biodiversity Fund, youth biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-27.html": (
+  "Day 9 in Yerevan: Ministers Take the Floor, and a 14-Year-Old Tells Them to Act — Blog",
+  "Recap of COP17 in Yerevan on Tuesday 27 October 2026: the high-level segment, finance pledges, Working Group II progress on forests, agriculture and marine areas, and what it means for children and young people.",
+  "COP17 day 9, Yerevan, high-level segment, biodiversity finance, Working Group II, forests, youth biodiversity, children",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
