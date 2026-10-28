@@ -220,6 +220,12 @@ P = {
   "COP17 day 9, Yerevan, high-level segment, biodiversity finance, Working Group II, forests, youth biodiversity, children",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-28.html": (
+  "Day 10 in Yerevan: Ministers Hand the Hard Questions Back, and UNICEF Calls Nature Loss a Child Rights Crisis — Blog",
+  "Recap of COP17 in Yerevan on Wednesday 28 October 2026: ministerial statements, the global review referred to the President, Working Group progress, the COP18 host question, and what it means for children and young people.",
+  "COP17 day 10, Yerevan, high-level segment, global review, COP18 host, UNICEF, GYBN, children, youth, biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
