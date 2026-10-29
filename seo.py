@@ -226,6 +226,12 @@ P = {
   "COP17 day 10, Yerevan, high-level segment, global review, COP18 host, UNICEF, GYBN, children, youth, biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-29.html": (
+  "Day 11 in Yerevan: Finance Text Goes to a Small Group While Working Groups Race to Clean Their Drafts — Blog",
+  "Recap of COP17 in Yerevan on Thursday 29 October 2026: resource mobilisation sent to a Friends of the Chair group, monitoring and reporting texts, forest, health and wildlife drafts, and what it means for children and young people.",
+  "COP17 day 11, Yerevan, resource mobilisation, financial mechanism, monitoring framework, Working Group I, Working Group II, GYBN, youth, children, biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
