@@ -232,6 +232,12 @@ P = {
   "COP17 day 11, Yerevan, resource mobilisation, financial mechanism, monitoring framework, Working Group I, Working Group II, GYBN, youth, children, biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-30.html": (
+  "Day 12 in Yerevan: Last Day Opens With Clean Texts, Stubborn Brackets and a Ticking Clock — Blog",
+  "Recap of COP17 in Yerevan on Friday 30 October 2026: credentials, adopted decisions, the Target 18 fight, financial mechanism and GEF-9 pledges, IPBES, synthetic biology, protected areas, and what it means for children and young people.",
+  "COP17 day 12, Yerevan, closing day, Target 18, financial mechanism, GEF-9, IPBES, synthetic biology, protected areas, Cali Fund, youth, children, biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
