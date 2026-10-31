@@ -238,6 +238,12 @@ P = {
   "COP17 day 12, Yerevan, closing day, Target 18, financial mechanism, GEF-9, IPBES, synthetic biology, protected areas, Cali Fund, youth, children, biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
+ "blog-cop17-day-2026-10-31.html": (
+  "COP17 closes in Yerevan: a global review adopted in overtime, the money question left open — Blog",
+  "Closing recap of COP17 in Yerevan: the global review adopted in overtime, modest progress on harmful subsidies, unresolved conservation finance, Ecuador chosen as the next host, and what it means for children and young people.",
+  "COP17 closing, Yerevan, global review, Yerevan Pathway, conservation finance, Cali Fund, harmful subsidies, Ecuador 2028, youth, children, biodiversity",
+  "headshot.jpg", "0.7", "monthly", "article"),
+
 "contact.html": (
  f"Contact — Work With {NAME}",
  "Research partnerships, expert consultation, speaking engagements, workshops and training "
