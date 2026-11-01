@@ -239,9 +239,9 @@ P = {
   "headshot.jpg", "0.7", "monthly", "article"),
 
  "blog-cop17-day-2026-10-31.html": (
-  "COP17 closes in Yerevan: a global review adopted in overtime, the money question left open — Blog",
-  "Closing recap of COP17 in Yerevan: the global review adopted in overtime, modest progress on harmful subsidies, unresolved conservation finance, Ecuador chosen as the next host, and what it means for children and young people.",
-  "COP17 closing, Yerevan, global review, Yerevan Pathway, conservation finance, Cali Fund, harmful subsidies, Ecuador 2028, youth, children, biodiversity",
+  "COP17 closes in Yerevan: what was decided, what was left open, and how it felt to be there — Blog",
+  "Eyewitness closing recap of COP17 in Yerevan: the final plenary step by step, the Yerevan Pathway and Sevan Guidelines, finance and the Cali Fund, how successful the conference was, and what it meant for children and young people.",
+  "COP17 closing, Yerevan, final plenary, Yerevan Pathway, global review, Sevan Guidelines, Cali Fund, conservation finance, harmful subsidies, Ecuador 2028, youth, children, biodiversity",
   "headshot.jpg", "0.7", "monthly", "article"),
 
 "contact.html": (

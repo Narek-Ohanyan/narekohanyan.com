@@ -1,11 +1,17 @@
 {
   "date": "2026-10-31",
   "day": "closing",
-  "title": "COP17 closes in Yerevan: a global review adopted in overtime, the money question left open",
-  "excerpt": "Nearly 200 countries approved key texts in overtime, including the first global review of the nature pact. Finance, the Cali Fund and the science panel stayed contentious, and Ecuador will host in 2028.",
-  "description": "Closing recap of COP17 in Yerevan: the global review adopted in overtime, modest progress on harmful subsidies, unresolved conservation finance, Ecuador chosen as the next host, and what it means for children and young people.",
-  "keywords": "COP17 closing, Yerevan, global review, Yerevan Pathway, conservation finance, Cali Fund, harmful subsidies, Ecuador 2028, youth, children, biodiversity",
-  "tags": ["COP17", "Biodiversity", "Children & youth", "Policy", "Finance"],
+  "title": "COP17 closes in Yerevan: what was decided, what was left open, and how it felt to be there",
+  "excerpt": "I was in Yerevan from the first day to the last. A night-long final plenary adopted the first global review of the nature pact, the Yerevan Pathway and about 50 decisions, while money for nature stayed the hardest question. My account of the day, the decisions, the verdict and the feeling.",
+  "description": "Eyewitness closing recap of COP17 in Yerevan: the final plenary step by step, the Yerevan Pathway and Sevan Guidelines, finance and the Cali Fund, how successful the conference was, and what it meant for children and young people.",
+  "keywords": "COP17 closing, Yerevan, final plenary, Yerevan Pathway, global review, Sevan Guidelines, Cali Fund, conservation finance, harmful subsidies, Ecuador 2028, youth, children, biodiversity",
+  "tags": [
+    "COP17",
+    "Biodiversity",
+    "Children & youth",
+    "Policy",
+    "Finance"
+  ],
   "cover": {
     "file": "Media/web/blog/cop17-2026-10-31-card.jpg",
     "width": 1600,
@@ -13,16 +19,63 @@
     "alt": "Illustrated card with the COP17 butterfly and the lines: COP17 closes in Yerevan; texts adopted in overtime",
     "credit": "Illustration: Narek Ohanyan, using the COP17 butterfly symbol."
   },
-  "lead": "The 17th UN Biodiversity Conference ended in Yerevan after two weeks of talks. According to AFP, nearly 200 countries reached agreements on Friday 30 October, and other issues ran into the early hours of Saturday. The first global review of the nature pact was adopted. But the hardest question, who pays for nature, was not settled. I could not read the final decision texts or an official closing report when I wrote this, so this post relies on news reports and says clearly where details are missing.",
+  "lead": "I was in Yerevan for COP17, in person, from the first day to the last, and I am writing this the way I lived it: tired, grateful and still thinking about the room. The 17th UN Biodiversity Conference was meant to end on Friday 30 October. It ended on Saturday 31 October, after a final plenary of nearly 12 hours. In that time delegates adopted the first global review of the nature pact, a plan called the Yerevan Pathway, and about 50 decisions in all. They did not settle the hardest question, who pays for nature. This is my account of the day, the plenary, the decisions, a fair verdict, and the feelings that came with it.",
   "sections": [
     {
-      "h2": "The day in negotiations",
+      "h2": "The last day, as I lived it",
       "blocks": [
         {
-          "p": "<strong>The last day opened with work still to do.</strong> At 14:05 on Friday, <a href=\"https://armenpress.am/en/article/1264324\">Armenpress</a> reported that the final formal plenary sessions were under way. COP17 President Hambardzum Matevosyan, Armenia's Environment Minister, said on Facebook that parties were working for consensus on key issues and needed a willingness to compromise. The day before, my 30 October recap described a closing day full of brackets, the marks that show words countries cannot yet agree on, including the fight over the paragraph on harmful subsidies (Target 18)."
+          "p": "Closing day did not feel like a finish line. It felt like a long Friday that kept being extended. On my own calendar there were my usual commitments: a shift at the Armenia Tree Project booth in the morning, the PechaKucha storytelling session “BAZMAZAN: Living Armenia” on the Green Zone main stage in the afternoon, and another booth shift in the evening. Meanwhile the negotiators were inside the plenary, working through what was left. By the afternoon, <a href=\"https://armenpress.am/en/article/1264324\">Armenpress</a> reported that the final formal plenary sessions were under way, and COP17 President Hambardzum Matevosyan, Armenia’s Environment Minister, wrote that parties needed a willingness to compromise."
         },
         {
-          "p": "<strong>Texts passed in overtime.</strong> According to <a href=\"https://kuwaittimes.com/article/52707/world/nations-agree-to-get-un-nature-goals-back-on-track/\">AFP, as published by Kuwait Times</a>, Matevosyan approved the key texts in overtime and delegates cheered. The \"global review\", the first check of how the world is doing against the 2030 nature goals, was adopted. AFP said it had not been published hours later, so it was unclear which recommendations made the final text. A draft had urged countries to \"accelerate\" their efforts."
+          "p": "Then the night began. Talks were due to end on Friday and ran about 24 hours longer, according to <a href=\"https://www.premiumtimesng.com/news/top-news/921788-cbd-cop17-parties-adopt-yerevan-pathway-as-biodiversity-talks-end-amid-criticism.html\">Premium Times</a>. Matevosyan told reporters afterwards that he had kept the plenary going late on purpose, using team consultations and parallel talks, and that he saw it as his responsibility (<a href=\"https://armenpress.am/en/article/1264392\">Armenpress</a>). He also said that participants had barely slept for two weeks, and that most delegation members had not slept at all in the final days."
+        },
+        {
+          "p": "I will be plain about my sources. The venue was full of people who had given everything, but for the order of events in the plenary below I rely on the detailed reporting of <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a> and <a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a>, and I name them as I go."
+        }
+      ]
+    },
+    {
+      "h2": "Inside the final plenary, step by step",
+      "blocks": [
+        {
+          "p": "<strong>1. The global review.</strong> According to <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>, the presidency’s proposals had cleared the last 28 bracketed phrases (the marks that show words countries cannot yet agree on), and the review was swiftly signed off at the start of the final plenary on 30 October. There was just one late addition. Brazil asked to mention people of African descent in paragraph 35, Colombia backed it, and the President accepted. The text notes “with deep concern” that the 23 targets for 2030 will not be achieved unless action speeds up, and paragraph 15 urges faster implementation, “including by increased ambition”, wording some developing countries had been wary of."
+        },
+        {
+          "p": "<strong>2. Indigenous peoples and local communities.</strong> Next came the rules for the new permanent body on Article 8(j), the part of the convention about Indigenous peoples and local communities. Countries were still split on who sits in the “friends of the bureau” and how the co-chairs of subsidiary bodies rotate. Speaking for the African Group, the Democratic Republic of the Congo said failure would be a “failure of COP17” and warned the plenary could lose its quorum in “30 minutes” (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). The rules were agreed after overtime. The CBD calls them the Sevan Guidelines (<a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a>)."
+        },
+        {
+          "p": "<strong>3. Money.</strong> The resource mobilisation text was welcomed, but a warning followed. China, Saudi Arabia, Switzerland and Fiji cautioned against reopening it, and Brazil put it most sharply: “If we open this text, we will never close it again” (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). The package kept a post-2030 financial mechanism “in principle” and left its shape, a new fund or existing arrangements, to COP18."
+        },
+        {
+          "p": "<strong>4. Climate and nature.</strong> Voluntary guidelines on nature-based solutions were agreed. References to the International Court of Justice’s advisory opinion on climate change were removed after objections from Russia, Saudi Arabia and India. Russia’s position late in the night was that it was “just not willing to move on that, particularly at this time of night” (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>)."
+        },
+        {
+          "p": "<strong>5. The oceans.</strong> The marine text “takes note of” the high seas treaty’s entry into force instead of welcoming it, after Russian objections. Mentions of Indigenous peoples, local communities, women and youth that had been in brackets were removed, except one. A Chilean delegate said, “We are erasing with our elbow what we have just written”, and the room applauded for a long time (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>)."
+        },
+        {
+          "p": "<strong>6. Reporting and review.</strong> An EU compromise asked the subsidiary bodies for recommendations on a “party-driven way forward” after 2030, and an expert group was set up to make the monitoring framework work (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>)."
+        },
+        {
+          "p": "<strong>7. Genetic data and the Cali Fund.</strong> The last item came around 5 a.m. The President’s text on digital sequence information, the genetic data held in global databases, was adopted at 5:25 a.m. on 31 October without objection, to applause (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). Then, early that morning, countries chose the next host: according to <a href=\"https://kuwaittimes.com/article/52707/world/nations-agree-to-get-un-nature-goals-back-on-track/\">AFP, as published by Kuwait Times</a>, Ecuador beat Panama in a secret ballot, and COP18 will take place there in 2028."
+        }
+      ]
+    },
+    {
+      "h2": "The decisions that will be remembered",
+      "blocks": [
+        {
+          "p": "None of the reports I read use the word “historic”, and I will not put it in anyone’s mouth. But these are the decisions that, in my reading, COP17 will be remembered for:"
+        },
+        {
+          "ul": [
+            "<strong>The first global review.</strong> For the first time, the world stopped to check honestly how it is doing against the 2030 nature targets. The UN report behind it found the world is falling behind on 22 of the 23 targets (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). Its answer is the <strong>Yerevan Pathway</strong>, which sets no new targets but focuses on reaching the existing ones: more ambition, wider coverage of national targets, more support, wider engagement and better monitoring (<a href=\"https://english.news.cn/20261101/a2eed070e5ba46cea8798b4a48c6c94a/c.html\">Xinhua</a>).",
+            "<strong>A permanent seat for Indigenous peoples.</strong> The Sevan Guidelines set the working rules of the new permanent subsidiary body on Article 8(j), strengthening the role of Indigenous peoples and local communities in global biodiversity policy (<a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a>).",
+            "<strong>A wider circle of donors, for the first time.</strong> <a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a> reports that large emerging economies were invited, for the first time, to take on donor responsibilities. It is voluntary. Countries can “signal interest”, and <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a> says nobody is added without their consent.",
+            "<strong>Harmful subsidies in the spotlight.</strong> Subsidies that damage nature came out of the shadows. The sources describe the wording differently: <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a> reads paragraph 26 as “encourages” reform “in accordance with national circumstances”, while <a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a> says countries agreed to “accelerate” it. Either way, the presidency launched the Yerevan Call on positive incentives, and a “Friends of Target 18” group began under Colombia and Finland.",
+            "<strong>Rules for the Cali Fund.</strong> The fund for sharing the benefits of genetic data now has rules: half of what it pays out goes to the self-identified needs of Indigenous peoples and local communities, and companies earn a Cali Fund certificate only by paying at the agreed rates, 0.1% of revenue or 1% of profit (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>).",
+            "<strong>Nearly $2 billion in new money.</strong> The CBD lists $560 million through the ninth replenishment of the Global Environment Facility, $500 million through the Species Recovery Alliance and more than $330 million through the Value Nature Fund (<a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a>)."
+          ]
         },
         {
           "figure": {
@@ -33,34 +86,39 @@
             "caption": "The closing in two lines: the money question stayed open, and the next summit goes to Ecuador in 2028.",
             "credit": "Illustration: Narek Ohanyan, using the COP17 butterfly symbol."
           }
-        },
-        {
-          "p": "<strong>Harmful subsidies: a small step.</strong> AFP reported modest progress on subsidies that damage nature, such as those for fossil fuels, intensive farming and overfishing. Observers called the decision text weak. AFP put the money still flowing to harmful subsidies at about $2.4 trillion a year. Earlier in the week, <a href=\"https://climatecurrentorg.substack.com/p/cop17-biodiversity-summit-new-funding\">Climate Current</a> reported that Colombia and Finland, backed by France, had launched an initiative to speed up reform of such subsidies."
-        },
-        {
-          "p": "<strong>Left unresolved.</strong> AFP described conservation finance as the main open question. The world needs roughly $700 billion a year more than it spends, and the EU pushed for wealthy emerging economies such as China to contribute, which stayed contentious. A compromise draft only invited countries outside the traditional donor group to join voluntarily and \"signal interest\". As <a href=\"https://www.climatechangenews.com/2026/10/28/stalemate-finance-cop17-nature-un-exposes-need-new-sources-yerevan/\">Climate Home News</a> reported before the end, the Arab Group rejected any attempt to widen the donor list. The Cali Fund, which is meant to share profits from the use of genetic data, had received only about $10,000 against a goal of $1 billion a year (AFP). AFP also said a few countries were accused of using climate-talk tactics to weaken the role of the UN-backed science panel on biodiversity."
-        },
-        {
-          "p": "<strong>Next host.</strong> AFP reported that Ecuador beat Panama in a secret ballot, early on Saturday, to host the next biodiversity talks in 2028."
         }
       ]
     },
     {
-      "h2": "Positions and stakeholders",
+      "h2": "What was left on the table",
       "blocks": [
         {
-          "p": "What I could confirm, group by group, comes from the reports above and the Climate Home piece:"
+          "p": "<strong>Money.</strong> Developed countries missed the goal of $20 billion a year for nature by 2025 (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). The compromise on widening the donor base was hard won and thin. The EU called the progress “timid”, Saudi Arabia said it had expected “a lot less”, and Switzerland’s lead negotiator Gabriela Blatter said that “if we’re mutually unhappy, it’s probably the closest we can get” (<a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a>)."
+        },
+        {
+          "p": "<strong>The Cali Fund is nearly empty.</strong> According to <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>, pledges totalled $10,565 by the end, with less than $9,000 deposited, and no large company that relies on genetic data had paid. Some technical details were pushed to COP18, so Siva Thambisetty of the London School of Economics described the fund as “on life support”."
+        },
+        {
+          "p": "<strong>Other items were deferred</strong> for lack of time, including cooperation with other conventions and the global benefit-sharing mechanism under the Nagoya Protocol (<a href=\"https://www.downtoearth.org.in/wildlife-biodiversity/yerevan-pathway-cop17-ends-with-decisions-on-50-agenda-items\">Down To Earth</a>)."
+        }
+      ]
+    },
+    {
+      "h2": "How successful was COP17?",
+      "blocks": [
+        {
+          "p": "I would split the answer in two: a success of process, and a partial success of substance."
         },
         {
           "ul": [
-            "<strong>European Union:</strong> pressed for emerging economies to count as contributors; Environment Commissioner Jessika Roswall said the EU would keep its commitments but cannot close the gap alone (Climate Home News).",
-            "<strong>Arab Group:</strong> opposed widening the donor list or reclassifying countries (Climate Home News).",
-            "<strong>African Group:</strong> called for stronger public finance, calling the UN findings a serious warning (Climate Home News).",
-            "<strong>Environmental groups:</strong> Fauna and Flora's Catherine Weller said it was good news that countries reached agreement, though not exciting. WWF's Kirsty Leong saw strengths and weaknesses but a good result on balance. Greenpeace's An Lambrechts saw political momentum on harmful incentives, in weak wording (AFP)."
+            "<strong>Process: a clear success.</strong> <a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a> notes that, unlike COP16, countries signed off all major negotiating texts. About 50 decisions were adopted, which Matevosyan called an excellent result: “we achieved far more than we could have expected” (<a href=\"https://armenpress.am/en/article/1264392\">Armenpress</a>). UNEP’s Inger Andersen said that in Yerevan “we saw environmental multilateralism prevail once again” (<a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a>).",
+            "<strong>Substance: real but short of the need.</strong> Steven Guilbeault, who helped broker the global framework, called the package “an important step forward” that “falls short of what is needed” (<a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a>). The Wildlife Conservation Society said the final text largely reused existing language and was weak on ambition (<a href=\"https://www.premiumtimesng.com/news/top-news/921788-cbd-cop17-parties-adopt-yerevan-pathway-as-biodiversity-talks-end-amid-criticism.html\">Premium Times</a>), and WWF’s Guido Broekhoven warned that “every diluted clause, every deferred target, is a step towards irreversible loss” (<a href=\"https://english.news.cn/20261101/a2eed070e5ba46cea8798b4a48c6c94a/c.html\">Xinhua</a>).",
+            "<strong>Finance: unfinished.</strong> WWF’s Daudi Sumba feared finance “will remain the key issue” haunting these summits, and the Pacific Islands group said delegates were leaving with “realities not reflected in the official text” (<a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a>).",
+            "<strong>Credit to the host.</strong> Executive Secretary Astrid Schomaker praised the results “at a moment when multilateralism is supposedly not functioning” (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>). Armenia hosted two weeks of talks and held a deal together overnight."
           ]
         },
         {
-          "p": "AFP said Indigenous leaders and civil society urged more urgency; I could not confirm what the final texts say on Indigenous rights. Announcements along the way: <a href=\"https://climatecurrentorg.substack.com/p/cop17-biodiversity-summit-new-funding\">Climate Current</a> listed more than $500 million of added commitments to the Global Environment Facility, and over $1.8 billion in nature finance announced by Armenia's presidency in week one, plus $500 million for species recovery. Armenia and UNEP also announced a global mountain-ecosystems initiative."
+          "p": "My verdict: COP17 kept the process alive and made the problem impossible to ignore. It did not yet change the money or the pace. Whether it succeeded will be decided in the national plans and budgets of the next four years, and at COP18, which Down To Earth calls the last checkpoint on progress toward 2030."
         }
       ]
     },
@@ -69,11 +127,13 @@
       "blocks": [
         {
           "ul": [
-            "<strong>Nearly 200:</strong> countries behind the agreements adopted on 30 October (AFP).",
-            "<strong>About $700 billion a year:</strong> the estimated missing money for nature, against a goal of $200 billion a year from all sources by 2030 (AFP; Climate Home News).",
-            "<strong>About $10,000:</strong> raised so far by the Cali Fund (AFP).",
-            "<strong>About $2.4 trillion a year:</strong> estimated harmful subsidies (AFP).",
-            "<strong>14 decisions:</strong> adopted in the first week, including biosafety, invasive alien species and gender equality, said Executive Secretary Astrid Schomaker (<a href=\"https://www.cbd.int/article/2026-10-18-06-36-57\">CBD Secretariat</a>)."
+            "<strong>About 12 hours:</strong> the length of the final plenary (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>).",
+            "<strong>About 50:</strong> decisions adopted (<a href=\"https://armenpress.am/en/article/1264392\">Armenpress</a>).",
+            "<strong>22 of 23:</strong> the 2030 targets the world is falling behind on, per the UN report (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>).",
+            "<strong>$20 billion a year:</strong> the nature finance goal for 2025 that developed countries missed (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>).",
+            "<strong>$10,565:</strong> total Cali Fund pledges by the end of the conference (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>).",
+            "<strong>Nearly $2 billion:</strong> new commitments announced at COP17 (<a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a>).",
+            "<strong>5:25 a.m.:</strong> when the last decision was adopted, on 31 October (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>)."
           ]
         }
       ]
@@ -82,36 +142,88 @@
       "h2": "Through a child and youth lens",
       "blocks": [
         {
-          "p": "I follow this process as a member of the UNICEF Global Delegation, and I advocate for including children and young people in the CBD process. In the closing coverage I could read, children and youth were not mentioned at all. I will not guess what the final texts say about them."
+          "p": "I came to COP17 as a member of the UNICEF Global Delegation, and I advocate for including children and young people in the CBD process. My programme there included the Child and Youth Dialogue with the COP17 President on 21 October, and sessions with the Global Youth Biodiversity Network on 27 and 29 October. So I read the closing texts with one question: where are young people in them?"
         },
         {
-          "p": "What I can say is which decisions decide their future. A global review that is adopted but unpublished cannot yet be held to account by young people. Finance that stays about $700 billion short means fewer funded protected areas for today's children to inherit. The weak subsidy wording matters because those subsidies shape land, seas and food for decades. And the science panel is where children's evidence on nature is turned into advice."
+          "p": "The honest answer is mixed. The Yerevan Pathway pushes wider engagement of governments and societies, and the <a href=\"https://www.cbd.int/article/cop-17-closes\">CBD Secretariat</a> names a new emphasis on biodiversity education. But the reporting shows that in the marine text, mentions of Indigenous peoples, local communities, women and youth were removed except one (<a href=\"https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan\">Carbon Brief</a>), and Xiomara Acevedo of Barranquilla+20 called that concerning because the language had already been agreed. I could not read the final decision texts myself, so I cannot say how children and youth appear in every one of them."
         },
         {
-          "p": "<a href=\"https://www.unicef.org/armenia/en/stories/what-adolescents-and-young-people-should-know-about-cop17\">UNICEF Armenia</a> prepared material for adolescents and young people before the conference, and Armenia's young people produced a National Youth Statement. The next step is to read the published decisions and check whether youth participation, and intergenerational fairness, were kept in the text."
+          "p": "What I am sure of is the stake. A world that is off track on 22 of 23 targets, and short of the money to change that, is a world handed over to today’s children with the bill attached. That is why subsidy reform, finance and monitoring are children’s issues, not only technical ones."
         }
       ]
     },
     {
-      "h2": "What to watch next",
+      "h2": "How it felt",
+      "blocks": [
+        {
+          "p": "I felt relief when the last text passed. I felt pride, because this was Armenia’s moment, and the country I love held a global negotiation together through a night when it could have fallen apart. I felt frustration too, because $10,565 in a fund meant for billions is not a number you forget, and a text that only “encourages” is not what children are waiting for."
+        },
+        {
+          "p": "Mostly I felt the exhaustion that the President described, and underneath it something steadier: gratitude for the young people, Indigenous leaders, scientists and delegates who kept showing up long after sleep would have been the sensible choice. In the final hours, the room cheered and applauded more than once. That is what hope looks like in a negotiation. It is tired, it is stubborn, and it claps at five in the morning."
+        }
+      ]
+    },
+    {
+      "h2": "What comes next",
       "blocks": [
         {
           "ul": [
-            "<strong>The published texts:</strong> the final global review and decisions, from the CBD and the Earth Negotiations Bulletin summary.",
-            "<strong>Money:</strong> whether emerging economies volunteer to contribute, and whether the Cali Fund fills.",
-            "<strong>Road to 2028:</strong> Ecuador as host, and national plans before then.",
-            "<strong>Analysis:</strong> the SEI post-COP17 discussion on 5 November."
+            "<strong>The published texts:</strong> the final decisions and the Earth Negotiations Bulletin summary, which I will read line by line for children and youth.",
+            "<strong>National plans:</strong> more than 60 countries had not yet submitted one, and the decision urges them to finish “as soon as possible” (<a href=\"https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/\">Climate Home News</a>).",
+            "<strong>Money:</strong> who signals interest as a donor, and whether the Cali Fund fills before COP18 in Ecuador in 2028.",
+            "<strong>Analysis:</strong> the SEI discussion on COP17 on 5 November."
           ]
+        },
+        {
+          "p": "CBD Executive Secretary Astrid Schomaker gave the closing test for all of us who care about this process:"
+        },
+        {
+          "quote": "The test is not what governments agreed in Yerevan, but what they change when they return home."
         }
       ]
     }
   ],
   "sources": [
-    {"text": "Nations agree to get UN nature goals back on track (AFP, via Kuwait Times, 31 Oct 2026)", "url": "https://kuwaittimes.com/article/52707/world/nations-agree-to-get-un-nature-goals-back-on-track/"},
-    {"text": "COP17 final formal plenary sessions underway (Armenpress, 30 Oct 2026)", "url": "https://armenpress.am/en/article/1264324"},
-    {"text": "COP17 Biodiversity Summit: New funding pledges offer hope (Climate Current, 30 Oct 2026)", "url": "https://climatecurrentorg.substack.com/p/cop17-biodiversity-summit-new-funding"},
-    {"text": "Stalemate on finance at COP17 nature talks exposes need for new sources (Climate Home News, 28 Oct 2026, updated 29 Oct)", "url": "https://www.climatechangenews.com/2026/10/28/stalemate-finance-cop17-nature-un-exposes-need-new-sources-yerevan/"},
-    {"text": "Spotlight on Yerevan: Announcements from the 2026 UN Biodiversity Conference (CBD Secretariat)", "url": "https://www.cbd.int/article/2026-10-18-06-36-57"},
-    {"text": "What adolescents and young people should know about COP17 (UNICEF Armenia)", "url": "https://www.unicef.org/armenia/en/stories/what-adolescents-and-young-people-should-know-about-cop17"}
-  ]
+    {
+      "text": "COP17: Key outcomes agreed at the UN biodiversity conference in Yerevan (Carbon Brief, 31 Oct 2026)",
+      "url": "https://www.carbonbrief.org/cop17-key-outcomes-agreed-at-the-un-biodiversity-conference-in-yerevan"
+    },
+    {
+      "text": "COP17 delivers fragile deal to boost conservation and funding for nature (Climate Home News, 31 Oct 2026)",
+      "url": "https://www.climatechangenews.com/2026/10/31/cop17-delivers-fragile-deal-scaling-up-biodiversity-conservation-armenia-cbd/"
+    },
+    {
+      "text": "UN Biodiversity Conference charts Yerevan Pathway to accelerate global action for nature (CBD Secretariat, 31 Oct 2026)",
+      "url": "https://www.cbd.int/article/cop-17-closes"
+    },
+    {
+      "text": "COP17 adopts around 50 decisions as outcomes exceed expectations (Armenpress, 31 Oct 2026)",
+      "url": "https://armenpress.am/en/article/1264392"
+    },
+    {
+      "text": "Yerevan Pathway adopted at COP17 to accelerate biodiversity conservation action (Armenpress, 31 Oct 2026)",
+      "url": "https://armenpress.am/en/article/1264395"
+    },
+    {
+      "text": "COP17 final formal plenary sessions underway (Armenpress, 30 Oct 2026)",
+      "url": "https://armenpress.am/en/article/1264324"
+    },
+    {
+      "text": "Nations agree to get UN nature goals back on track (AFP, via Kuwait Times, 31 Oct 2026)",
+      "url": "https://kuwaittimes.com/article/52707/world/nations-agree-to-get-un-nature-goals-back-on-track/"
+    },
+    {
+      "text": "CBD COP17: Parties adopt Yerevan Pathway as biodiversity talks end amid criticism (Premium Times, 31 Oct 2026)",
+      "url": "https://www.premiumtimesng.com/news/top-news/921788-cbd-cop17-parties-adopt-yerevan-pathway-as-biodiversity-talks-end-amid-criticism.html"
+    },
+    {
+      "text": "World Insights: Yerevan Pathway charts course for biodiversity action, but challenges remain (Xinhua, 1 Nov 2026)",
+      "url": "https://english.news.cn/20261101/a2eed070e5ba46cea8798b4a48c6c94a/c.html"
+    },
+    {
+      "text": "Yerevan Pathway: COP17 ends with decisions on 50 agenda items (Down To Earth, 1 Nov 2026)",
+      "url": "https://www.downtoearth.org.in/wildlife-biodiversity/yerevan-pathway-cop17-ends-with-decisions-on-50-agenda-items"
+    }
+  ],
+  "_force": true
 }
