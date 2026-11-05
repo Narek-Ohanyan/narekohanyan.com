@@ -59,3 +59,77 @@
     frame.focus();
   });
 }());
+
+/* ── Featured films: rotate the two hero films ───────────────────────────
+   Advances every 10 s. It holds still while the pointer or keyboard focus
+   is inside it, once a film has been started, when the tab is hidden, if
+   the visitor pressed pause, and always for reduced motion (then it only
+   changes when the arrows or dots are used). */
+(function () {
+  'use strict';
+  var box = document.getElementById('bcSlides');
+  if (!box) return;
+
+  var slides = Array.prototype.slice.call(box.querySelectorAll('.broadcast__slide'));
+  var dots   = Array.prototype.slice.call(document.querySelectorAll('.broadcast__dot'));
+  var pause  = document.querySelector('.broadcast__pause');
+  var bar    = document.querySelector('.broadcast__bar');
+  var still  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var cur = 0, timer = 0, held = false, userPaused = still;
+
+  function show(n) {
+    cur = (n + slides.length) % slides.length;
+    slides.forEach(function (s, i) {
+      var on = i === cur;
+      s.classList.toggle('is-active', on);
+      if (on) s.removeAttribute('aria-hidden'); else s.setAttribute('aria-hidden', 'true');
+      if ('inert' in s) s.inert = !on;
+    });
+    dots.forEach(function (d, i) {
+      d.classList.toggle('is-on', i === cur);
+      if (i === cur) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+    });
+  }
+
+  function playing() { return !!box.querySelector('iframe'); }
+  function stop() { clearInterval(timer); timer = 0; }
+  function start() {
+    stop();
+    if (userPaused || held || playing() || document.hidden) return;
+    timer = setInterval(function () {
+      if (playing()) { stop(); return; }
+      show(cur + 1);
+    }, 10000);
+  }
+  function setPaused(v) {
+    userPaused = v;
+    if (pause) {
+      pause.setAttribute('aria-pressed', v ? 'true' : 'false');
+      pause.setAttribute('aria-label', v ? 'Resume automatic rotation' : 'Pause automatic rotation');
+    }
+    start();
+  }
+
+  bar.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-bc]');
+    if (!b) return;
+    var k = b.getAttribute('data-bc');
+    if (k === 'pause') { setPaused(!userPaused); return; }
+    show(k === 'prev' ? cur - 1 : k === 'next' ? cur + 1 : parseInt(k, 10));
+    start();
+  });
+
+  [box, bar].forEach(function (el) {
+    el.addEventListener('pointerenter', function () { held = true; stop(); });
+    el.addEventListener('pointerleave', function () { held = false; start(); });
+    el.addEventListener('focusin',      function () { held = true; stop(); });
+    el.addEventListener('focusout',     function () { held = false; start(); });
+  });
+  // a film that has been started keeps its slide until the visitor moves on
+  box.addEventListener('click', function (e) { if (e.target.closest('[data-yt]')) stop(); });
+  document.addEventListener('visibilitychange', start);
+
+  if (still && pause) { pause.setAttribute('aria-pressed', 'true'); pause.setAttribute('aria-label', 'Resume automatic rotation'); }
+  show(0);
+  start();
+}());

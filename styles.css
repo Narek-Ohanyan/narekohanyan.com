@@ -7966,3 +7966,45 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
   .ed-entry:has(> .gal):not(:has(> .ed-entry__body)) { display: block; }
   .ed-entry:has(> .gal):not(:has(> .ed-entry__body)) > .gal { max-width: min(54rem, calc(60svh * 1.5)); margin-inline: auto; }
 }
+
+/* ── Featured films: two films that take turns in the hero ───────────────
+   Slides share one grid cell so the box is as tall as the taller slide and
+   nothing jumps when they cross-fade. Only the active slide is visible and
+   reachable by keyboard. */
+.broadcast__slides { display: grid; }
+.broadcast__slide {
+  grid-area: 1 / 1;
+  opacity: 0; visibility: hidden;
+  transition: opacity .7s var(--ease), visibility 0s linear .7s;
+}
+.broadcast__slide.is-active { opacity: 1; visibility: visible; transition: opacity .7s var(--ease), visibility 0s; }
+.broadcast__bar {
+  display: flex; align-items: center; gap: .85rem;
+  margin-top: clamp(1.5rem, 3.5vh, 2.25rem);
+}
+.broadcast__btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0;
+  color: var(--lemon); background: none; cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,.55); border-radius: 50%;
+  transition: background-color .3s var(--ease), border-color .3s var(--ease);
+}
+.broadcast__btn svg { width: 20px; height: 20px; }
+.broadcast__btn:hover { background: rgba(245,236,154,.2); border-color: var(--lemon); }
+.broadcast__dots { display: flex; gap: .3rem; }
+.broadcast__dot { width: 24px; height: 24px; padding: 0; background: none; border: 0; cursor: pointer; position: relative; }
+.broadcast__dot::after {
+  content: ""; position: absolute; inset: 50% auto auto 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,.4);
+  transition: background-color .3s var(--ease), transform .3s var(--ease);
+}
+.broadcast__dot.is-on::after { background: var(--lemon); transform: translate(-50%, -50%) scale(1.5); }
+.broadcast__pause { margin-inline-start: auto; }
+.broadcast__pause .i-play { display: none; }
+.broadcast__pause[aria-pressed="true"] .i-pause { display: none; }
+.broadcast__pause[aria-pressed="true"] .i-play { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .broadcast__slide, .broadcast__slide.is-active { transition: none; }
+}

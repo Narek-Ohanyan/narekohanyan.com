@@ -13,7 +13,7 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="Media/logo_white.png">
-<link rel="stylesheet" href="styles.css?v=fe6fc45076">
+<link rel="stylesheet" href="styles.css?v=888f5722d2">
 
 <!--seo-->
 <meta name="description" content="Television, radio, print and online coverage of Narek Ohanyan's climate research, policy advocacy and youth leadership across Armenian and international outlets.">
@@ -95,23 +95,52 @@
   <!-- ── Featured broadcast ────────────────────── Deep forest ── -->
   <header class="broadcast">
     <div class="broadcast__inner">
-      <p class="onair" aria-label="Featured broadcast">
-        <span class="onair__dot" aria-hidden="true"></span>Featured broadcast
+      <p class="onair" aria-label="Featured films">
+        <span class="onair__dot" aria-hidden="true"></span>Featured films
       </p>
 
-      <div class="broadcast__stage" data-reveal>
-        <button class="broadcast__shot" type="button" data-yt="rDxVGUHE7U0" aria-label="Play video: People Taking Action for Nature: The Journey to COP17">
-          <img src="https://i.ytimg.com/vi/rDxVGUHE7U0/maxresdefault.jpg" alt="" loading="lazy" decoding="async" width="1280" height="720" data-fallback="rDxVGUHE7U0">
-          <span class="vid__scrim" aria-hidden="true"></span>
-          <span class="vid__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.22.68l10.7-6.8a.8.8 0 0 0 0-1.36L9.22 4.52A.8.8 0 0 0 8 5.2Z"/></svg></span>
-        </button>
+      <div class="broadcast__slides" id="bcSlides" role="group" aria-roledescription="carousel" aria-label="Featured films" data-reveal>
+      <div class="broadcast__slide is-active" id="bc-hero" role="group" aria-roledescription="slide" aria-label="1 of 2">
+        <div class="broadcast__stage">
+          <button class="broadcast__shot" type="button" data-yt="_VY0R3egjgY" aria-label="Play video: Hero of Our Times: Narek Ohanyan (in Armenian)">
+            <img src="https://i.ytimg.com/vi/_VY0R3egjgY/maxresdefault.jpg" alt="" decoding="async" width="1280" height="720" data-fallback="_VY0R3egjgY">
+            <span class="vid__scrim" aria-hidden="true"></span>
+            <span class="vid__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.22.68l10.7-6.8a.8.8 0 0 0 0-1.36L9.22 4.52A.8.8 0 0 0 8 5.2Z"/></svg></span>
+          </button>
+        </div>
+        <div class="broadcast__body">
+          <p class="eyebrow eyebrow--on-dark">Government of Armenia &middot; &ldquo;Hero of Our Times&rdquo;</p>
+          <h1 class="broadcast__title">Hero of Our Times: Narek Ohanyan</h1>
+          <p class="broadcast__desc">A film about Narek Ohanyan, featured in &ldquo;Hero of Our Times&rdquo;, the Government of Armenia&rsquo;s programme that honours citizens for their work in different fields. The film is in Armenian.</p>
+          <a class="vid__out vid__out--hero" href="https://www.youtube.com/watch?v=_VY0R3egjgY" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+      <div class="broadcast__slide" id="bc-cop17" role="group" aria-roledescription="slide" aria-label="2 of 2">
+        <div class="broadcast__stage">
+          <button class="broadcast__shot" type="button" data-yt="rDxVGUHE7U0" aria-label="Play video: People Taking Action for Nature: The Journey to COP17">
+            <img src="https://i.ytimg.com/vi/rDxVGUHE7U0/maxresdefault.jpg" alt="" decoding="async" width="1280" height="720" data-fallback="rDxVGUHE7U0">
+            <span class="vid__scrim" aria-hidden="true"></span>
+            <span class="vid__play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6a.8.8 0 0 0 1.22.68l10.7-6.8a.8.8 0 0 0 0-1.36L9.22 4.52A.8.8 0 0 0 8 5.2Z"/></svg></span>
+          </button>
+        </div>
+
+        <div class="broadcast__body">
+          <p class="eyebrow eyebrow--on-dark">COP17 &middot; Documentary feature</p>
+          <h2 class="broadcast__title">People Taking Action for Nature: The Journey to COP17</h2>
+          <p class="broadcast__desc">Featured as a climate action hero ahead of the UN Convention on Biological Diversity (COP17), this short documentary film chronicles Narek Ohanyan&rsquo;s decade-long journey from local environmental advocacy in Ararat to global climate diplomacy. The feature highlights the tangible intersection of scientific research, youth mobilization, and systemic ecosystem resilience.</p>
+            <a class="vid__out vid__out--hero" href="https://www.youtube.com/watch?v=rDxVGUHE7U0" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
       </div>
 
-      <div class="broadcast__body">
-        <p class="eyebrow eyebrow--on-dark">COP17 &middot; Documentary feature</p>
-        <h1 class="broadcast__title">People Taking Action for Nature: The Journey to COP17</h1>
-        <p class="broadcast__desc">Featured as a climate action hero ahead of the UN Convention on Biological Diversity (COP17), this short documentary film chronicles Narek Ohanyan&rsquo;s decade-long journey from local environmental advocacy in Ararat to global climate diplomacy. The feature highlights the tangible intersection of scientific research, youth mobilization, and systemic ecosystem resilience.</p>
-          <a class="vid__out vid__out--hero" href="https://www.youtube.com/watch?v=rDxVGUHE7U0" target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+      <div class="broadcast__bar" aria-label="Featured films">
+        <button class="broadcast__btn" type="button" data-bc="prev" aria-label="Previous film"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="broadcast__dots">
+          <button class="broadcast__dot is-on" type="button" data-bc="0" aria-label="Show film 1 of 2: Hero of Our Times" aria-current="true"></button>
+          <button class="broadcast__dot" type="button" data-bc="1" aria-label="Show film 2 of 2: People Taking Action for Nature"></button>
+        </div>
+        <button class="broadcast__btn" type="button" data-bc="next" aria-label="Next film"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button class="broadcast__btn broadcast__pause" type="button" data-bc="pause" aria-pressed="false" aria-label="Pause automatic rotation"><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6l11-6.8z" fill="currentColor"/></svg></button>
       </div>
     </div>
   </header>
@@ -450,6 +479,6 @@
 </main>
 
 <script src="site.js?v=50a8e17fca"></script>
-<script src="media.js?v=56369c815f"></script>
+<script src="media.js?v=0159103d46"></script>
 </body>
 </html>
