@@ -8008,3 +8008,5 @@ html[lang="hy"] .c17-pop, .c17-pop[lang="hy"] {
 @media (prefers-reduced-motion: reduce) {
   .broadcast__slide, .broadcast__slide.is-active { transition: none; }
 }
+
+.home-c17__btns [hidden] { display: none; }

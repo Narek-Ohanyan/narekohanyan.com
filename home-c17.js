@@ -23,6 +23,7 @@
     go.setAttribute('href', 'policy.html');
     go.firstChild.nodeValue = 'See my policy portfolio\u00a0';
     q('#homeC17Alt').textContent = 'COP17 recaps';
+    q('#homeC17Page').hidden = false;   // the schedule page stays one click away
   }
 
   var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
